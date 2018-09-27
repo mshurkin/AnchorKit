@@ -10,6 +10,13 @@
 		2D686FF7215D119100533F4F /* AnchorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D686FED215D119100533F4F /* AnchorKit.framework */; };
 		2D686FFC215D119100533F4F /* AnchorKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D686FFB215D119100533F4F /* AnchorKitTests.swift */; };
 		2D686FFE215D119100533F4F /* AnchorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D686FF0215D119100533F4F /* AnchorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D687009215D3A5300533F4F /* AnchorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D687008215D3A5300533F4F /* AnchorKit.swift */; };
+		2D68700B215D41C700533F4F /* FloatRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D68700A215D41C700533F4F /* FloatRepresentable.swift */; };
+		2D68700D215D588D00533F4F /* NSLayoutConstraint+AnchorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D68700C215D588D00533F4F /* NSLayoutConstraint+AnchorKit.swift */; };
+		2D68700F215D5AFE00533F4F /* AnchorKit+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D68700E215D5AFE00533F4F /* AnchorKit+Priority.swift */; };
+		2D687011215D5DD400533F4F /* UILayoutPriority+AnchorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D687010215D5DD400533F4F /* UILayoutPriority+AnchorKit.swift */; };
+		2D687013215D5EE000533F4F /* AnchorKit+Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D687012215D5EE000533F4F /* AnchorKit+Spacing.swift */; };
+		2D687015215D753E00533F4F /* AnchorKit+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D687014215D753E00533F4F /* AnchorKit+Constraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +36,13 @@
 		2D686FF6215D119100533F4F /* AnchorKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnchorKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D686FFB215D119100533F4F /* AnchorKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorKitTests.swift; sourceTree = "<group>"; };
 		2D686FFD215D119100533F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D687008215D3A5300533F4F /* AnchorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorKit.swift; sourceTree = "<group>"; };
+		2D68700A215D41C700533F4F /* FloatRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatRepresentable.swift; sourceTree = "<group>"; };
+		2D68700C215D588D00533F4F /* NSLayoutConstraint+AnchorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+AnchorKit.swift"; sourceTree = "<group>"; };
+		2D68700E215D5AFE00533F4F /* AnchorKit+Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnchorKit+Priority.swift"; sourceTree = "<group>"; };
+		2D687010215D5DD400533F4F /* UILayoutPriority+AnchorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILayoutPriority+AnchorKit.swift"; sourceTree = "<group>"; };
+		2D687012215D5EE000533F4F /* AnchorKit+Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnchorKit+Spacing.swift"; sourceTree = "<group>"; };
+		2D687014215D753E00533F4F /* AnchorKit+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnchorKit+Constraints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +85,13 @@
 		2D686FEF215D119100533F4F /* AnchorKit */ = {
 			isa = PBXGroup;
 			children = (
+				2D687008215D3A5300533F4F /* AnchorKit.swift */,
+				2D687014215D753E00533F4F /* AnchorKit+Constraints.swift */,
+				2D68700E215D5AFE00533F4F /* AnchorKit+Priority.swift */,
+				2D687012215D5EE000533F4F /* AnchorKit+Spacing.swift */,
+				2D68700A215D41C700533F4F /* FloatRepresentable.swift */,
+				2D68700C215D588D00533F4F /* NSLayoutConstraint+AnchorKit.swift */,
+				2D687010215D5DD400533F4F /* UILayoutPriority+AnchorKit.swift */,
 				2D686FF0215D119100533F4F /* AnchorKit.h */,
 				2D686FF1215D119100533F4F /* Info.plist */,
 			);
@@ -149,6 +170,7 @@
 				TargetAttributes = {
 					2D686FEC215D119100533F4F = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					2D686FF5215D119100533F4F = {
 						CreatedOnToolsVersion = 10.0;
@@ -216,6 +238,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D687015215D753E00533F4F /* AnchorKit+Constraints.swift in Sources */,
+				2D687013215D5EE000533F4F /* AnchorKit+Spacing.swift in Sources */,
+				2D687009215D3A5300533F4F /* AnchorKit.swift in Sources */,
+				2D68700D215D588D00533F4F /* NSLayoutConstraint+AnchorKit.swift in Sources */,
+				2D687011215D5DD400533F4F /* UILayoutPriority+AnchorKit.swift in Sources */,
+				2D68700B215D41C700533F4F /* FloatRepresentable.swift in Sources */,
+				2D68700F215D5AFE00533F4F /* AnchorKit+Priority.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +392,7 @@
 		2D687002215D119100533F4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -379,6 +409,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.mshurkin.AnchorKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -387,6 +418,7 @@
 		2D687003215D119100533F4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -411,6 +443,7 @@
 		2D687005215D119100533F4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AnchorKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -428,6 +461,7 @@
 		2D687006215D119100533F4F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AnchorKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
