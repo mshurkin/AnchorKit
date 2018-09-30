@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D29F7EF2160E08A00811FEC /* PriorityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29F7EE2160E08A00811FEC /* PriorityTests.swift */; };
+		2D29F7F12160F2F200811FEC /* SpacingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29F7F02160F2F200811FEC /* SpacingTests.swift */; };
+		2D29F7F52161076300811FEC /* FloatRepresentableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29F7F42161076300811FEC /* FloatRepresentableTests.swift */; };
 		2D686FF7215D119100533F4F /* AnchorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D686FED215D119100533F4F /* AnchorKit.framework */; };
 		2D686FFC215D119100533F4F /* AnchorKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D686FFB215D119100533F4F /* AnchorKitTests.swift */; };
 		2D686FFE215D119100533F4F /* AnchorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D686FF0215D119100533F4F /* AnchorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,6 +20,7 @@
 		2D687011215D5DD400533F4F /* UILayoutPriority+AnchorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D687010215D5DD400533F4F /* UILayoutPriority+AnchorKit.swift */; };
 		2D687013215D5EE000533F4F /* AnchorKit+Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D687012215D5EE000533F4F /* AnchorKit+Spacing.swift */; };
 		2D687015215D753E00533F4F /* AnchorKit+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D687014215D753E00533F4F /* AnchorKit+Constraints.swift */; };
+		2DF19D1E2160318D003031AA /* ConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF19D1D2160318C003031AA /* ConstraintsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D29F7EE2160E08A00811FEC /* PriorityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityTests.swift; sourceTree = "<group>"; };
+		2D29F7F02160F2F200811FEC /* SpacingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTests.swift; sourceTree = "<group>"; };
+		2D29F7F42161076300811FEC /* FloatRepresentableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatRepresentableTests.swift; sourceTree = "<group>"; };
 		2D686FED215D119100533F4F /* AnchorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnchorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D686FF0215D119100533F4F /* AnchorKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnchorKit.h; sourceTree = "<group>"; };
 		2D686FF1215D119100533F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,6 +50,7 @@
 		2D687010215D5DD400533F4F /* UILayoutPriority+AnchorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILayoutPriority+AnchorKit.swift"; sourceTree = "<group>"; };
 		2D687012215D5EE000533F4F /* AnchorKit+Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnchorKit+Spacing.swift"; sourceTree = "<group>"; };
 		2D687014215D753E00533F4F /* AnchorKit+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnchorKit+Constraints.swift"; sourceTree = "<group>"; };
+		2DF19D1D2160318C003031AA /* ConstraintsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,10 @@
 			isa = PBXGroup;
 			children = (
 				2D686FFB215D119100533F4F /* AnchorKitTests.swift */,
+				2DF19D1D2160318C003031AA /* ConstraintsTests.swift */,
+				2D29F7EE2160E08A00811FEC /* PriorityTests.swift */,
+				2D29F7F02160F2F200811FEC /* SpacingTests.swift */,
+				2D29F7F42161076300811FEC /* FloatRepresentableTests.swift */,
 				2D686FFD215D119100533F4F /* Info.plist */,
 			);
 			path = AnchorKitTests;
@@ -252,6 +264,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D29F7EF2160E08A00811FEC /* PriorityTests.swift in Sources */,
+				2D29F7F12160F2F200811FEC /* SpacingTests.swift in Sources */,
+				2D29F7F52161076300811FEC /* FloatRepresentableTests.swift in Sources */,
+				2DF19D1E2160318D003031AA /* ConstraintsTests.swift in Sources */,
 				2D686FFC215D119100533F4F /* AnchorKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
