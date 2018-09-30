@@ -10,6 +10,11 @@
 		2D29F7EF2160E08A00811FEC /* PriorityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29F7EE2160E08A00811FEC /* PriorityTests.swift */; };
 		2D29F7F12160F2F200811FEC /* SpacingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29F7F02160F2F200811FEC /* SpacingTests.swift */; };
 		2D29F7F52161076300811FEC /* FloatRepresentableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29F7F42161076300811FEC /* FloatRepresentableTests.swift */; };
+		2D29F8132161159F00811FEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29F8122161159F00811FEC /* AppDelegate.swift */; };
+		2D29F8152161159F00811FEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29F8142161159F00811FEC /* ViewController.swift */; };
+		2D29F8182161159F00811FEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D29F8162161159F00811FEC /* Main.storyboard */; };
+		2D29F81A216115A000811FEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D29F819216115A000811FEC /* Assets.xcassets */; };
+		2D29F81D216115A000811FEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D29F81B216115A000811FEC /* LaunchScreen.storyboard */; };
 		2D686FF7215D119100533F4F /* AnchorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D686FED215D119100533F4F /* AnchorKit.framework */; };
 		2D686FFC215D119100533F4F /* AnchorKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D686FFB215D119100533F4F /* AnchorKitTests.swift */; };
 		2D686FFE215D119100533F4F /* AnchorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D686FF0215D119100533F4F /* AnchorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,6 +42,13 @@
 		2D29F7EE2160E08A00811FEC /* PriorityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityTests.swift; sourceTree = "<group>"; };
 		2D29F7F02160F2F200811FEC /* SpacingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingTests.swift; sourceTree = "<group>"; };
 		2D29F7F42161076300811FEC /* FloatRepresentableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatRepresentableTests.swift; sourceTree = "<group>"; };
+		2D29F8102161159F00811FEC /* AnchorKit-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AnchorKit-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D29F8122161159F00811FEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2D29F8142161159F00811FEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2D29F8172161159F00811FEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2D29F819216115A000811FEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D29F81C216115A000811FEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2D29F81E216115A000811FEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D686FED215D119100533F4F /* AnchorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnchorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D686FF0215D119100533F4F /* AnchorKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnchorKit.h; sourceTree = "<group>"; };
 		2D686FF1215D119100533F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +66,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2D29F80D2161159F00811FEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2D686FEA215D119100533F4F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,11 +91,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D29F8112161159F00811FEC /* AnchorKit-Example */ = {
+			isa = PBXGroup;
+			children = (
+				2D29F8122161159F00811FEC /* AppDelegate.swift */,
+				2D29F8142161159F00811FEC /* ViewController.swift */,
+				2D29F8162161159F00811FEC /* Main.storyboard */,
+				2D29F819216115A000811FEC /* Assets.xcassets */,
+				2D29F81B216115A000811FEC /* LaunchScreen.storyboard */,
+				2D29F81E216115A000811FEC /* Info.plist */,
+			);
+			path = "AnchorKit-Example";
+			sourceTree = "<group>";
+		};
 		2D686FE3215D119100533F4F = {
 			isa = PBXGroup;
 			children = (
 				2D686FEF215D119100533F4F /* AnchorKit */,
 				2D686FFA215D119100533F4F /* AnchorKitTests */,
+				2D29F8112161159F00811FEC /* AnchorKit-Example */,
 				2D686FEE215D119100533F4F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +119,7 @@
 			children = (
 				2D686FED215D119100533F4F /* AnchorKit.framework */,
 				2D686FF6215D119100533F4F /* AnchorKitTests.xctest */,
+				2D29F8102161159F00811FEC /* AnchorKit-Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,6 +167,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		2D29F80F2161159F00811FEC /* AnchorKit-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D29F81F216115A000811FEC /* Build configuration list for PBXNativeTarget "AnchorKit-Example" */;
+			buildPhases = (
+				2D29F80C2161159F00811FEC /* Sources */,
+				2D29F80D2161159F00811FEC /* Frameworks */,
+				2D29F80E2161159F00811FEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AnchorKit-Example";
+			productName = "AnchorKit-Example";
+			productReference = 2D29F8102161159F00811FEC /* AnchorKit-Example.app */;
+			productType = "com.apple.product-type.application";
+		};
 		2D686FEC215D119100533F4F /* AnchorKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D687001215D119100533F4F /* Build configuration list for PBXNativeTarget "AnchorKit" */;
@@ -180,6 +231,9 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Maxim Shurkin";
 				TargetAttributes = {
+					2D29F80F2161159F00811FEC = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					2D686FEC215D119100533F4F = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1000;
@@ -195,6 +249,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 2D686FE3215D119100533F4F;
 			productRefGroup = 2D686FEE215D119100533F4F /* Products */;
@@ -203,11 +258,22 @@
 			targets = (
 				2D686FEC215D119100533F4F /* AnchorKit */,
 				2D686FF5215D119100533F4F /* AnchorKitTests */,
+				2D29F80F2161159F00811FEC /* AnchorKit-Example */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2D29F80E2161159F00811FEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D29F81D216115A000811FEC /* LaunchScreen.storyboard in Resources */,
+				2D29F81A216115A000811FEC /* Assets.xcassets in Resources */,
+				2D29F8182161159F00811FEC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2D686FEB215D119100533F4F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,6 +312,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2D29F80C2161159F00811FEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D29F8152161159F00811FEC /* ViewController.swift in Sources */,
+				2D29F8132161159F00811FEC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2D686FE9215D119100533F4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,7 +357,60 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		2D29F8162161159F00811FEC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D29F8172161159F00811FEC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2D29F81B216115A000811FEC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D29F81C216115A000811FEC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		2D29F820216115A000811FEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AnchorKit-Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.mshurkin.AnchorKit-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2D29F821216115A000811FEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AnchorKit-Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.mshurkin.AnchorKit-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		2D686FFF215D119100533F4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -495,6 +623,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2D29F81F216115A000811FEC /* Build configuration list for PBXNativeTarget "AnchorKit-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D29F820216115A000811FEC /* Debug */,
+				2D29F821216115A000811FEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D686FE7215D119100533F4F /* Build configuration list for PBXProject "AnchorKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
