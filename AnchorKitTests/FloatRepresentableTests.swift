@@ -6,6 +6,7 @@
 //  Copyright © 2018 Maxim Shurkin. All rights reserved.
 //
 
+@testable import AnchorKit
 import XCTest
 
 class FloatRepresentableTests: XCTestCase {
@@ -52,5 +53,8 @@ class FloatRepresentableTests: XCTestCase {
 
         XCTAssertEqual(Int64(10.5).cgFloat, 10)
         XCTAssertEqual(Int64(5.5).float, 5)
+
+        XCTAssertEqual(NSNumber(value: 10.5).cgFloat, 10.5)
+        XCTAssertEqual(NSNumber(value: 5.5).float, 5.5)
     }
 }

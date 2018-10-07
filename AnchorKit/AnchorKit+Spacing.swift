@@ -13,26 +13,28 @@ public struct AnchorKitSpacing {
     public static let systemSpacing = AnchorKitSpacing(multiplier: 1)
 }
 
-public struct AnchorKitSpacingXAxisAnchor {
+public struct AnchorKitHorizontalSpacingAttribute {
 
     let anchor: NSLayoutXAxisAnchor
     let multiplier: CGFloat
+    var priority: UILayoutPriority
 }
 
-public struct AnchorKitSpacingYAxisAnchor {
+public struct AnchorKitVerticalSpacingAttribute {
 
     let anchor: NSLayoutYAxisAnchor
     let multiplier: CGFloat
+    var priority: UILayoutPriority
 }
 
-// MARK: -
+// MARK: - Operation
 
-public func + (lhs: NSLayoutXAxisAnchor, rhs: AnchorKitSpacing) -> AnchorKitSpacingXAxisAnchor {
-    return AnchorKitSpacingXAxisAnchor(anchor: lhs, multiplier: rhs.multiplier)
+public func + (lhs: NSLayoutXAxisAnchor, rhs: AnchorKitSpacing) -> AnchorKitHorizontalSpacingAttribute {
+    return AnchorKitHorizontalSpacingAttribute(anchor: lhs, multiplier: rhs.multiplier, priority: .required)
 }
 
-public func + (lhs: NSLayoutYAxisAnchor, rhs: AnchorKitSpacing) -> AnchorKitSpacingYAxisAnchor {
-    return AnchorKitSpacingYAxisAnchor(anchor: lhs, multiplier: rhs.multiplier)
+public func + (lhs: NSLayoutYAxisAnchor, rhs: AnchorKitSpacing) -> AnchorKitVerticalSpacingAttribute {
+    return AnchorKitVerticalSpacingAttribute(anchor: lhs, multiplier: rhs.multiplier, priority: .required)
 }
 
 public func * (lhs: AnchorKitSpacing, rhs: FloatRepresentable) -> AnchorKitSpacing {
@@ -45,36 +47,4 @@ public func * (lhs: FloatRepresentable, rhs: AnchorKitSpacing) -> AnchorKitSpaci
 
 public func / (lhs: AnchorKitSpacing, rhs: FloatRepresentable) -> AnchorKitSpacing {
     return AnchorKitSpacing(multiplier: lhs.multiplier / rhs.cgFloat)
-}
-
-// MARK: - Constraints
-
-@discardableResult
-public func == (lhs: NSLayoutXAxisAnchor, rhs: AnchorKitSpacingXAxisAnchor) -> NSLayoutConstraint {
-    return lhs.constraint(equalToSystemSpacingAfter: rhs.anchor, multiplier: rhs.multiplier).activate()
-}
-
-@discardableResult
-public func >= (lhs: NSLayoutXAxisAnchor, rhs: AnchorKitSpacingXAxisAnchor) -> NSLayoutConstraint {
-    return lhs.constraint(greaterThanOrEqualToSystemSpacingAfter: rhs.anchor, multiplier: rhs.multiplier).activate()
-}
-
-@discardableResult
-public func <= (lhs: NSLayoutXAxisAnchor, rhs: AnchorKitSpacingXAxisAnchor) -> NSLayoutConstraint {
-    return lhs.constraint(lessThanOrEqualToSystemSpacingAfter: rhs.anchor, multiplier: rhs.multiplier).activate()
-}
-
-@discardableResult
-public func == (lhs: NSLayoutYAxisAnchor, rhs: AnchorKitSpacingYAxisAnchor) -> NSLayoutConstraint {
-    return lhs.constraint(equalToSystemSpacingBelow: rhs.anchor, multiplier: rhs.multiplier).activate()
-}
-
-@discardableResult
-public func >= (lhs: NSLayoutYAxisAnchor, rhs: AnchorKitSpacingYAxisAnchor) -> NSLayoutConstraint {
-    return lhs.constraint(greaterThanOrEqualToSystemSpacingBelow: rhs.anchor, multiplier: rhs.multiplier).activate()
-}
-
-@discardableResult
-public func <= (lhs: NSLayoutYAxisAnchor, rhs: AnchorKitSpacingYAxisAnchor) -> NSLayoutConstraint {
-    return lhs.constraint(lessThanOrEqualToSystemSpacingBelow: rhs.anchor, multiplier: rhs.multiplier).activate()
 }

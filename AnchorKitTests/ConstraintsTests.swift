@@ -16,9 +16,6 @@ class ConstraintsTests: XCTestCase {
     var superview: UIView!
     var view: UIView!
     var label: UILabel!
-    var horizontalAttribute: AnchorKitAttribute<NSLayoutXAxisAnchor>!
-    var verticalAttribute: AnchorKitAttribute<NSLayoutYAxisAnchor>!
-    var dimensionAttribute: AnchorKitAttribute<NSLayoutDimension>!
 
     override func setUp() {
         super.setUp()
@@ -28,28 +25,12 @@ class ConstraintsTests: XCTestCase {
         superview = UIView()
         superview.addSubview(view)
         superview.addSubview(label)
-
-        horizontalAttribute = AnchorKitAttribute(anchor: superview.trailingAnchor,
-                                                 constant: 16,
-                                                 multiplier: 0.5,
-                                                 priority: .required)
-        verticalAttribute = AnchorKitAttribute(anchor: superview.bottomAnchor,
-                                               constant: 0,
-                                               multiplier: 1,
-                                               priority: .defaultHigh)
-        dimensionAttribute = AnchorKitAttribute(anchor: superview.heightAnchor,
-                                                constant: -8,
-                                                multiplier: 2,
-                                                priority: UILayoutPriority(rawValue: 400))
     }
 
     override func tearDown() {
         view = nil
         label = nil
         superview = nil
-        horizontalAttribute = nil
-        verticalAttribute = nil
-        dimensionAttribute = nil
 
         super.tearDown()
     }
@@ -132,7 +113,7 @@ extension ConstraintsTests {
     }
 
     func testEqualityForHorizontalAnchorAndAttribute() {
-        let constraint = view.trailingAnchor == horizontalAttribute
+        let constraint = view.trailingAnchor == superview.trailingAnchor / 2 + 16
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .trailing)
         XCTAssertEqual(constraint.relation, .equal)
@@ -144,7 +125,7 @@ extension ConstraintsTests {
     }
 
     func testEqualityForVerticalAnchorAndAttribute() {
-        let constraint = view.bottomAnchor == verticalAttribute
+        let constraint = view.bottomAnchor == superview.bottomAnchor ~ .defaultHigh
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .bottom)
         XCTAssertEqual(constraint.relation, .equal)
@@ -156,43 +137,43 @@ extension ConstraintsTests {
     }
 
     func testGreaterThanForHorizontalAnchorAndAttribute() {
-        let constraint = view.leadingAnchor >= horizontalAttribute
+        let constraint = view.leadingAnchor >= 0.5 * superview.trailingAnchor + 24
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .leading)
         XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
         XCTAssertTrue(constraint.secondItem === superview)
         XCTAssertEqual(constraint.secondAttribute, .trailing)
         XCTAssertEqual(constraint.multiplier, 0.5)
-        XCTAssertEqual(constraint.constant, 16)
+        XCTAssertEqual(constraint.constant, 24)
         XCTAssertEqual(constraint.priority.rawValue, 1000)
     }
 
     func testGreaterThanForVerticalAnchorAndAttribute() {
-        let constraint = view.topAnchor >= verticalAttribute
+        let constraint = view.topAnchor >= 8 + superview.bottomAnchor ~ 750
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .top)
         XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
         XCTAssertTrue(constraint.secondItem === superview)
         XCTAssertEqual(constraint.secondAttribute, .bottom)
         XCTAssertEqual(constraint.multiplier, 1)
-        XCTAssertEqual(constraint.constant, 0)
+        XCTAssertEqual(constraint.constant, 8)
         XCTAssertEqual(constraint.priority.rawValue, 750)
     }
 
     func testLessThanForHorizontalAnchorAndAttribute() {
-        let constraint = view.trailingAnchor <= horizontalAttribute
+        let constraint = view.trailingAnchor <= superview.leadingAnchor * 1.5 - 16 ~ 251
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .trailing)
         XCTAssertEqual(constraint.relation, .lessThanOrEqual)
         XCTAssertTrue(constraint.secondItem === superview)
-        XCTAssertEqual(constraint.secondAttribute, .trailing)
-        XCTAssertEqual(constraint.multiplier, 0.5)
-        XCTAssertEqual(constraint.constant, 16)
-        XCTAssertEqual(constraint.priority.rawValue, 1000)
+        XCTAssertEqual(constraint.secondAttribute, .leading)
+        XCTAssertEqual(constraint.multiplier, 1.5)
+        XCTAssertEqual(constraint.constant, -16)
+        XCTAssertEqual(constraint.priority.rawValue, 251)
     }
 
     func testLessThanForVerticalAnchorAndAttribute() {
-        let constraint = view.bottomAnchor <= verticalAttribute
+        let constraint = view.bottomAnchor <= superview.bottomAnchor ~ .defaultHigh - 1
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .bottom)
         XCTAssertEqual(constraint.relation, .lessThanOrEqual)
@@ -200,7 +181,7 @@ extension ConstraintsTests {
         XCTAssertEqual(constraint.secondAttribute, .bottom)
         XCTAssertEqual(constraint.multiplier, 1)
         XCTAssertEqual(constraint.constant, 0)
-        XCTAssertEqual(constraint.priority.rawValue, 750)
+        XCTAssertEqual(constraint.priority.rawValue, 749)
     }
 }
 
@@ -220,6 +201,18 @@ extension ConstraintsTests {
         XCTAssertEqual(constraint.priority.rawValue, 1000)
     }
 
+    func testEqualityForDimensionsWithPriority() {
+        let constraint = view.widthAnchor == superview.heightAnchor ~ 249
+        XCTAssertTrue(constraint.firstItem === view)
+        XCTAssertEqual(constraint.firstAttribute, .width)
+        XCTAssertEqual(constraint.relation, .equal)
+        XCTAssertTrue(constraint.secondItem === superview)
+        XCTAssertEqual(constraint.secondAttribute, .height)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 0)
+        XCTAssertEqual(constraint.priority.rawValue, 249)
+    }
+
     func testEqualityForDimensionAndValue() {
         let constraint = view.widthAnchor == 375
         XCTAssertTrue(constraint.firstItem === view)
@@ -232,8 +225,20 @@ extension ConstraintsTests {
         XCTAssertEqual(constraint.priority.rawValue, 1000)
     }
 
+    func testEqualityForDimensionAndValueWithPriority() {
+        let constraint = view.heightAnchor == 320 ~ 998
+        XCTAssertTrue(constraint.firstItem === view)
+        XCTAssertEqual(constraint.firstAttribute, .height)
+        XCTAssertEqual(constraint.relation, .equal)
+        XCTAssertNil(constraint.secondItem)
+        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 320)
+        XCTAssertEqual(constraint.priority.rawValue, 998)
+    }
+
     func testEqualityForDimensionAndAttribute() {
-        let constraint = view.heightAnchor == dimensionAttribute
+        let constraint = view.heightAnchor == 2 * superview.heightAnchor - 8 ~ 400
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .height)
         XCTAssertEqual(constraint.relation, .equal)
@@ -245,9 +250,33 @@ extension ConstraintsTests {
     }
 
     func testGreaterThanForDimensions() {
-        let constraint = view.heightAnchor >= 100
+        let constraint = view.heightAnchor >= superview.widthAnchor
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .height)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertTrue(constraint.secondItem === superview)
+        XCTAssertEqual(constraint.secondAttribute, .width)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 0)
+        XCTAssertEqual(constraint.priority.rawValue, 1000)
+    }
+
+    func testGreaterThanForDimensionsWithPriority() {
+        let constraint = view.heightAnchor >= superview.heightAnchor ~ .defaultHigh
+        XCTAssertTrue(constraint.firstItem === view)
+        XCTAssertEqual(constraint.firstAttribute, .height)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertTrue(constraint.secondItem === superview)
+        XCTAssertEqual(constraint.secondAttribute, .height)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 0)
+        XCTAssertEqual(constraint.priority.rawValue, 750)
+    }
+
+    func testGreaterThanForDimensionAndValue() {
+        let constraint = view.widthAnchor >= 100
+        XCTAssertTrue(constraint.firstItem === view)
+        XCTAssertEqual(constraint.firstAttribute, .width)
         XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
         XCTAssertNil(constraint.secondItem)
         XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
@@ -256,20 +285,20 @@ extension ConstraintsTests {
         XCTAssertEqual(constraint.priority.rawValue, 1000)
     }
 
-    func testGreaterThanForDimensionAndValue() {
-        let constraint = view.widthAnchor >= dimensionAttribute
+    func testGreaterThanForDimensionAndValueWithPriority() {
+        let constraint = view.widthAnchor >= 100 ~ 500
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .width)
         XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertTrue(constraint.secondItem === superview)
-        XCTAssertEqual(constraint.secondAttribute, .height)
-        XCTAssertEqual(constraint.multiplier, 2)
-        XCTAssertEqual(constraint.constant, -8)
-        XCTAssertEqual(constraint.priority.rawValue, 400)
+        XCTAssertNil(constraint.secondItem)
+        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 100)
+        XCTAssertEqual(constraint.priority.rawValue, 500)
     }
 
     func testGreaterThanForDimensionAndAttribute() {
-        let constraint = view.heightAnchor >= dimensionAttribute
+        let constraint = view.heightAnchor >= superview.heightAnchor * 2 - 8 ~ 400
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .height)
         XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
@@ -281,15 +310,27 @@ extension ConstraintsTests {
     }
 
     func testLessThanForDimensions() {
-        let constraint = view.heightAnchor <= dimensionAttribute
+        let constraint = view.heightAnchor <= superview.heightAnchor
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .height)
         XCTAssertEqual(constraint.relation, .lessThanOrEqual)
         XCTAssertTrue(constraint.secondItem === superview)
         XCTAssertEqual(constraint.secondAttribute, .height)
-        XCTAssertEqual(constraint.multiplier, 2)
-        XCTAssertEqual(constraint.constant, -8)
-        XCTAssertEqual(constraint.priority.rawValue, 400)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 0)
+        XCTAssertEqual(constraint.priority.rawValue, 1000)
+    }
+
+    func testLessThanForDimensionsWithPriority() {
+        let constraint = view.heightAnchor <= superview.widthAnchor ~ .defaultHigh + 2
+        XCTAssertTrue(constraint.firstItem === view)
+        XCTAssertEqual(constraint.firstAttribute, .height)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertTrue(constraint.secondItem === superview)
+        XCTAssertEqual(constraint.secondAttribute, .width)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 0)
+        XCTAssertEqual(constraint.priority.rawValue, 752)
     }
 
     func testLessThanForDimensionAndValue() {
@@ -304,16 +345,28 @@ extension ConstraintsTests {
         XCTAssertEqual(constraint.priority.rawValue, 1000)
     }
 
+    func testLessThanForDimensionAndValueWithPriority() {
+        let constraint = view.heightAnchor <= 320 ~ .required - 400
+        XCTAssertTrue(constraint.firstItem === view)
+        XCTAssertEqual(constraint.firstAttribute, .height)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertNil(constraint.secondItem)
+        XCTAssertEqual(constraint.secondAttribute, .notAnAttribute)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 320)
+        XCTAssertEqual(constraint.priority.rawValue, 600)
+    }
+
     func testLessThanForDimensionAndAttribute() {
-        let constraint = view.widthAnchor <= dimensionAttribute
+        let constraint = view.widthAnchor <= 48 + superview.heightAnchor / 2 ~ 999
         XCTAssertTrue(constraint.firstItem === view)
         XCTAssertEqual(constraint.firstAttribute, .width)
         XCTAssertEqual(constraint.relation, .lessThanOrEqual)
         XCTAssertTrue(constraint.secondItem === superview)
         XCTAssertEqual(constraint.secondAttribute, .height)
-        XCTAssertEqual(constraint.multiplier, 2)
-        XCTAssertEqual(constraint.constant, -8)
-        XCTAssertEqual(constraint.priority.rawValue, 400)
+        XCTAssertEqual(constraint.multiplier, 0.5)
+        XCTAssertEqual(constraint.constant, 48)
+        XCTAssertEqual(constraint.priority.rawValue, 999)
     }
 }
 
@@ -407,5 +460,130 @@ extension ConstraintsTests {
         XCTAssertEqual(constaint.priority.rawValue, 1000)
         XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
         XCTAssertTrue(constaint.isActive)
+    }
+}
+
+// MARK: - Spacing
+
+extension ConstraintsTests {
+
+    func testEqualityForHorizontalAnchorsWithSystemSpacing() {
+        let constraint = label.trailingAnchor == view.trailingAnchor + .systemSpacing
+        XCTAssertTrue(constraint.firstItem === label)
+        XCTAssertEqual(constraint.firstAttribute, .trailing)
+        XCTAssertEqual(constraint.relation, .equal)
+        XCTAssertTrue(constraint.secondItem === view)
+        XCTAssertEqual(constraint.secondAttribute, .trailing)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 8)
+        XCTAssertEqual(constraint.priority.rawValue, 1000)
+        XCTAssertFalse(label.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(constraint.isActive)
+    }
+
+    func testEqualityForHorizontalAnchorsWithSystemSpacingAndPriority() {
+        let constraint = label.trailingAnchor == view.trailingAnchor + .systemSpacing ~ 555
+        XCTAssertTrue(constraint.firstItem === label)
+        XCTAssertEqual(constraint.firstAttribute, .trailing)
+        XCTAssertEqual(constraint.relation, .equal)
+        XCTAssertTrue(constraint.secondItem === view)
+        XCTAssertEqual(constraint.secondAttribute, .trailing)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 8)
+        XCTAssertEqual(constraint.priority.rawValue, 555)
+        XCTAssertFalse(label.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(constraint.isActive)
+    }
+
+    func testGreaterThanForHorizontalAnchorsWithSystemSpacing() {
+        let constraint = label.leadingAnchor >= view.leadingAnchor + .systemSpacing * 2 ~ .defaultLow
+        XCTAssertTrue(constraint.firstItem === label)
+        XCTAssertEqual(constraint.firstAttribute, .leading)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertTrue(constraint.secondItem === view)
+        XCTAssertEqual(constraint.secondAttribute, .leading)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 16)
+        XCTAssertEqual(constraint.priority.rawValue, 250)
+        XCTAssertFalse(label.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(constraint.isActive)
+    }
+
+    func testLessThanForHorizontalAnchorsWithSystemSpacing() {
+        let constraint = label.leadingAnchor <= view.trailingAnchor + .systemSpacing / 2
+        XCTAssertTrue(constraint.firstItem === label)
+        XCTAssertEqual(constraint.firstAttribute, .leading)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertTrue(constraint.secondItem === view)
+        XCTAssertEqual(constraint.secondAttribute, .trailing)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 4)
+        XCTAssertEqual(constraint.priority.rawValue, 1000)
+        XCTAssertFalse(label.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(constraint.isActive)
+    }
+
+    func testEqualityForVerticalAnchorsWithSystemSpacing() {
+        let constraint = label.topAnchor == view.topAnchor + .systemSpacing
+        XCTAssertTrue(constraint.firstItem === label)
+        XCTAssertEqual(constraint.firstAttribute, .top)
+        XCTAssertEqual(constraint.relation, .equal)
+        XCTAssertTrue(constraint.secondItem === view)
+        XCTAssertEqual(constraint.secondAttribute, .top)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 8)
+        XCTAssertEqual(constraint.priority.rawValue, 1000)
+        XCTAssertFalse(label.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(constraint.isActive)
+    }
+
+    func testEqualityForVerticalAnchorsWithSystemSpacingWithPriority() {
+        let constraint = label.topAnchor == view.topAnchor + .systemSpacing ~ .defaultHigh
+        XCTAssertTrue(constraint.firstItem === label)
+        XCTAssertEqual(constraint.firstAttribute, .top)
+        XCTAssertEqual(constraint.relation, .equal)
+        XCTAssertTrue(constraint.secondItem === view)
+        XCTAssertEqual(constraint.secondAttribute, .top)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 8)
+        XCTAssertEqual(constraint.priority.rawValue, 750)
+        XCTAssertFalse(label.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(constraint.isActive)
+    }
+
+    func testGreaterThanForVerticalAnchorsWithSystemSpacing() {
+        let constraint = label.topAnchor >= view.topAnchor + .systemSpacing * 2
+        XCTAssertTrue(constraint.firstItem === label)
+        XCTAssertEqual(constraint.firstAttribute, .top)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertTrue(constraint.secondItem === view)
+        XCTAssertEqual(constraint.secondAttribute, .top)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 16)
+        XCTAssertEqual(constraint.priority.rawValue, 1000)
+        XCTAssertFalse(label.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(constraint.isActive)
+    }
+
+    func testLessThanForVerticalAnchorsWithSystemSpacing() {
+        let constraint = label.bottomAnchor <= view.bottomAnchor + .systemSpacing / 2 ~ 256
+        XCTAssertTrue(constraint.firstItem === label)
+        XCTAssertEqual(constraint.firstAttribute, .bottom)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertTrue(constraint.secondItem === view)
+        XCTAssertEqual(constraint.secondAttribute, .bottom)
+        XCTAssertEqual(constraint.multiplier, 1)
+        XCTAssertEqual(constraint.constant, 4)
+        XCTAssertEqual(constraint.priority.rawValue, 256)
+        XCTAssertFalse(label.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(view.translatesAutoresizingMaskIntoConstraints)
+        XCTAssertTrue(constraint.isActive)
     }
 }

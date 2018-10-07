@@ -8,13 +8,13 @@
 
 public struct AnchorKitAttribute<AnchorType: AnyObject> {
 
-    let anchor: NSLayoutAnchor<AnchorType>
+    let anchor: NSLayoutAnchor<AnchorType>!
     var constant: CGFloat
     var multiplier: CGFloat
     var priority: UILayoutPriority
 }
 
-// MARK: -
+// MARK: - Operations
 
 public func + <T: AnyObject>(lhs: NSLayoutAnchor<T>, rhs: FloatRepresentable) -> AnchorKitAttribute<T> {
     return AnchorKitAttribute(anchor: lhs, constant: rhs.cgFloat, multiplier: 1, priority: .required)

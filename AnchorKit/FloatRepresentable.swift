@@ -39,7 +39,7 @@ extension Double: FloatRepresentable {
 extension Float: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        return self
     }
 
     public var cgFloat: CGFloat {
@@ -165,5 +165,16 @@ extension Int64: FloatRepresentable {
 
     public var cgFloat: CGFloat {
         return CGFloat(self)
+    }
+}
+
+extension NSNumber: FloatRepresentable {
+
+    public var float: Float {
+        return floatValue
+    }
+
+    public var cgFloat: CGFloat {
+        return CGFloat(floatValue)
     }
 }

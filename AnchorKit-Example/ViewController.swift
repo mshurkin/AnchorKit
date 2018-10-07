@@ -41,4 +41,3 @@ class ViewController: UIViewController {
         label.widthAnchor == 2 * redView.widthAnchor / 3
     }
 }
-
