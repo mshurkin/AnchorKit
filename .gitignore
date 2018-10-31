@@ -11,16 +11,21 @@
 
 # fastlane specific
 fastlane/report.xml
+.fastlane/report.xml
 
 # deliver temporary files
 fastlane/Preview.html
+.fastlane/Preview.html
 
 # snapshot generated screenshots
 fastlane/screenshots/**/*.png
 fastlane/screenshots/screenshots.html
+.fastlane/screenshots/**/*.png
+.fastlane/screenshots/screenshots.html
 
 # scan temporary files
 fastlane/test_output
+.fastlane/test_output
 
 ### OSX ###
 # General
