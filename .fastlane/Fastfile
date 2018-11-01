@@ -7,7 +7,8 @@ platform :ios do
   desc "Run tests"
   lane :test do
     scan(
-    	clean: true
+    	clean: true,
+    	code_coverage: true
     )
   end
 end
