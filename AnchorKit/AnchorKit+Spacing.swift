@@ -12,39 +12,26 @@ public struct AnchorKitSpacing {
 
     public static let systemSpacing = AnchorKitSpacing(multiplier: 1)
 }
-
-public struct AnchorKitHorizontalSpacingAttribute {
-
-    let anchor: NSLayoutXAxisAnchor
-    let multiplier: CGFloat
-    var priority: UILayoutPriority
-}
-
-public struct AnchorKitVerticalSpacingAttribute {
-
-    let anchor: NSLayoutYAxisAnchor
-    let multiplier: CGFloat
-    var priority: UILayoutPriority
-}
-
-// MARK: - Operation
-
-public func + (lhs: NSLayoutXAxisAnchor, rhs: AnchorKitSpacing) -> AnchorKitHorizontalSpacingAttribute {
-    return AnchorKitHorizontalSpacingAttribute(anchor: lhs, multiplier: rhs.multiplier, priority: .required)
-}
-
-public func + (lhs: NSLayoutYAxisAnchor, rhs: AnchorKitSpacing) -> AnchorKitVerticalSpacingAttribute {
-    return AnchorKitVerticalSpacingAttribute(anchor: lhs, multiplier: rhs.multiplier, priority: .required)
-}
+extension AnchorKitSpacing: AnchorKitConstant {}
 
 public func * (lhs: AnchorKitSpacing, rhs: FloatRepresentable) -> AnchorKitSpacing {
     return AnchorKitSpacing(multiplier: lhs.multiplier * rhs.cgFloat)
 }
 
 public func * (lhs: FloatRepresentable, rhs: AnchorKitSpacing) -> AnchorKitSpacing {
-    return rhs * lhs
+    return AnchorKitSpacing(multiplier: rhs.multiplier * lhs.cgFloat)
 }
 
 public func / (lhs: AnchorKitSpacing, rhs: FloatRepresentable) -> AnchorKitSpacing {
     return AnchorKitSpacing(multiplier: lhs.multiplier / rhs.cgFloat)
+}
+
+public func + (lhs: NSLayoutXAxisAnchor,
+               rhs: AnchorKitSpacing) -> AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing> {
+    return AnchorKitAttribute(anchor: lhs, constant: rhs)
+}
+
+public func + (lhs: NSLayoutYAxisAnchor,
+               rhs: AnchorKitSpacing) -> AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing> {
+    return AnchorKitAttribute(anchor: lhs, constant: rhs)
 }

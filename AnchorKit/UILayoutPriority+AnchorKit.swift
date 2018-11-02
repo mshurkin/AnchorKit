@@ -11,7 +11,7 @@ public func * (lhs: UILayoutPriority, rhs: FloatRepresentable) -> UILayoutPriori
 }
 
 public func * (lhs: FloatRepresentable, rhs: UILayoutPriority) -> UILayoutPriority {
-    return rhs * lhs
+    return UILayoutPriority(rhs.rawValue * lhs.float)
 }
 
 public func / (lhs: UILayoutPriority, rhs: FloatRepresentable) -> UILayoutPriority {

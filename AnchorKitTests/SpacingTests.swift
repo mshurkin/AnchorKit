@@ -41,6 +41,7 @@ extension SpacingTests {
     func testXAxisAnchorWithSpacing() {
         let attribute = view.leadingAnchor + .systemSpacing
         XCTAssertEqual(attribute.anchor, view.leadingAnchor)
+        XCTAssertEqual(attribute.constant.multiplier, 1)
         XCTAssertEqual(attribute.multiplier, 1)
         XCTAssertEqual(attribute.priority.rawValue, 1000)
     }
@@ -48,7 +49,8 @@ extension SpacingTests {
     func testYAxisAnchorWithSpacing() {
         let attribute = view.topAnchor + .systemSpacing * 2
         XCTAssertEqual(attribute.anchor, view.topAnchor)
-        XCTAssertEqual(attribute.multiplier, 2)
+        XCTAssertEqual(attribute.constant.multiplier, 2)
+        XCTAssertEqual(attribute.multiplier, 1)
         XCTAssertEqual(attribute.priority.rawValue, 1000)
     }
 

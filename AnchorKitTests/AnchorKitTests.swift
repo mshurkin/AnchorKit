@@ -12,9 +12,9 @@ import XCTest
 class AnchorKitTests: XCTestCase {
 
     var view: UIView!
-    var horizontalAttribute: AnchorKitAttribute<NSLayoutXAxisAnchor>!
-    var verticalAttribute: AnchorKitAttribute<NSLayoutYAxisAnchor>!
-    var dimensionAttribute: AnchorKitAttribute<NSLayoutDimension>!
+    var horizontalAttribute: AnchorKitAttribute<NSLayoutXAxisAnchor, CGFloat>!
+    var verticalAttribute: AnchorKitAttribute<NSLayoutYAxisAnchor, CGFloat>!
+    var dimensionAttribute: AnchorKitAttribute<NSLayoutDimension, CGFloat>!
 
     override func setUp() {
         super.setUp()

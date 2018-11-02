@@ -6,67 +6,82 @@
 //  Copyright © 2018 Maxim Shurkin. All rights reserved.
 //
 
-public struct AnchorKitAttribute<AnchorType: AnyObject> {
+public protocol AnchorKitAnchor {}
+extension NSLayoutAnchor: AnchorKitAnchor {}
 
-    let anchor: NSLayoutAnchor<AnchorType>!
-    var constant: CGFloat
+public protocol AnchorKitConstant {}
+extension CGFloat: AnchorKitConstant {}
+
+public struct AnchorKitAttribute<AnchorType: AnchorKitAnchor, ConstantType: AnchorKitConstant> {
+
+    let anchor: AnchorType!
+    var constant: ConstantType
     var multiplier: CGFloat
     var priority: UILayoutPriority
+
+    init(anchor: AnchorType!, constant: ConstantType, multiplier: CGFloat = 1, priority: UILayoutPriority = .required) {
+        self.anchor = anchor
+        self.constant = constant
+        self.multiplier = multiplier
+        self.priority = priority
+    }
 }
 
-// MARK: - Operations
-
-public func + <T: AnyObject>(lhs: NSLayoutAnchor<T>, rhs: FloatRepresentable) -> AnchorKitAttribute<T> {
-    return AnchorKitAttribute(anchor: lhs, constant: rhs.cgFloat, multiplier: 1, priority: .required)
+public func + <T>(lhs: T, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
+    return AnchorKitAttribute(anchor: lhs, constant: rhs.cgFloat)
 }
 
-public func + <T: AnyObject>(lhs: FloatRepresentable, rhs: NSLayoutAnchor<T>) -> AnchorKitAttribute<T> {
-    return rhs + lhs
+public func + <T>(lhs: FloatRepresentable, rhs: T) -> AnchorKitAttribute<T, CGFloat> {
+    return AnchorKitAttribute(anchor: rhs, constant: lhs.cgFloat)
 }
 
-public func + <T: AnyObject>(lhs: AnchorKitAttribute<T>, rhs: FloatRepresentable) -> AnchorKitAttribute<T> {
+public func + <T>(lhs: AnchorKitAttribute<T, CGFloat>, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
     var attribute = lhs
     attribute.constant += rhs.cgFloat
     return attribute
 }
 
-public func + <T: AnyObject>(lhs: FloatRepresentable, rhs: AnchorKitAttribute<T>) -> AnchorKitAttribute<T> {
-    return rhs + lhs
+public func + <T>(lhs: FloatRepresentable, rhs: AnchorKitAttribute<T, CGFloat>) -> AnchorKitAttribute<T, CGFloat> {
+    var attribute = rhs
+    attribute.constant += lhs.cgFloat
+    return attribute
 }
 
-public func - <T: AnyObject>(lhs: NSLayoutAnchor<T>, rhs: FloatRepresentable) -> AnchorKitAttribute<T> {
-    return AnchorKitAttribute(anchor: lhs, constant: -rhs.cgFloat, multiplier: 1, priority: .required)
+public func - <T>(lhs: T, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
+    return AnchorKitAttribute(anchor: lhs, constant: -rhs.cgFloat)
 }
 
-public func - <T: AnyObject>(lhs: AnchorKitAttribute<T>, rhs: FloatRepresentable) -> AnchorKitAttribute<T> {
+public func - <T>(lhs: AnchorKitAttribute<T, CGFloat>, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
     var attribute = lhs
     attribute.constant -= rhs.cgFloat
     return attribute
 }
 
-public func * <T: AnyObject>(lhs: NSLayoutAnchor<T>, rhs: FloatRepresentable) -> AnchorKitAttribute<T> {
-    return AnchorKitAttribute(anchor: lhs, constant: 0, multiplier: rhs.cgFloat, priority: .required)
+public func * <T>(lhs: T, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
+    return AnchorKitAttribute(anchor: lhs, constant: 0, multiplier: rhs.cgFloat)
 }
 
-public func * <T: AnyObject>(lhs: FloatRepresentable, rhs: NSLayoutAnchor<T>) -> AnchorKitAttribute<T> {
-    return rhs * lhs
+public func * <T>(lhs: FloatRepresentable, rhs: T) -> AnchorKitAttribute<T, CGFloat> {
+    return AnchorKitAttribute(anchor: rhs, constant: 0, multiplier: lhs.cgFloat)
 }
 
-public func * <T: AnyObject>(lhs: AnchorKitAttribute<T>, rhs: FloatRepresentable) -> AnchorKitAttribute<T> {
+public func * <T>(lhs: AnchorKitAttribute<T, CGFloat>, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
     var attribute = lhs
     attribute.multiplier *= rhs.cgFloat
     return attribute
 }
 
-public func * <T: AnyObject>(lhs: FloatRepresentable, rhs: AnchorKitAttribute<T>) -> AnchorKitAttribute<T> {
-    return rhs * lhs
+public func * <T>(lhs: FloatRepresentable, rhs: AnchorKitAttribute<T, CGFloat>) -> AnchorKitAttribute<T, CGFloat> {
+    var attribute = rhs
+    attribute.multiplier *= lhs.cgFloat
+    return attribute
 }
 
-public func / <T: AnyObject>(lhs: NSLayoutAnchor<T>, rhs: FloatRepresentable) -> AnchorKitAttribute<T> {
-    return AnchorKitAttribute(anchor: lhs, constant: 0, multiplier: 1 / rhs.cgFloat, priority: .required)
+public func / <T>(lhs: T, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
+    return AnchorKitAttribute(anchor: lhs, constant: 0, multiplier: 1 / rhs.cgFloat)
 }
 
-public func / <T: AnyObject>(lhs: AnchorKitAttribute<T>, rhs: FloatRepresentable) -> AnchorKitAttribute<T> {
+public func / <T>(lhs: AnchorKitAttribute<T, CGFloat>, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
     var attribute = lhs
     attribute.multiplier /= rhs.cgFloat
     return attribute
