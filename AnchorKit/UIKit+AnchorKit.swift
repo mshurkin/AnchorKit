@@ -21,7 +21,7 @@ public extension UIEdgeInsets {
     }
 
     static prefix func - (lhs: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsets(top: -lhs.top, left: -lhs.left, bottom: -lhs.bottom, right: -lhs.right)
+        UIEdgeInsets(top: -lhs.top, left: -lhs.left, bottom: -lhs.bottom, right: -lhs.right)
     }
 }
 
@@ -32,7 +32,7 @@ public extension UIOffset {
     }
 
     static prefix func - (lhs: UIOffset) -> UIOffset {
-        return UIOffset(horizontal: -lhs.horizontal, vertical: -lhs.vertical)
+        UIOffset(horizontal: -lhs.horizontal, vertical: -lhs.vertical)
     }
 }
 
@@ -43,6 +43,6 @@ public extension CGSize {
     }
 
     static prefix func - (lhs: CGSize) -> CGSize {
-        return CGSize(width: -lhs.width, height: -lhs.height)
+        CGSize(width: -lhs.width, height: -lhs.height)
     }
 }

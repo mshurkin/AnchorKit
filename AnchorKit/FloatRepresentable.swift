@@ -17,164 +17,164 @@ public protocol FloatRepresentable {
 extension CGFloat: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return self
+        self
     }
 }
 
 extension Double: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension Float: FloatRepresentable {
 
     public var float: Float {
-        return self
+        self
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension Float80: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension UInt: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension UInt8: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension UInt16: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension UInt32: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension UInt64: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension Int: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension Int8: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension Int16: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension Int32: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension Int64: FloatRepresentable {
 
     public var float: Float {
-        return Float(self)
+        Float(self)
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(self)
+        CGFloat(self)
     }
 }
 
 extension NSNumber: FloatRepresentable {
 
     public var float: Float {
-        return floatValue
+        floatValue
     }
 
     public var cgFloat: CGFloat {
-        return CGFloat(floatValue)
+        CGFloat(floatValue)
     }
 }

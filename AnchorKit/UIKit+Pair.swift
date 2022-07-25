@@ -9,38 +9,38 @@
 public extension UIView {
 
     var horizontalAnchors: AnchorKitHorizontalPair {
-        return AnchorKitPair(first: leadingAnchor, second: trailingAnchor)
+        AnchorKitPair(first: leadingAnchor, second: trailingAnchor)
     }
 
     var verticalAnchors: AnchorKitVerticalPair {
-        return AnchorKitPair(first: topAnchor, second: bottomAnchor)
+        AnchorKitPair(first: topAnchor, second: bottomAnchor)
     }
 
     var centerAnchors: AnchorKitCenterPair {
-        return AnchorKitPair(first: centerXAnchor, second: centerYAnchor)
+        AnchorKitPair(first: centerXAnchor, second: centerYAnchor)
     }
 
     var sizeAnchors: AnchorKitSizePair {
-        return AnchorKitPair(first: widthAnchor, second: heightAnchor)
+        AnchorKitPair(first: widthAnchor, second: heightAnchor)
     }
 }
 
 public extension UILayoutGuide {
 
     var horizontalAnchors: AnchorKitHorizontalPair {
-        return AnchorKitPair(first: leadingAnchor, second: trailingAnchor)
+        AnchorKitPair(first: leadingAnchor, second: trailingAnchor)
     }
 
     var verticalAnchors: AnchorKitVerticalPair {
-        return AnchorKitPair(first: topAnchor, second: bottomAnchor)
+        AnchorKitPair(first: topAnchor, second: bottomAnchor)
     }
 
     var centerAnchors: AnchorKitCenterPair {
-        return AnchorKitPair(first: centerXAnchor, second: centerYAnchor)
+        AnchorKitPair(first: centerXAnchor, second: centerYAnchor)
     }
 
     var sizeAnchors: AnchorKitSizePair {
-        return AnchorKitPair(first: widthAnchor, second: heightAnchor)
+        AnchorKitPair(first: widthAnchor, second: heightAnchor)
     }
 }
 

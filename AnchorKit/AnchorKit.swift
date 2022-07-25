@@ -28,11 +28,11 @@ public struct AnchorKitAttribute<AnchorType: AnchorKitAnchor, ConstantType: Anch
 }
 
 public func + <T>(lhs: T, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
-    return AnchorKitAttribute(anchor: lhs, constant: rhs.cgFloat)
+    AnchorKitAttribute(anchor: lhs, constant: rhs.cgFloat)
 }
 
 public func + <T>(lhs: FloatRepresentable, rhs: T) -> AnchorKitAttribute<T, CGFloat> {
-    return AnchorKitAttribute(anchor: rhs, constant: lhs.cgFloat)
+    AnchorKitAttribute(anchor: rhs, constant: lhs.cgFloat)
 }
 
 public func + <T>(lhs: AnchorKitAttribute<T, CGFloat>, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
@@ -48,7 +48,7 @@ public func + <T>(lhs: FloatRepresentable, rhs: AnchorKitAttribute<T, CGFloat>) 
 }
 
 public func - <T>(lhs: T, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
-    return AnchorKitAttribute(anchor: lhs, constant: -rhs.cgFloat)
+    AnchorKitAttribute(anchor: lhs, constant: -rhs.cgFloat)
 }
 
 public func - <T>(lhs: AnchorKitAttribute<T, CGFloat>, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
@@ -58,11 +58,11 @@ public func - <T>(lhs: AnchorKitAttribute<T, CGFloat>, rhs: FloatRepresentable) 
 }
 
 public func * <T>(lhs: T, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
-    return AnchorKitAttribute(anchor: lhs, constant: 0, multiplier: rhs.cgFloat)
+    AnchorKitAttribute(anchor: lhs, constant: 0, multiplier: rhs.cgFloat)
 }
 
 public func * <T>(lhs: FloatRepresentable, rhs: T) -> AnchorKitAttribute<T, CGFloat> {
-    return AnchorKitAttribute(anchor: rhs, constant: 0, multiplier: lhs.cgFloat)
+    AnchorKitAttribute(anchor: rhs, constant: 0, multiplier: lhs.cgFloat)
 }
 
 public func * <T>(lhs: AnchorKitAttribute<T, CGFloat>, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
@@ -78,7 +78,7 @@ public func * <T>(lhs: FloatRepresentable, rhs: AnchorKitAttribute<T, CGFloat>) 
 }
 
 public func / <T>(lhs: T, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
-    return AnchorKitAttribute(anchor: lhs, constant: 0, multiplier: 1 / rhs.cgFloat)
+    AnchorKitAttribute(anchor: lhs, constant: 0, multiplier: 1 / rhs.cgFloat)
 }
 
 public func / <T>(lhs: AnchorKitAttribute<T, CGFloat>, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {

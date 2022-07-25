@@ -16,11 +16,11 @@ precedencegroup PriorityPrecedence {
 infix operator ~: PriorityPrecedence
 
 public func ~ <T>(lhs: T, rhs: UILayoutPriority) -> AnchorKitAttribute<T, CGFloat> {
-    return AnchorKitAttribute(anchor: lhs, constant: 0, priority: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: 0, priority: rhs)
 }
 
 public func ~ <T>(lhs: T, rhs: FloatRepresentable) -> AnchorKitAttribute<T, CGFloat> {
-    return AnchorKitAttribute(anchor: lhs, constant: 0, priority: UILayoutPriority(rawValue: rhs.float))
+    AnchorKitAttribute(anchor: lhs, constant: 0, priority: UILayoutPriority(rawValue: rhs.float))
 }
 
 public func ~ <T, C>(lhs: AnchorKitAttribute<T, C>, rhs: UILayoutPriority) -> AnchorKitAttribute<T, C> {
@@ -36,7 +36,7 @@ public func ~ <T, C>(lhs: AnchorKitAttribute<T, C>, rhs: FloatRepresentable) -> 
 }
 
 public func ~ (lhs: FloatRepresentable, rhs: UILayoutPriority) -> AnchorKitAttribute<NSLayoutDimension, CGFloat> {
-    return AnchorKitAttribute(anchor: nil, constant: lhs.cgFloat, multiplier: 1, priority: rhs)
+    AnchorKitAttribute(anchor: nil, constant: lhs.cgFloat, multiplier: 1, priority: rhs)
 }
 
 public func ~ (lhs: FloatRepresentable, rhs: FloatRepresentable) -> AnchorKitAttribute<NSLayoutDimension, CGFloat> {
@@ -48,58 +48,58 @@ public func ~ (lhs: FloatRepresentable, rhs: FloatRepresentable) -> AnchorKitAtt
 
 public func ~ (lhs: AnchorKitHorizontalPair,
                rhs: UILayoutPriority) -> AnchorKitAttribute<AnchorKitHorizontalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, priority: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: .zero, priority: rhs)
 }
 
 public func ~ (lhs: AnchorKitHorizontalPair,
                rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitHorizontalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, priority: UILayoutPriority(rhs.float))
+    AnchorKitAttribute(anchor: lhs, constant: .zero, priority: UILayoutPriority(rhs.float))
 }
 
 // MARK: - Pair (Vertical)
 
 public func ~ (lhs: AnchorKitVerticalPair,
                rhs: UILayoutPriority) -> AnchorKitAttribute<AnchorKitVerticalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, priority: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: .zero, priority: rhs)
 }
 
 public func ~ (lhs: AnchorKitVerticalPair,
                rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitVerticalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, priority: UILayoutPriority(rhs.float))
+    AnchorKitAttribute(anchor: lhs, constant: .zero, priority: UILayoutPriority(rhs.float))
 }
 
 // MARK: - Pair (Center)
 
 public func ~ (lhs: AnchorKitCenterPair, rhs: UILayoutPriority) -> AnchorKitAttribute<AnchorKitCenterPair, UIOffset> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, priority: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: .zero, priority: rhs)
 }
 
 public func ~ (lhs: AnchorKitCenterPair, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitCenterPair, UIOffset> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, priority: UILayoutPriority(rhs.float))
+    AnchorKitAttribute(anchor: lhs, constant: .zero, priority: UILayoutPriority(rhs.float))
 }
 
 // MARK: - Pair (Size)
 
 public func ~ (lhs: AnchorKitSizePair, rhs: UILayoutPriority) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, priority: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: .zero, priority: rhs)
 }
 
 public func ~ (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, priority: UILayoutPriority(rhs.float))
+    AnchorKitAttribute(anchor: lhs, constant: .zero, priority: UILayoutPriority(rhs.float))
 }
 
 public func ~ (lhs: CGSize, rhs: UILayoutPriority) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: nil, constant: lhs, priority: rhs)
+    AnchorKitAttribute(anchor: nil, constant: lhs, priority: rhs)
 }
 
 public func ~ (lhs: CGSize, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: nil, constant: lhs, priority: UILayoutPriority(rhs.float))
+    AnchorKitAttribute(anchor: nil, constant: lhs, priority: UILayoutPriority(rhs.float))
 }
 
 public func ~ (lhs: FloatRepresentable, rhs: UILayoutPriority) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: nil, constant: CGSize(lhs.cgFloat), priority: rhs)
+    AnchorKitAttribute(anchor: nil, constant: CGSize(lhs.cgFloat), priority: rhs)
 }
 
 public func ~ (lhs: FloatRepresentable, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: nil, constant: CGSize(lhs.cgFloat), priority: UILayoutPriority(rhs.float))
+    AnchorKitAttribute(anchor: nil, constant: CGSize(lhs.cgFloat), priority: UILayoutPriority(rhs.float))
 }

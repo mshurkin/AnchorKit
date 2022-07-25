@@ -15,23 +15,23 @@ public struct AnchorKitSpacing {
 extension AnchorKitSpacing: AnchorKitConstant {}
 
 public func * (lhs: AnchorKitSpacing, rhs: FloatRepresentable) -> AnchorKitSpacing {
-    return AnchorKitSpacing(multiplier: lhs.multiplier * rhs.cgFloat)
+    AnchorKitSpacing(multiplier: lhs.multiplier * rhs.cgFloat)
 }
 
 public func * (lhs: FloatRepresentable, rhs: AnchorKitSpacing) -> AnchorKitSpacing {
-    return AnchorKitSpacing(multiplier: rhs.multiplier * lhs.cgFloat)
+    AnchorKitSpacing(multiplier: rhs.multiplier * lhs.cgFloat)
 }
 
 public func / (lhs: AnchorKitSpacing, rhs: FloatRepresentable) -> AnchorKitSpacing {
-    return AnchorKitSpacing(multiplier: lhs.multiplier / rhs.cgFloat)
+    AnchorKitSpacing(multiplier: lhs.multiplier / rhs.cgFloat)
 }
 
 public func + (lhs: NSLayoutXAxisAnchor,
                rhs: AnchorKitSpacing) -> AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing> {
-    return AnchorKitAttribute(anchor: lhs, constant: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: rhs)
 }
 
 public func + (lhs: NSLayoutYAxisAnchor,
                rhs: AnchorKitSpacing) -> AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing> {
-    return AnchorKitAttribute(anchor: lhs, constant: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: rhs)
 }

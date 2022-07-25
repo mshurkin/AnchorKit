@@ -8,22 +8,22 @@
 
 @discardableResult
 public func == (lhs: NSLayoutXAxisAnchor, rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
-    return lhs.constraint(equalTo: rhs).activate()
+    lhs.constraint(equalTo: rhs).activate()
 }
 
 @discardableResult
 public func == (lhs: NSLayoutYAxisAnchor, rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
-    return lhs.constraint(equalTo: rhs).activate()
+    lhs.constraint(equalTo: rhs).activate()
 }
 
 @discardableResult
 public func >= <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
-    return lhs.constraint(greaterThanOrEqualTo: rhs).activate()
+    lhs.constraint(greaterThanOrEqualTo: rhs).activate()
 }
 
 @discardableResult
 public func <= <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
-    return lhs.constraint(lessThanOrEqualTo: rhs).activate()
+    lhs.constraint(lessThanOrEqualTo: rhs).activate()
 }
 
 @discardableResult
@@ -53,22 +53,22 @@ public func <= <T>(lhs: NSLayoutAnchor<T>, rhs: AnchorKitAttribute<NSLayoutAncho
 
 @discardableResult
 public func == (lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
-    return lhs.constraint(equalTo: rhs).activate()
+    lhs.constraint(equalTo: rhs).activate()
 }
 
 @discardableResult
 public func == (lhs: NSLayoutDimension, rhs: FloatRepresentable) -> NSLayoutConstraint {
-    return lhs.constraint(equalToConstant: rhs.cgFloat).activate()
+    lhs.constraint(equalToConstant: rhs.cgFloat).activate()
 }
 
 @discardableResult
 public func >= (lhs: NSLayoutDimension, rhs: FloatRepresentable) -> NSLayoutConstraint {
-    return lhs.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate()
+    lhs.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate()
 }
 
 @discardableResult
 public func <= (lhs: NSLayoutDimension, rhs: FloatRepresentable) -> NSLayoutConstraint {
-    return lhs.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate()
+    lhs.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate()
 }
 
 @discardableResult
@@ -165,71 +165,71 @@ public func <= (lhs: NSLayoutYAxisAnchor,
 
 @discardableResult
 public func == <T, U>(lhs: AnchorKitPair<T, U>, rhs: AnchorKitPair<T, U>) -> [NSLayoutConstraint] {
-    return lhs.constraint(equalTo: rhs)
+    lhs.constraint(equalTo: rhs)
 }
 
 @discardableResult
 public func == <T, U, C>(lhs: AnchorKitPair<T, U>,
                          rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>) -> [NSLayoutConstraint] {
-    return lhs.constraint(equalTo: rhs)
+    lhs.constraint(equalTo: rhs)
 }
 
 @discardableResult
 public func >= <T, U>(lhs: AnchorKitPair<T, U>, rhs: AnchorKitPair<T, U>) -> [NSLayoutConstraint] {
-    return lhs.constraints(greaterThanOrEqualTo: rhs)
+    lhs.constraints(greaterThanOrEqualTo: rhs)
 }
 
 @discardableResult
 public func >= <T, U, C>(lhs: AnchorKitPair<T, U>,
                          rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>) -> [NSLayoutConstraint] {
-    return lhs.constraints(greaterThanOrEqualTo: rhs)
+    lhs.constraints(greaterThanOrEqualTo: rhs)
 }
 
 @discardableResult
 public func <= <T, U>(lhs: AnchorKitPair<T, U>, rhs: AnchorKitPair<T, U>) -> [NSLayoutConstraint] {
-    return lhs.constraints(lessThanOrEqualTo: rhs)
+    lhs.constraints(lessThanOrEqualTo: rhs)
 }
 
 @discardableResult
 public func <= <T, U, C>(lhs: AnchorKitPair<T, U>,
                          rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>) -> [NSLayoutConstraint] {
-    return lhs.constraints(lessThanOrEqualTo: rhs)
+    lhs.constraints(lessThanOrEqualTo: rhs)
 }
 
 // MARK: - Pair (Size)
 
 @discardableResult
 public func == (lhs: AnchorKitSizePair, rhs: CGSize) -> [NSLayoutConstraint] {
-    return [lhs.first.constraint(equalToConstant: rhs.width).activate(),
-            lhs.second.constraint(equalToConstant: rhs.height).activate()]
+    [lhs.first.constraint(equalToConstant: rhs.width).activate(),
+     lhs.second.constraint(equalToConstant: rhs.height).activate()]
 }
 
 @discardableResult
 public func == (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> [NSLayoutConstraint] {
-    return [lhs.first.constraint(equalToConstant: rhs.cgFloat).activate(),
-            lhs.second.constraint(equalToConstant: rhs.cgFloat).activate()]
+    [lhs.first.constraint(equalToConstant: rhs.cgFloat).activate(),
+     lhs.second.constraint(equalToConstant: rhs.cgFloat).activate()]
 }
 
 @discardableResult
 public func >= (lhs: AnchorKitSizePair, rhs: CGSize) -> [NSLayoutConstraint] {
-    return [lhs.first.constraint(greaterThanOrEqualToConstant: rhs.width).activate(),
-            lhs.second.constraint(greaterThanOrEqualToConstant: rhs.height).activate()]
+    [lhs.first.constraint(greaterThanOrEqualToConstant: rhs.width).activate(),
+     lhs.second.constraint(greaterThanOrEqualToConstant: rhs.height).activate()]
 }
 
 @discardableResult
 public func >= (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> [NSLayoutConstraint] {
-    return [lhs.first.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate(),
-            lhs.second.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate()]
+    [lhs.first.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate(),
+     lhs.second.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate()]
 }
 
 @discardableResult
 public func <= (lhs: AnchorKitSizePair, rhs: CGSize) -> [NSLayoutConstraint] {
-    return [lhs.first.constraint(lessThanOrEqualToConstant: rhs.width).activate(),
-            lhs.second.constraint(lessThanOrEqualToConstant: rhs.height).activate()]
+    [lhs.first.constraint(lessThanOrEqualToConstant: rhs.width).activate(),
+     lhs.second.constraint(lessThanOrEqualToConstant: rhs.height).activate()]
 }
 
 @discardableResult
 public func <= (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> [NSLayoutConstraint] {
-    return [lhs.first.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate(),
-            lhs.second.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate()]
+    [lhs.first.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate(),
+     lhs.second.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate()]
 }

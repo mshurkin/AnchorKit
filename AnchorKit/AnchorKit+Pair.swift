@@ -187,122 +187,122 @@ public typealias AnchorKitSizePair = AnchorKitPair<NSLayoutDimension, NSLayoutDi
 
 public func + (lhs: AnchorKitHorizontalPair,
                rhs: UIEdgeInsets) -> AnchorKitAttribute<AnchorKitHorizontalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: rhs)
 }
 
 public func + (lhs: UIEdgeInsets,
                rhs: AnchorKitHorizontalPair) -> AnchorKitAttribute<AnchorKitHorizontalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: rhs, constant: lhs)
+    AnchorKitAttribute(anchor: rhs, constant: lhs)
 }
 
 public func + (lhs: AnchorKitHorizontalPair,
                rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitHorizontalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: UIEdgeInsets(rhs.cgFloat))
+    AnchorKitAttribute(anchor: lhs, constant: UIEdgeInsets(rhs.cgFloat))
 }
 
 public func + (lhs: FloatRepresentable,
                rhs: AnchorKitHorizontalPair) -> AnchorKitAttribute<AnchorKitHorizontalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: rhs, constant: UIEdgeInsets(lhs.cgFloat))
+    AnchorKitAttribute(anchor: rhs, constant: UIEdgeInsets(lhs.cgFloat))
 }
 
 public func + (lhs: AnchorKitVerticalPair,
                rhs: UIEdgeInsets) -> AnchorKitAttribute<AnchorKitVerticalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: rhs)
 }
 
 public func + (lhs: UIEdgeInsets,
                rhs: AnchorKitVerticalPair) -> AnchorKitAttribute<AnchorKitVerticalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: rhs, constant: lhs)
+    AnchorKitAttribute(anchor: rhs, constant: lhs)
 }
 
 public func + (lhs: AnchorKitVerticalPair,
                rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitVerticalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: UIEdgeInsets(rhs.cgFloat))
+    AnchorKitAttribute(anchor: lhs, constant: UIEdgeInsets(rhs.cgFloat))
 }
 
 public func + (lhs: FloatRepresentable,
                rhs: AnchorKitVerticalPair) -> AnchorKitAttribute<AnchorKitVerticalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: rhs, constant: UIEdgeInsets(lhs.cgFloat))
+    AnchorKitAttribute(anchor: rhs, constant: UIEdgeInsets(lhs.cgFloat))
 }
 
 public func - (lhs: AnchorKitHorizontalPair,
                rhs: UIEdgeInsets) -> AnchorKitAttribute<AnchorKitHorizontalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: -rhs)
+    AnchorKitAttribute(anchor: lhs, constant: -rhs)
 }
 
 public func - (lhs: AnchorKitHorizontalPair,
                rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitHorizontalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: UIEdgeInsets(-rhs.cgFloat))
+    AnchorKitAttribute(anchor: lhs, constant: UIEdgeInsets(-rhs.cgFloat))
 }
 
 public func - (lhs: AnchorKitVerticalPair,
                rhs: UIEdgeInsets) -> AnchorKitAttribute<AnchorKitVerticalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: -rhs)
+    AnchorKitAttribute(anchor: lhs, constant: -rhs)
 }
 
 public func - (lhs: AnchorKitVerticalPair,
                rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitVerticalPair, UIEdgeInsets> {
-    return AnchorKitAttribute(anchor: lhs, constant: UIEdgeInsets(-rhs.cgFloat))
+    AnchorKitAttribute(anchor: lhs, constant: UIEdgeInsets(-rhs.cgFloat))
 }
 
 // MARK: - Operations (Center)
 
 public func + (lhs: AnchorKitCenterPair, rhs: UIOffset) -> AnchorKitAttribute<AnchorKitCenterPair, UIOffset> {
-    return AnchorKitAttribute(anchor: lhs, constant: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: rhs)
 }
 
 public func + (lhs: UIOffset, rhs: AnchorKitCenterPair) -> AnchorKitAttribute<AnchorKitCenterPair, UIOffset> {
-    return AnchorKitAttribute(anchor: rhs, constant: lhs)
+    AnchorKitAttribute(anchor: rhs, constant: lhs)
 }
 
 public func + (lhs: AnchorKitCenterPair, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitCenterPair, UIOffset> {
-    return AnchorKitAttribute(anchor: lhs, constant: UIOffset(rhs.cgFloat))
+    AnchorKitAttribute(anchor: lhs, constant: UIOffset(rhs.cgFloat))
 }
 
 public func + (lhs: FloatRepresentable, rhs: AnchorKitCenterPair) -> AnchorKitAttribute<AnchorKitCenterPair, UIOffset> {
-    return AnchorKitAttribute(anchor: rhs, constant: UIOffset(lhs.cgFloat))
+    AnchorKitAttribute(anchor: rhs, constant: UIOffset(lhs.cgFloat))
 }
 
 public func - (lhs: AnchorKitCenterPair, rhs: UIOffset) -> AnchorKitAttribute<AnchorKitCenterPair, UIOffset> {
-    return AnchorKitAttribute(anchor: lhs, constant: -rhs)
+    AnchorKitAttribute(anchor: lhs, constant: -rhs)
 }
 
 public func - (lhs: AnchorKitCenterPair, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitCenterPair, UIOffset> {
-    return AnchorKitAttribute(anchor: lhs, constant: UIOffset(-rhs.cgFloat))
+    AnchorKitAttribute(anchor: lhs, constant: UIOffset(-rhs.cgFloat))
 }
 
 // MARK: - Operations (Dimension)
 
 public func + (lhs: AnchorKitSizePair, rhs: CGSize) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: lhs, constant: rhs)
+    AnchorKitAttribute(anchor: lhs, constant: rhs)
 }
 
 public func + (lhs: CGSize, rhs: AnchorKitSizePair) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: rhs, constant: lhs)
+    AnchorKitAttribute(anchor: rhs, constant: lhs)
 }
 
 public func + (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: lhs, constant: CGSize(rhs.cgFloat))
+    AnchorKitAttribute(anchor: lhs, constant: CGSize(rhs.cgFloat))
 }
 
 public func + (lhs: FloatRepresentable, rhs: AnchorKitSizePair) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: rhs, constant: CGSize(lhs.cgFloat))
+    AnchorKitAttribute(anchor: rhs, constant: CGSize(lhs.cgFloat))
 }
 
 public func - (lhs: AnchorKitSizePair, rhs: CGSize) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: lhs, constant: -rhs)
+    AnchorKitAttribute(anchor: lhs, constant: -rhs)
 }
 
 public func - (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: lhs, constant: CGSize(-rhs.cgFloat))
+    AnchorKitAttribute(anchor: lhs, constant: CGSize(-rhs.cgFloat))
 }
 
 public func * (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, multiplier: rhs.cgFloat)
+    AnchorKitAttribute(anchor: lhs, constant: .zero, multiplier: rhs.cgFloat)
 }
 
 public func * (lhs: FloatRepresentable, rhs: AnchorKitSizePair) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: rhs, constant: .zero, multiplier: lhs.cgFloat)
+    AnchorKitAttribute(anchor: rhs, constant: .zero, multiplier: lhs.cgFloat)
 }
 
 public func * (lhs: AnchorKitAttribute<AnchorKitSizePair, CGSize>,
@@ -320,7 +320,7 @@ public func * (lhs: FloatRepresentable,
 }
 
 public func / (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> AnchorKitAttribute<AnchorKitSizePair, CGSize> {
-    return AnchorKitAttribute(anchor: lhs, constant: .zero, multiplier: 1 / rhs.cgFloat)
+    AnchorKitAttribute(anchor: lhs, constant: .zero, multiplier: 1 / rhs.cgFloat)
 }
 
 public func / (lhs: AnchorKitAttribute<AnchorKitSizePair, CGSize>,
@@ -340,7 +340,7 @@ public func + <T, U, C: AnchorKitPairConstant>(lhs: AnchorKitAttribute<AnchorKit
 }
 
 public func + <T, U, C: AnchorKitPairConstant>(lhs: C, rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>)
-    -> AnchorKitAttribute<AnchorKitPair<T, U>, C> {
+-> AnchorKitAttribute<AnchorKitPair<T, U>, C> {
     var attribute = rhs
     attribute.constant += lhs
     return attribute
@@ -354,7 +354,7 @@ public func + <T, U, C: AnchorKitPairConstant>(lhs: AnchorKitAttribute<AnchorKit
 }
 
 public func + <T, U, C: AnchorKitPairConstant>(lhs: FloatRepresentable, rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>)
-    -> AnchorKitAttribute<AnchorKitPair<T, U>, C> {
+-> AnchorKitAttribute<AnchorKitPair<T, U>, C> {
     var attribute = rhs
     attribute.constant += lhs.cgFloat
     return attribute
