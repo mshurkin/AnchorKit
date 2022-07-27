@@ -45,14 +45,21 @@ public func <= <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutCo
 }
 
 @discardableResult
-public func == <T>(lhs: NSLayoutAnchor<T>, rhs: AnchorKitAttribute<NSLayoutAnchor<T>, CGFloat>) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(equalTo: rhs.anchor, constant: rhs.constant).with(multiplier: rhs.multiplier)
+public func == <T>(
+    lhs: NSLayoutAnchor<T>,
+    rhs: AnchorKitAttribute<NSLayoutAnchor<T>, CGFloat>
+) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(equalTo: rhs.anchor, constant: rhs.constant)
+        .with(multiplier: rhs.multiplier)
     constraint.priority = rhs.priority
     return constraint.activate()
 }
 
 @discardableResult
-public func >= <T>(lhs: NSLayoutAnchor<T>, rhs: AnchorKitAttribute<NSLayoutAnchor<T>, CGFloat>) -> NSLayoutConstraint {
+public func >= <T>(
+    lhs: NSLayoutAnchor<T>,
+    rhs: AnchorKitAttribute<NSLayoutAnchor<T>, CGFloat>
+) -> NSLayoutConstraint {
     let constraint = lhs.constraint(greaterThanOrEqualTo: rhs.anchor, constant: rhs.constant)
         .with(multiplier: rhs.multiplier)
     constraint.priority = rhs.priority
@@ -60,7 +67,11 @@ public func >= <T>(lhs: NSLayoutAnchor<T>, rhs: AnchorKitAttribute<NSLayoutAncho
 }
 
 @discardableResult
-public func <= <T>(lhs: NSLayoutAnchor<T>, rhs: AnchorKitAttribute<NSLayoutAnchor<T>, CGFloat>) -> NSLayoutConstraint {
+public func <= <T>(
+    lhs: NSLayoutAnchor<T>,
+    rhs: AnchorKitAttribute<NSLayoutAnchor<T>,
+    CGFloat>
+) -> NSLayoutConstraint {
     let constraint = lhs.constraint(lessThanOrEqualTo: rhs.anchor, constant: rhs.constant)
         .with(multiplier: rhs.multiplier)
     constraint.priority = rhs.priority
@@ -90,10 +101,17 @@ public func <= (lhs: NSLayoutDimension, rhs: FloatRepresentable) -> NSLayoutCons
 }
 
 @discardableResult
-public func == (lhs: NSLayoutDimension, rhs: AnchorKitAttribute<NSLayoutDimension, CGFloat>) -> NSLayoutConstraint {
+public func == (
+    lhs: NSLayoutDimension,
+    rhs: AnchorKitAttribute<NSLayoutDimension, CGFloat>
+) -> NSLayoutConstraint {
     let constraint: NSLayoutConstraint
     if let anchor = rhs.anchor {
-        constraint = lhs.constraint(equalTo: anchor, multiplier: rhs.multiplier, constant: rhs.constant)
+        constraint = lhs.constraint(
+            equalTo: anchor,
+            multiplier: rhs.multiplier,
+            constant: rhs.constant
+        )
     } else {
         constraint = lhs.constraint(equalToConstant: rhs.constant)
     }
@@ -102,10 +120,17 @@ public func == (lhs: NSLayoutDimension, rhs: AnchorKitAttribute<NSLayoutDimensio
 }
 
 @discardableResult
-public func >= (lhs: NSLayoutDimension, rhs: AnchorKitAttribute<NSLayoutDimension, CGFloat>) -> NSLayoutConstraint {
+public func >= (
+    lhs: NSLayoutDimension,
+    rhs: AnchorKitAttribute<NSLayoutDimension, CGFloat>
+) -> NSLayoutConstraint {
     let constraint: NSLayoutConstraint
     if let anchor = rhs.anchor {
-        constraint = lhs.constraint(greaterThanOrEqualTo: anchor, multiplier: rhs.multiplier, constant: rhs.constant)
+        constraint = lhs.constraint(
+            greaterThanOrEqualTo: anchor,
+            multiplier: rhs.multiplier,
+            constant: rhs.constant
+        )
     } else {
         constraint = lhs.constraint(greaterThanOrEqualToConstant: rhs.constant)
     }
@@ -114,10 +139,17 @@ public func >= (lhs: NSLayoutDimension, rhs: AnchorKitAttribute<NSLayoutDimensio
 }
 
 @discardableResult
-public func <= (lhs: NSLayoutDimension, rhs: AnchorKitAttribute<NSLayoutDimension, CGFloat>) -> NSLayoutConstraint {
+public func <= (
+    lhs: NSLayoutDimension,
+    rhs: AnchorKitAttribute<NSLayoutDimension, CGFloat>
+) -> NSLayoutConstraint {
     let constraint: NSLayoutConstraint
     if let anchor = rhs.anchor {
-        constraint = lhs.constraint(lessThanOrEqualTo: anchor, multiplier: rhs.multiplier, constant: rhs.constant)
+        constraint = lhs.constraint(
+            lessThanOrEqualTo: anchor,
+            multiplier: rhs.multiplier,
+            constant: rhs.constant
+        )
     } else {
         constraint = lhs.constraint(lessThanOrEqualToConstant: rhs.constant)
     }
@@ -128,53 +160,79 @@ public func <= (lhs: NSLayoutDimension, rhs: AnchorKitAttribute<NSLayoutDimensio
 // MARK: - Spacing
 
 @discardableResult
-public func == (lhs: NSLayoutXAxisAnchor,
-                rhs: AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing>) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(equalToSystemSpacingAfter: rhs.anchor, multiplier: rhs.constant.multiplier)
+public func == (
+    lhs: NSLayoutXAxisAnchor,
+    rhs: AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing>
+) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(
+        equalToSystemSpacingAfter: rhs.anchor,
+        multiplier: rhs.constant.multiplier
+    )
     constraint.priority = rhs.priority
     return constraint.activate()
 }
 
 @discardableResult
-public func >= (lhs: NSLayoutXAxisAnchor,
-                rhs: AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing>) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(greaterThanOrEqualToSystemSpacingAfter: rhs.anchor,
-                                    multiplier: rhs.constant.multiplier)
+public func >= (
+    lhs: NSLayoutXAxisAnchor,
+    rhs: AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing>
+) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(
+        greaterThanOrEqualToSystemSpacingAfter: rhs.anchor,
+        multiplier: rhs.constant.multiplier
+    )
     constraint.priority = rhs.priority
     return constraint.activate()
 }
 
 @discardableResult
-public func <= (lhs: NSLayoutXAxisAnchor,
-                rhs: AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing>) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(lessThanOrEqualToSystemSpacingAfter: rhs.anchor,
-                                    multiplier: rhs.constant.multiplier)
+public func <= (
+    lhs: NSLayoutXAxisAnchor,
+    rhs: AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing>
+) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(
+        lessThanOrEqualToSystemSpacingAfter: rhs.anchor,
+        multiplier: rhs.constant.multiplier
+    )
     constraint.priority = rhs.priority
     return constraint.activate()
 }
 
 @discardableResult
-public func == (lhs: NSLayoutYAxisAnchor,
-                rhs: AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing>) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(equalToSystemSpacingBelow: rhs.anchor, multiplier: rhs.constant.multiplier)
+public func == (
+    lhs: NSLayoutYAxisAnchor,
+    rhs: AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing>
+) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(
+        equalToSystemSpacingBelow: rhs.anchor,
+        multiplier: rhs.constant.multiplier
+    )
     constraint.priority = rhs.priority
     return constraint.activate()
 }
 
 @discardableResult
-public func >= (lhs: NSLayoutYAxisAnchor,
-                rhs: AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing>) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(greaterThanOrEqualToSystemSpacingBelow: rhs.anchor,
-                                    multiplier: rhs.constant.multiplier)
+public func >= (
+    lhs: NSLayoutYAxisAnchor,
+    rhs: AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing>
+) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(
+        greaterThanOrEqualToSystemSpacingBelow: rhs.anchor,
+        multiplier: rhs.constant.multiplier
+    )
     constraint.priority = rhs.priority
     return constraint.activate()
 }
 
 @discardableResult
-public func <= (lhs: NSLayoutYAxisAnchor,
-                rhs: AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing>) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(lessThanOrEqualToSystemSpacingBelow: rhs.anchor,
-                                    multiplier: rhs.constant.multiplier)
+public func <= (
+    lhs: NSLayoutYAxisAnchor,
+    rhs: AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing>
+) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(
+        lessThanOrEqualToSystemSpacingBelow: rhs.anchor,
+        multiplier: rhs.constant.multiplier
+    )
     constraint.priority = rhs.priority
     return constraint.activate()
 }
@@ -187,8 +245,10 @@ public func == <T, U>(lhs: AnchorKitPair<T, U>, rhs: AnchorKitPair<T, U>) -> [NS
 }
 
 @discardableResult
-public func == <T, U, C>(lhs: AnchorKitPair<T, U>,
-                         rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>) -> [NSLayoutConstraint] {
+public func == <T, U, C>(
+    lhs: AnchorKitPair<T, U>,
+    rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>
+) -> [NSLayoutConstraint] {
     lhs.constraint(equalTo: rhs)
 }
 
@@ -198,8 +258,10 @@ public func >= <T, U>(lhs: AnchorKitPair<T, U>, rhs: AnchorKitPair<T, U>) -> [NS
 }
 
 @discardableResult
-public func >= <T, U, C>(lhs: AnchorKitPair<T, U>,
-                         rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>) -> [NSLayoutConstraint] {
+public func >= <T, U, C>(
+    lhs: AnchorKitPair<T, U>,
+    rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>
+) -> [NSLayoutConstraint] {
     lhs.constraints(greaterThanOrEqualTo: rhs)
 }
 
@@ -209,8 +271,10 @@ public func <= <T, U>(lhs: AnchorKitPair<T, U>, rhs: AnchorKitPair<T, U>) -> [NS
 }
 
 @discardableResult
-public func <= <T, U, C>(lhs: AnchorKitPair<T, U>,
-                         rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>) -> [NSLayoutConstraint] {
+public func <= <T, U, C>(
+    lhs: AnchorKitPair<T, U>,
+    rhs: AnchorKitAttribute<AnchorKitPair<T, U>, C>
+) -> [NSLayoutConstraint] {
     lhs.constraints(lessThanOrEqualTo: rhs)
 }
 
@@ -218,36 +282,48 @@ public func <= <T, U, C>(lhs: AnchorKitPair<T, U>,
 
 @discardableResult
 public func == (lhs: AnchorKitSizePair, rhs: CGSize) -> [NSLayoutConstraint] {
-    [lhs.first.constraint(equalToConstant: rhs.width).activate(),
-     lhs.second.constraint(equalToConstant: rhs.height).activate()]
+    [
+        lhs.first.constraint(equalToConstant: rhs.width).activate(),
+        lhs.second.constraint(equalToConstant: rhs.height).activate()
+    ]
 }
 
 @discardableResult
 public func == (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> [NSLayoutConstraint] {
-    [lhs.first.constraint(equalToConstant: rhs.cgFloat).activate(),
-     lhs.second.constraint(equalToConstant: rhs.cgFloat).activate()]
+    [
+        lhs.first.constraint(equalToConstant: rhs.cgFloat).activate(),
+        lhs.second.constraint(equalToConstant: rhs.cgFloat).activate()
+    ]
 }
 
 @discardableResult
 public func >= (lhs: AnchorKitSizePair, rhs: CGSize) -> [NSLayoutConstraint] {
-    [lhs.first.constraint(greaterThanOrEqualToConstant: rhs.width).activate(),
-     lhs.second.constraint(greaterThanOrEqualToConstant: rhs.height).activate()]
+    [
+        lhs.first.constraint(greaterThanOrEqualToConstant: rhs.width).activate(),
+        lhs.second.constraint(greaterThanOrEqualToConstant: rhs.height).activate()
+    ]
 }
 
 @discardableResult
 public func >= (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> [NSLayoutConstraint] {
-    [lhs.first.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate(),
-     lhs.second.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate()]
+    [
+        lhs.first.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate(),
+        lhs.second.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate()
+    ]
 }
 
 @discardableResult
 public func <= (lhs: AnchorKitSizePair, rhs: CGSize) -> [NSLayoutConstraint] {
-    [lhs.first.constraint(lessThanOrEqualToConstant: rhs.width).activate(),
-     lhs.second.constraint(lessThanOrEqualToConstant: rhs.height).activate()]
+    [
+        lhs.first.constraint(lessThanOrEqualToConstant: rhs.width).activate(),
+        lhs.second.constraint(lessThanOrEqualToConstant: rhs.height).activate()
+    ]
 }
 
 @discardableResult
 public func <= (lhs: AnchorKitSizePair, rhs: FloatRepresentable) -> [NSLayoutConstraint] {
-    [lhs.first.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate(),
-     lhs.second.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate()]
+    [
+        lhs.first.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate(),
+        lhs.second.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate()
+    ]
 }

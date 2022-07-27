@@ -25,19 +25,20 @@
 //
 
 extension NSLayoutConstraint {
-
     func with(multiplier: CGFloat) -> NSLayoutConstraint {
         guard multiplier != self.multiplier, let firstItem = firstItem else {
             return self
         }
 
-        return NSLayoutConstraint(item: firstItem,
-                                  attribute: firstAttribute,
-                                  relatedBy: relation,
-                                  toItem: secondItem,
-                                  attribute: secondAttribute,
-                                  multiplier: multiplier,
-                                  constant: constant)
+        return NSLayoutConstraint(
+            item: firstItem,
+            attribute: firstAttribute,
+            relatedBy: relation,
+            toItem: secondItem,
+            attribute: secondAttribute,
+            multiplier: multiplier,
+            constant: constant
+        )
     }
 
     func activate() -> NSLayoutConstraint {

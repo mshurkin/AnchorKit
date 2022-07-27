@@ -25,7 +25,6 @@
 //
 
 public struct AnchorKitSpacing {
-
     let multiplier: CGFloat
 
     public static let systemSpacing = AnchorKitSpacing(multiplier: 1)
@@ -44,12 +43,16 @@ public func / (lhs: AnchorKitSpacing, rhs: FloatRepresentable) -> AnchorKitSpaci
     AnchorKitSpacing(multiplier: lhs.multiplier / rhs.cgFloat)
 }
 
-public func + (lhs: NSLayoutXAxisAnchor,
-               rhs: AnchorKitSpacing) -> AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing> {
+public func + (
+    lhs: NSLayoutXAxisAnchor,
+    rhs: AnchorKitSpacing
+) -> AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing> {
     AnchorKitAttribute(anchor: lhs, constant: rhs)
 }
 
-public func + (lhs: NSLayoutYAxisAnchor,
-               rhs: AnchorKitSpacing) -> AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing> {
+public func + (
+    lhs: NSLayoutYAxisAnchor,
+    rhs: AnchorKitSpacing
+) -> AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing> {
     AnchorKitAttribute(anchor: lhs, constant: rhs)
 }

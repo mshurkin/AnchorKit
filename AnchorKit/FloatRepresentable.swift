@@ -25,7 +25,6 @@
 //
 
 public protocol FloatRepresentable {
-
     var float: Float { get }
     var cgFloat: CGFloat { get }
 }
@@ -33,7 +32,6 @@ public protocol FloatRepresentable {
 // MARK: -
 
 extension CGFloat: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -44,7 +42,6 @@ extension CGFloat: FloatRepresentable {
 }
 
 extension Double: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -55,7 +52,6 @@ extension Double: FloatRepresentable {
 }
 
 extension Float: FloatRepresentable {
-
     public var float: Float {
         self
     }
@@ -66,7 +62,6 @@ extension Float: FloatRepresentable {
 }
 
 extension Float80: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -77,7 +72,6 @@ extension Float80: FloatRepresentable {
 }
 
 extension UInt: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -88,7 +82,6 @@ extension UInt: FloatRepresentable {
 }
 
 extension UInt8: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -99,7 +92,6 @@ extension UInt8: FloatRepresentable {
 }
 
 extension UInt16: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -110,7 +102,6 @@ extension UInt16: FloatRepresentable {
 }
 
 extension UInt32: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -121,7 +112,6 @@ extension UInt32: FloatRepresentable {
 }
 
 extension UInt64: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -132,7 +122,6 @@ extension UInt64: FloatRepresentable {
 }
 
 extension Int: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -143,7 +132,6 @@ extension Int: FloatRepresentable {
 }
 
 extension Int8: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -154,7 +142,6 @@ extension Int8: FloatRepresentable {
 }
 
 extension Int16: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -165,7 +152,6 @@ extension Int16: FloatRepresentable {
 }
 
 extension Int32: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -176,7 +162,6 @@ extension Int32: FloatRepresentable {
 }
 
 extension Int64: FloatRepresentable {
-
     public var float: Float {
         Float(self)
     }
@@ -186,8 +171,8 @@ extension Int64: FloatRepresentable {
     }
 }
 
+// swiftlint:disable:next legacy_objc_type
 extension NSNumber: FloatRepresentable {
-
     public var float: Float {
         floatValue
     }

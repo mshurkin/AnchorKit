@@ -25,7 +25,6 @@
 //
 
 public extension UIView {
-
     var horizontalAnchors: AnchorKitHorizontalPair {
         AnchorKitPair(first: leadingAnchor, second: trailingAnchor)
     }
@@ -44,7 +43,6 @@ public extension UIView {
 }
 
 public extension UILayoutGuide {
-
     var horizontalAnchors: AnchorKitHorizontalPair {
         AnchorKitPair(first: leadingAnchor, second: trailingAnchor)
     }
@@ -63,7 +61,6 @@ public extension UILayoutGuide {
 }
 
 extension UIEdgeInsets: AnchorKitPairConstant {
-
     public static func += (lhs: inout UIEdgeInsets, rhs: UIEdgeInsets) {
         lhs.top += rhs.top
         lhs.left += rhs.left
@@ -94,7 +91,6 @@ extension UIEdgeInsets: AnchorKitPairConstant {
 }
 
 extension UIOffset: AnchorKitPairConstant {
-
     public static func += (lhs: inout UIOffset, rhs: UIOffset) {
         lhs.horizontal += rhs.horizontal
         lhs.vertical += rhs.vertical
@@ -117,7 +113,6 @@ extension UIOffset: AnchorKitPairConstant {
 }
 
 extension CGSize: AnchorKitPairConstant {
-
     public static func += (lhs: inout CGSize, rhs: CGSize) {
         lhs.width += rhs.width
         lhs.height += rhs.height

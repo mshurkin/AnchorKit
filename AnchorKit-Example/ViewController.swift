@@ -28,7 +28,6 @@ import AnchorKit
 import UIKit
 
 class ViewController: UIViewController {
-
     let redView: UIView = {
         let view = UIView()
         view.backgroundColor = .red

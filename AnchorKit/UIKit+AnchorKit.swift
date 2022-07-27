@@ -25,7 +25,6 @@
 //
 
 public extension UIEdgeInsets {
-
     init(_ value: CGFloat) {
         self.init(top: value, left: value, bottom: value, right: value)
     }
@@ -44,7 +43,6 @@ public extension UIEdgeInsets {
 }
 
 public extension UIOffset {
-
     init(_ value: CGFloat) {
         self.init(horizontal: value, vertical: value)
     }
@@ -55,7 +53,6 @@ public extension UIOffset {
 }
 
 public extension CGSize {
-
     init(_ value: CGFloat) {
         self.init(width: value, height: value)
     }
