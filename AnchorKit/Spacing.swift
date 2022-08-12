@@ -1,5 +1,5 @@
 //
-//  AnchorKit+Spacing.swift
+//  Spacing.swift
 //  AnchorKit
 //
 //  Created by Максим Шуркин on 27/09/2018.
@@ -24,35 +24,37 @@
 //  SOFTWARE.
 //
 
-public struct AnchorKitSpacing {
+public struct LayoutSpacing {
     let multiplier: CGFloat
 
-    public static let systemSpacing = AnchorKitSpacing(multiplier: 1)
+    public static var systemSpacing: LayoutSpacing { LayoutSpacing(multiplier: 1) }
 }
-extension AnchorKitSpacing: AnchorKitConstant {}
+extension LayoutSpacing: Constant {}
 
-public func * (lhs: AnchorKitSpacing, rhs: FloatRepresentable) -> AnchorKitSpacing {
-    AnchorKitSpacing(multiplier: lhs.multiplier * rhs.cgFloat)
-}
-
-public func * (lhs: FloatRepresentable, rhs: AnchorKitSpacing) -> AnchorKitSpacing {
-    AnchorKitSpacing(multiplier: rhs.multiplier * lhs.cgFloat)
+public func * (lhs: LayoutSpacing, rhs: FloatRepresentable) -> LayoutSpacing {
+    LayoutSpacing(multiplier: lhs.multiplier * rhs.cgFloat)
 }
 
-public func / (lhs: AnchorKitSpacing, rhs: FloatRepresentable) -> AnchorKitSpacing {
-    AnchorKitSpacing(multiplier: lhs.multiplier / rhs.cgFloat)
+public func * (lhs: FloatRepresentable, rhs: LayoutSpacing) -> LayoutSpacing {
+    LayoutSpacing(multiplier: rhs.multiplier * lhs.cgFloat)
 }
+
+public func / (lhs: LayoutSpacing, rhs: FloatRepresentable) -> LayoutSpacing {
+    LayoutSpacing(multiplier: lhs.multiplier / rhs.cgFloat)
+}
+
+// MARK: - Attribute
 
 public func + (
     lhs: NSLayoutXAxisAnchor,
-    rhs: AnchorKitSpacing
-) -> AnchorKitAttribute<NSLayoutXAxisAnchor, AnchorKitSpacing> {
-    AnchorKitAttribute(anchor: lhs, constant: rhs)
+    rhs: LayoutSpacing
+) -> Attribute<NSLayoutXAxisAnchor, LayoutSpacing> {
+    Attribute(anchor: lhs, constant: rhs, multiplier: rhs.multiplier)
 }
 
 public func + (
     lhs: NSLayoutYAxisAnchor,
-    rhs: AnchorKitSpacing
-) -> AnchorKitAttribute<NSLayoutYAxisAnchor, AnchorKitSpacing> {
-    AnchorKitAttribute(anchor: lhs, constant: rhs)
+    rhs: LayoutSpacing
+) -> Attribute<NSLayoutYAxisAnchor, LayoutSpacing> {
+    Attribute(anchor: lhs, constant: rhs, multiplier: rhs.multiplier)
 }

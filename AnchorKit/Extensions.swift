@@ -1,5 +1,5 @@
 //
-//  AnchorKit.swift
+//  Extensions.swift
 //  AnchorKit
 //
 //  Created by Максим Шуркин on 27/09/2018.
@@ -24,12 +24,26 @@
 //  SOFTWARE.
 //
 
-public protocol LayoutAnchor {}
-public protocol Constant {}
+extension UIEdgeInsets {
+    var inverted: UIEdgeInsets {
+        UIEdgeInsets(top: -top, left: -left, bottom: -bottom, right: -right)
+    }
+}
 
-public struct Attribute<AnchorType: LayoutAnchor, ConstantType: Constant> {
-    let anchor: AnchorType
-    var constant: ConstantType
-    var multiplier: CGFloat = 1
-    var priority: UILayoutPriority = .required
+extension NSDirectionalEdgeInsets {
+    var inverted: NSDirectionalEdgeInsets {
+        NSDirectionalEdgeInsets(top: -top, leading: -leading, bottom: -bottom, trailing: -trailing)
+    }
+}
+
+extension CGPoint {
+    var inverted: CGPoint {
+        CGPoint(x: -x, y: -y)
+    }
+}
+
+extension CGSize {
+    var inverted: CGSize {
+        CGSize(width: -width, height: -height)
+    }
 }

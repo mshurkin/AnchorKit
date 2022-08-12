@@ -41,6 +41,7 @@ extension NSLayoutConstraint {
         )
     }
 
+    @discardableResult
     func activate() -> NSLayoutConstraint {
         switch (firstItem, secondItem) {
         case let (lhs, rhs as UIView) where !(lhs is UIView):
@@ -51,6 +52,13 @@ extension NSLayoutConstraint {
             (firstItem as? UIView)?.translatesAutoresizingMaskIntoConstraints = false
         }
         isActive = true
+        return self
+    }
+}
+
+extension Array where Element == NSLayoutConstraint {
+    func activate() -> Self {
+        forEach { $0.activate() }
         return self
     }
 }

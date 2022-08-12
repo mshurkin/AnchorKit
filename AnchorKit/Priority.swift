@@ -1,5 +1,5 @@
 //
-//  UILayoutPriority+AnchorKit.swift
+//  Priority.swift
 //  AnchorKit
 //
 //  Created by Максим Шуркин on 27/09/2018.
@@ -24,14 +24,9 @@
 //  SOFTWARE.
 //
 
-public func * (lhs: UILayoutPriority, rhs: FloatRepresentable) -> UILayoutPriority {
-    UILayoutPriority(lhs.rawValue * rhs.float)
+precedencegroup PriorityPrecedence {
+    higherThan: ComparisonPrecedence
+    lowerThan: AdditionPrecedence
 }
 
-public func * (lhs: FloatRepresentable, rhs: UILayoutPriority) -> UILayoutPriority {
-    UILayoutPriority(rhs.rawValue * lhs.float)
-}
-
-public func / (lhs: UILayoutPriority, rhs: FloatRepresentable) -> UILayoutPriority {
-    UILayoutPriority(lhs.rawValue / rhs.float)
-}
+infix operator ~: PriorityPrecedence

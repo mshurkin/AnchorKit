@@ -42,7 +42,7 @@ opt_in_rules:
 #  - file_header
 #  - file_name
   - file_name_no_space
-  - file_types_order
+#  - file_types_order
   - first_where
   - flatmap_over_map_reduce
   - force_unwrapping
@@ -169,6 +169,3 @@ custom_rules:
     regex: '(([}{)\w \t]+\n{1}[ \t]*)(\/\/ MARK: [\w -]*))|((\/\/ MARK: [\w -]*)(\n{1}[ \t]*\w+))'
     message: "Every MARK should be surrounded with 1 newline before and 1 after it"
     severity: warning
-
-excluded:
-  - AnchorKitTests

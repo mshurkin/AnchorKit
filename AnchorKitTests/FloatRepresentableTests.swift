@@ -28,51 +28,59 @@
 import XCTest
 
 class FloatRepresentableTests: XCTestCase {
-
-    func testTypeCasting() {
+    func testCastingCGFloatToCGFloat() {
         XCTAssertEqual(CGFloat(10.5).cgFloat, 10.5)
-        XCTAssertEqual(CGFloat(5.5).float, 5.5)
+    }
 
+    func testCastingDoubleToCGFloat() {
         XCTAssertEqual(Double(10.5).cgFloat, 10.5)
-        XCTAssertEqual(Double(5.5).float, 5.5)
+    }
 
+    func testCastingFloatToCGFloat() {
         XCTAssertEqual(Float(10.5).cgFloat, 10.5)
-        XCTAssertEqual(Float(5.5).float, 5.5)
+    }
 
+    func testCastingFloat80ToCGFloat() {
         XCTAssertEqual(Float80(10.5).cgFloat, 10.5)
-        XCTAssertEqual(Float80(5.5).float, 5.5)
+    }
 
+    func testCastingUIntToCGFloat() {
         XCTAssertEqual(UInt(10.5).cgFloat, 10)
-        XCTAssertEqual(UInt(5.5).float, 5)
+    }
 
+    func testCastingUInt8ToCGFloat() {
         XCTAssertEqual(UInt8(10.5).cgFloat, 10)
-        XCTAssertEqual(UInt8(5.5).float, 5)
+    }
 
+    func testCastingUInt16ToCGFloat() {
         XCTAssertEqual(UInt16(10.5).cgFloat, 10)
-        XCTAssertEqual(UInt16(5.5).float, 5)
+    }
 
+    func testCastingUInt32ToCGFloat() {
         XCTAssertEqual(UInt32(10.5).cgFloat, 10)
-        XCTAssertEqual(UInt32(5.5).float, 5)
+    }
 
+    func testCastingUInt64ToCGFloat() {
         XCTAssertEqual(UInt64(10.5).cgFloat, 10)
-        XCTAssertEqual(UInt64(5.5).float, 5)
+    }
 
+    func testCastingIntToCGFloat() {
         XCTAssertEqual(Int(10.5).cgFloat, 10)
-        XCTAssertEqual(Int(5.5).float, 5)
+    }
 
+    func testCastingInt8ToCGFloat() {
         XCTAssertEqual(Int8(10.5).cgFloat, 10)
-        XCTAssertEqual(Int8(5.5).float, 5)
+    }
 
+    func testCastingInt16ToCGFloat() {
         XCTAssertEqual(Int16(10.5).cgFloat, 10)
-        XCTAssertEqual(Int16(5.5).float, 5)
+    }
 
+    func testCastingInt32ToCGFloat() {
         XCTAssertEqual(Int32(10.5).cgFloat, 10)
-        XCTAssertEqual(Int32(5.5).float, 5)
+    }
 
+    func testCastingInt64ToCGFloat() {
         XCTAssertEqual(Int64(10.5).cgFloat, 10)
-        XCTAssertEqual(Int64(5.5).float, 5)
-
-        XCTAssertEqual(NSNumber(value: 10.5).cgFloat, 10.5)
-        XCTAssertEqual(NSNumber(value: 5.5).float, 5.5)
     }
 }

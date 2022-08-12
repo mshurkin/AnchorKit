@@ -24,40 +24,44 @@
 //  SOFTWARE.
 //
 
-public extension UIEdgeInsets {
-    init(_ value: CGFloat) {
-        self.init(top: value, left: value, bottom: value, right: value)
+public extension UIView {
+    var horizontalAnchors: HorizontalPairs {
+        HorizontalPairs(
+            absolute: Pair(first: leftAnchor, second: rightAnchor),
+            directional: Pair(first: leadingAnchor, second: trailingAnchor)
+        )
     }
 
-    init(top: CGFloat, bottom: CGFloat) {
-        self.init(top: top, left: 0, bottom: bottom, right: 0)
+    var verticalAnchors: VerticalPair {
+        Pair(first: topAnchor, second: bottomAnchor)
     }
 
-    init(left: CGFloat, right: CGFloat) {
-        self.init(top: 0, left: left, bottom: 0, right: right)
+    var centerAnchors: CenterPair {
+        Pair(first: centerXAnchor, second: centerYAnchor)
     }
 
-    static prefix func - (lhs: UIEdgeInsets) -> UIEdgeInsets {
-        UIEdgeInsets(top: -lhs.top, left: -lhs.left, bottom: -lhs.bottom, right: -lhs.right)
-    }
-}
-
-public extension UIOffset {
-    init(_ value: CGFloat) {
-        self.init(horizontal: value, vertical: value)
-    }
-
-    static prefix func - (lhs: UIOffset) -> UIOffset {
-        UIOffset(horizontal: -lhs.horizontal, vertical: -lhs.vertical)
+    var sizeAnchors: SizePair {
+        Pair(first: widthAnchor, second: heightAnchor)
     }
 }
 
-public extension CGSize {
-    init(_ value: CGFloat) {
-        self.init(width: value, height: value)
+public extension UILayoutGuide {
+    var horizontalAnchors: HorizontalPairs {
+        HorizontalPairs(
+            absolute: Pair(first: leftAnchor, second: rightAnchor),
+            directional: Pair(first: leadingAnchor, second: trailingAnchor)
+        )
     }
 
-    static prefix func - (lhs: CGSize) -> CGSize {
-        CGSize(width: -lhs.width, height: -lhs.height)
+    var verticalAnchors: VerticalPair {
+        Pair(first: topAnchor, second: bottomAnchor)
+    }
+
+    var centerAnchors: CenterPair {
+        Pair(first: centerXAnchor, second: centerYAnchor)
+    }
+
+    var sizeAnchors: SizePair {
+        Pair(first: widthAnchor, second: heightAnchor)
     }
 }
