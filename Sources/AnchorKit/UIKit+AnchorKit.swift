@@ -1,8 +1,8 @@
 //
-//  Extensions.swift
+//  UIKit+AnchorKit.swift
 //  AnchorKit
 //
-//  Created by Максим Шуркин on 27/09/2018.
+//  Created by Максим Шуркин on 02/11/2018.
 //  Copyright © 2018-2022 Maxim Shurkin
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,26 +24,46 @@
 //  SOFTWARE.
 //
 
-extension UIEdgeInsets {
-    var inverted: UIEdgeInsets {
-        UIEdgeInsets(top: -top, left: -left, bottom: -bottom, right: -right)
+import UIKit
+
+public extension UIView {
+    var horizontalAnchors: HorizontalPairs {
+        HorizontalPairs(
+            absolute: Pair(first: leftAnchor, second: rightAnchor),
+            directional: Pair(first: leadingAnchor, second: trailingAnchor)
+        )
+    }
+
+    var verticalAnchors: VerticalPair {
+        Pair(first: topAnchor, second: bottomAnchor)
+    }
+
+    var centerAnchors: CenterPair {
+        Pair(first: centerXAnchor, second: centerYAnchor)
+    }
+
+    var sizeAnchors: SizePair {
+        Pair(first: widthAnchor, second: heightAnchor)
     }
 }
 
-extension NSDirectionalEdgeInsets {
-    var inverted: NSDirectionalEdgeInsets {
-        NSDirectionalEdgeInsets(top: -top, leading: -leading, bottom: -bottom, trailing: -trailing)
+public extension UILayoutGuide {
+    var horizontalAnchors: HorizontalPairs {
+        HorizontalPairs(
+            absolute: Pair(first: leftAnchor, second: rightAnchor),
+            directional: Pair(first: leadingAnchor, second: trailingAnchor)
+        )
     }
-}
 
-extension CGPoint {
-    var inverted: CGPoint {
-        CGPoint(x: -x, y: -y)
+    var verticalAnchors: VerticalPair {
+        Pair(first: topAnchor, second: bottomAnchor)
     }
-}
 
-extension CGSize {
-    var inverted: CGSize {
-        CGSize(width: -width, height: -height)
+    var centerAnchors: CenterPair {
+        Pair(first: centerXAnchor, second: centerYAnchor)
+    }
+
+    var sizeAnchors: SizePair {
+        Pair(first: widthAnchor, second: heightAnchor)
     }
 }

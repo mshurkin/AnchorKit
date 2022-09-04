@@ -1,5 +1,5 @@
 //
-//  AnchorKit.swift
+//  Spacing.swift
 //  AnchorKit
 //
 //  Created by Максим Шуркин on 27/09/2018.
@@ -24,12 +24,39 @@
 //  SOFTWARE.
 //
 
-public protocol LayoutAnchor {}
-public protocol Constant {}
+import UIKit
 
-public struct Attribute<AnchorType: LayoutAnchor, ConstantType: Constant> {
-    let anchor: AnchorType
-    var constant: ConstantType
-    var multiplier: CGFloat = 1
-    var priority: UILayoutPriority = .required
+public struct LayoutSpacing {
+    let multiplier: CGFloat
+
+    public static var systemSpacing: LayoutSpacing { LayoutSpacing(multiplier: 1) }
+}
+extension LayoutSpacing: Constant {}
+
+public func * (lhs: LayoutSpacing, rhs: FloatRepresentable) -> LayoutSpacing {
+    LayoutSpacing(multiplier: lhs.multiplier * rhs.cgFloat)
+}
+
+public func * (lhs: FloatRepresentable, rhs: LayoutSpacing) -> LayoutSpacing {
+    LayoutSpacing(multiplier: rhs.multiplier * lhs.cgFloat)
+}
+
+public func / (lhs: LayoutSpacing, rhs: FloatRepresentable) -> LayoutSpacing {
+    LayoutSpacing(multiplier: lhs.multiplier / rhs.cgFloat)
+}
+
+// MARK: - Attribute
+
+public func + (
+    lhs: NSLayoutXAxisAnchor,
+    rhs: LayoutSpacing
+) -> Attribute<NSLayoutXAxisAnchor, LayoutSpacing> {
+    Attribute(anchor: lhs, constant: rhs, multiplier: rhs.multiplier)
+}
+
+public func + (
+    lhs: NSLayoutYAxisAnchor,
+    rhs: LayoutSpacing
+) -> Attribute<NSLayoutYAxisAnchor, LayoutSpacing> {
+    Attribute(anchor: lhs, constant: rhs, multiplier: rhs.multiplier)
 }

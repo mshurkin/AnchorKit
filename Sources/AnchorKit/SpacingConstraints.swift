@@ -24,6 +24,8 @@
 //  SOFTWARE.
 //
 
+import UIKit
+
 @discardableResult
 public func == (
     lhs: NSLayoutXAxisAnchor,

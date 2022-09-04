@@ -169,3 +169,6 @@ custom_rules:
     regex: '(([}{)\w \t]+\n{1}[ \t]*)(\/\/ MARK: [\w -]*))|((\/\/ MARK: [\w -]*)(\n{1}[ \t]*\w+))'
     message: "Every MARK should be surrounded with 1 newline before and 1 after it"
     severity: warning
+
+excluded:
+  - Package.swift

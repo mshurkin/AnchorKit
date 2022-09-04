@@ -24,6 +24,8 @@
 //  SOFTWARE.
 //
 
+import UIKit
+
 // MARK: Horizontal
 
 public func ~ (lhs: HorizontalPairs, rhs: UILayoutPriority) -> PairAttribute<HorizontalPair> {

@@ -24,6 +24,8 @@
 //  SOFTWARE.
 //
 
+import UIKit
+
 // MARK: Horizontal
 
 @discardableResult

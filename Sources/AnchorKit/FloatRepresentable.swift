@@ -24,6 +24,8 @@
 //  SOFTWARE.
 //
 
+import CoreGraphics
+
 public protocol FloatRepresentable {
     var cgFloat: CGFloat { get }
 }

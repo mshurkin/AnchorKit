@@ -24,6 +24,8 @@
 //  SOFTWARE.
 //
 
+import UIKit
+
 // MARK: Size
 
 public func ~ (

@@ -24,6 +24,8 @@
 //  SOFTWARE.
 //
 
+import UIKit
+
 extension NSLayoutConstraint {
     func with(multiplier: CGFloat) -> NSLayoutConstraint {
         guard multiplier != self.multiplier, let firstItem = firstItem else {

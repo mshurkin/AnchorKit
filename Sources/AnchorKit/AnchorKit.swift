@@ -1,9 +1,9 @@
 //
-//  Anchor.swift
+//  AnchorKit.swift
 //  AnchorKit
 //
-//  Created by Максим Шуркин on 12.08.2022.
-//  Copyright © 2022 Maxim Shurkin
+//  Created by Максим Шуркин on 27/09/2018.
+//  Copyright © 2018-2022 Maxim Shurkin
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,23 +24,14 @@
 //  SOFTWARE.
 //
 
-public typealias AnchorAttribute<Anchor: LayoutAnchor> = Attribute<Anchor, CGFloat>
+import UIKit
 
-final class LayoutDimension: NSLayoutDimension {}
+public protocol LayoutAnchor {}
+public protocol Constant {}
 
-extension NSLayoutAnchor: LayoutAnchor {}
-extension CGFloat: Constant {}
-
-extension Attribute where ConstantType == CGFloat {
-    init(
-        anchor: AnchorType,
-        constant: CGFloat = 0,
-        multiplier: CGFloat = 1,
-        priority: UILayoutPriority = .required
-    ) {
-        self.anchor = anchor
-        self.constant = constant
-        self.multiplier = multiplier
-        self.priority = priority
-    }
+public struct Attribute<AnchorType: LayoutAnchor, ConstantType: Constant> {
+    let anchor: AnchorType
+    var constant: ConstantType
+    var multiplier: CGFloat = 1
+    var priority: UILayoutPriority = .required
 }

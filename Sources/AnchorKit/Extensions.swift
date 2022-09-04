@@ -1,5 +1,5 @@
 //
-//  Spacing.swift
+//  Extensions.swift
 //  AnchorKit
 //
 //  Created by Максим Шуркин on 27/09/2018.
@@ -24,37 +24,28 @@
 //  SOFTWARE.
 //
 
-public struct LayoutSpacing {
-    let multiplier: CGFloat
+import UIKit
 
-    public static var systemSpacing: LayoutSpacing { LayoutSpacing(multiplier: 1) }
-}
-extension LayoutSpacing: Constant {}
-
-public func * (lhs: LayoutSpacing, rhs: FloatRepresentable) -> LayoutSpacing {
-    LayoutSpacing(multiplier: lhs.multiplier * rhs.cgFloat)
+extension UIEdgeInsets {
+    var inverted: UIEdgeInsets {
+        UIEdgeInsets(top: -top, left: -left, bottom: -bottom, right: -right)
+    }
 }
 
-public func * (lhs: FloatRepresentable, rhs: LayoutSpacing) -> LayoutSpacing {
-    LayoutSpacing(multiplier: rhs.multiplier * lhs.cgFloat)
+extension NSDirectionalEdgeInsets {
+    var inverted: NSDirectionalEdgeInsets {
+        NSDirectionalEdgeInsets(top: -top, leading: -leading, bottom: -bottom, trailing: -trailing)
+    }
 }
 
-public func / (lhs: LayoutSpacing, rhs: FloatRepresentable) -> LayoutSpacing {
-    LayoutSpacing(multiplier: lhs.multiplier / rhs.cgFloat)
+extension CGPoint {
+    var inverted: CGPoint {
+        CGPoint(x: -x, y: -y)
+    }
 }
 
-// MARK: - Attribute
-
-public func + (
-    lhs: NSLayoutXAxisAnchor,
-    rhs: LayoutSpacing
-) -> Attribute<NSLayoutXAxisAnchor, LayoutSpacing> {
-    Attribute(anchor: lhs, constant: rhs, multiplier: rhs.multiplier)
-}
-
-public func + (
-    lhs: NSLayoutYAxisAnchor,
-    rhs: LayoutSpacing
-) -> Attribute<NSLayoutYAxisAnchor, LayoutSpacing> {
-    Attribute(anchor: lhs, constant: rhs, multiplier: rhs.multiplier)
+extension CGSize {
+    var inverted: CGSize {
+        CGSize(width: -width, height: -height)
+    }
 }

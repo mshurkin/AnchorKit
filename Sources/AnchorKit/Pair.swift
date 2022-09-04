@@ -24,6 +24,8 @@
 //  SOFTWARE.
 //
 
+import UIKit
+
 public typealias HorizontalPair = Pair<NSLayoutXAxisAnchor, NSLayoutXAxisAnchor>
 public typealias VerticalPair = Pair<NSLayoutYAxisAnchor, NSLayoutYAxisAnchor>
 public typealias CenterPair = Pair<NSLayoutXAxisAnchor, NSLayoutYAxisAnchor>
