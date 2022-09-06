@@ -44,13 +44,13 @@ class HorizontalPairAttributeTests: XCTestCase {
         superview.addSubview(view)
 
         horizontalAttribute = PairAttribute(
-            anchor: view.horizontalAnchors.directional,
+            anchor: view.horizontalAnchors,
             constant: PairConstant(first: 16, second: 12),
             multiplier: 1.5,
             priority: .defaultHigh
         )
         horizontalAbsoluteAttribute = PairAttribute(
-            anchor: view.horizontalAnchors.absolute,
+            anchor: view.horizontalAnchors(.absolute),
             constant: PairConstant(first: 8, second: 0),
             multiplier: 1,
             priority: .defaultLow
@@ -161,7 +161,7 @@ extension HorizontalPairAttributeTests {
 
     func testHorizontalAbsoluteAnchorsPlusInsets() {
         // swiftlint:disable:next line_length
-        let attribute = view.horizontalAnchors.absolute + UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        let attribute = view.horizontalAnchors(.absolute) + UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
         XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, 16)
@@ -172,7 +172,7 @@ extension HorizontalPairAttributeTests {
 
     func testHorizontalAbsoluteAnchorsPlusDirectionalInsets() {
         // swiftlint:disable:next line_length
-        let attribute = view.horizontalAnchors.absolute + NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 24)
+        let attribute = view.horizontalAnchors(.absolute) + NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 24)
         XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
         XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, 16)
@@ -182,7 +182,7 @@ extension HorizontalPairAttributeTests {
     }
 
     func testHorizontalAbsoluteAnchorsPlusValue() {
-        let attribute = view.horizontalAnchors.absolute + 8
+        let attribute = view.horizontalAnchors(.absolute) + 8
         XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
         XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, 8)
@@ -193,7 +193,7 @@ extension HorizontalPairAttributeTests {
 
     func testHorizontalAbsoluteAnchorsMinusInsets() {
         // swiftlint:disable:next line_length
-        let attribute = view.horizontalAnchors.absolute - UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 6)
+        let attribute = view.horizontalAnchors(.absolute) - UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 6)
         XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
         XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, -4)
@@ -204,7 +204,7 @@ extension HorizontalPairAttributeTests {
 
     func testHorizontalAbsoluteAnchorsMinusDirectionalInsets() {
         // swiftlint:disable:next line_length
-        let attribute = view.horizontalAnchors.absolute - NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10)
+        let attribute = view.horizontalAnchors(.absolute) - NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10)
         XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
         XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, 0)
@@ -214,7 +214,7 @@ extension HorizontalPairAttributeTests {
     }
 
     func testHorizontalAbsoluteAnchorsMinusValue() {
-        let attribute = view.horizontalAnchors.absolute - 32
+        let attribute = view.horizontalAnchors(.absolute) - 32
         XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
         XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, -32)
@@ -224,9 +224,9 @@ extension HorizontalPairAttributeTests {
     }
 
     func testHorizontalAbsoluteAnchorsMultiplyByValue() {
-        let attribute = view.horizontalAnchors * 4
-        XCTAssertIdentical(attribute.anchor.first, view.leadingAnchor)
-        XCTAssertIdentical(attribute.anchor.second, view.trailingAnchor)
+        let attribute = view.horizontalAnchors(.absolute) * 4
+        XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
+        XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, 0)
         XCTAssertEqual(attribute.constant.second, 0)
         XCTAssertEqual(attribute.multiplier, 4)
@@ -234,7 +234,7 @@ extension HorizontalPairAttributeTests {
     }
 
     func testValueMultiplyByHorizontalAbsoluteAnchors() {
-        let attribute = 2.5 * view.horizontalAnchors.absolute
+        let attribute = 2.5 * view.horizontalAnchors(.absolute)
         XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
         XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, 0)
@@ -244,9 +244,9 @@ extension HorizontalPairAttributeTests {
     }
 
     func testHorizontalAbsoluteAnchorsDivideByValue() {
-        let attribute = view.horizontalAnchors / 3
-        XCTAssertIdentical(attribute.anchor.first, view.leadingAnchor)
-        XCTAssertIdentical(attribute.anchor.second, view.trailingAnchor)
+        let attribute = view.horizontalAnchors(.absolute) / 3
+        XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
+        XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, 0)
         XCTAssertEqual(attribute.constant.second, 0)
         XCTAssertEqual(attribute.multiplier, 0.3333, accuracy: 0.0001)

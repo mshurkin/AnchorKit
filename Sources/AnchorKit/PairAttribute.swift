@@ -28,54 +28,6 @@ import UIKit
 
 // MARK: Horizontal
 
-public func + (lhs: HorizontalPairs, rhs: UIEdgeInsets) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs.directional, constant: PairConstant(insets: rhs, axis: .horizontal))
-}
-
-public func + (
-    lhs: HorizontalPairs,
-    rhs: NSDirectionalEdgeInsets
-) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs.directional, constant: PairConstant(insets: rhs, axis: .horizontal))
-}
-
-public func + (lhs: HorizontalPairs, rhs: FloatRepresentable) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs.directional, constant: PairConstant(value: rhs.cgFloat))
-}
-
-public func - (lhs: HorizontalPairs, rhs: UIEdgeInsets) -> PairAttribute<HorizontalPair> {
-    PairAttribute(
-        anchor: lhs.directional,
-        constant: PairConstant(insets: rhs.inverted, axis: .horizontal)
-    )
-}
-
-public func - (
-    lhs: HorizontalPairs,
-    rhs: NSDirectionalEdgeInsets
-) -> PairAttribute<HorizontalPair> {
-    PairAttribute(
-        anchor: lhs.directional,
-        constant: PairConstant(insets: rhs.inverted, axis: .horizontal)
-    )
-}
-
-public func - (lhs: HorizontalPairs, rhs: FloatRepresentable) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs.directional, constant: PairConstant(value: -rhs.cgFloat))
-}
-
-public func * (lhs: HorizontalPairs, rhs: FloatRepresentable) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs.directional, multiplier: rhs.cgFloat)
-}
-
-public func * (lhs: FloatRepresentable, rhs: HorizontalPairs) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: rhs.directional, multiplier: lhs.cgFloat)
-}
-
-public func / (lhs: HorizontalPairs, rhs: FloatRepresentable) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs.directional, multiplier: 1 / rhs.cgFloat)
-}
-
 public func + (lhs: HorizontalPair, rhs: UIEdgeInsets) -> PairAttribute<HorizontalPair> {
     PairAttribute(anchor: lhs, constant: PairConstant(insets: rhs, axis: .horizontal))
 }
@@ -84,32 +36,12 @@ public func + (lhs: HorizontalPair, rhs: NSDirectionalEdgeInsets) -> PairAttribu
     PairAttribute(anchor: lhs, constant: PairConstant(insets: rhs, axis: .horizontal))
 }
 
-public func + (lhs: HorizontalPair, rhs: FloatRepresentable) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: rhs.cgFloat))
-}
-
 public func - (lhs: HorizontalPair, rhs: UIEdgeInsets) -> PairAttribute<HorizontalPair> {
     PairAttribute(anchor: lhs, constant: PairConstant(insets: rhs.inverted, axis: .horizontal))
 }
 
 public func - (lhs: HorizontalPair, rhs: NSDirectionalEdgeInsets) -> PairAttribute<HorizontalPair> {
     PairAttribute(anchor: lhs, constant: PairConstant(insets: rhs.inverted, axis: .horizontal))
-}
-
-public func - (lhs: HorizontalPair, rhs: FloatRepresentable) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: -rhs.cgFloat))
-}
-
-public func * (lhs: HorizontalPair, rhs: FloatRepresentable) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs, multiplier: rhs.cgFloat)
-}
-
-public func * (lhs: FloatRepresentable, rhs: HorizontalPair) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: rhs, multiplier: lhs.cgFloat)
-}
-
-public func / (lhs: HorizontalPair, rhs: FloatRepresentable) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs, multiplier: 1 / rhs.cgFloat)
 }
 
 public func + (
@@ -162,32 +94,12 @@ public func + (lhs: VerticalPair, rhs: NSDirectionalEdgeInsets) -> PairAttribute
     PairAttribute(anchor: lhs, constant: PairConstant(insets: rhs, axis: .vertical))
 }
 
-public func + (lhs: VerticalPair, rhs: FloatRepresentable) -> PairAttribute<VerticalPair> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: rhs.cgFloat))
-}
-
 public func - (lhs: VerticalPair, rhs: UIEdgeInsets) -> PairAttribute<VerticalPair> {
     PairAttribute(anchor: lhs, constant: PairConstant(insets: rhs.inverted, axis: .vertical))
 }
 
 public func - (lhs: VerticalPair, rhs: NSDirectionalEdgeInsets) -> PairAttribute<VerticalPair> {
     PairAttribute(anchor: lhs, constant: PairConstant(insets: rhs.inverted, axis: .vertical))
-}
-
-public func - (lhs: VerticalPair, rhs: FloatRepresentable) -> PairAttribute<VerticalPair> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: -rhs.cgFloat))
-}
-
-public func * (lhs: VerticalPair, rhs: FloatRepresentable) -> PairAttribute<VerticalPair> {
-    PairAttribute(anchor: lhs, multiplier: rhs.cgFloat)
-}
-
-public func * (lhs: FloatRepresentable, rhs: VerticalPair) -> PairAttribute<VerticalPair> {
-    PairAttribute(anchor: rhs, multiplier: lhs.cgFloat)
-}
-
-public func / (lhs: VerticalPair, rhs: FloatRepresentable) -> PairAttribute<VerticalPair> {
-    PairAttribute(anchor: lhs, multiplier: 1 / rhs.cgFloat)
 }
 
 public func + (lhs: PairAttribute<VerticalPair>, rhs: UIEdgeInsets) -> PairAttribute<VerticalPair> {
@@ -230,28 +142,8 @@ public func + (lhs: CenterPair, rhs: CGPoint) -> PairAttribute<CenterPair> {
     PairAttribute(anchor: lhs, constant: PairConstant(point: rhs))
 }
 
-public func + (lhs: CenterPair, rhs: FloatRepresentable) -> PairAttribute<CenterPair> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: rhs.cgFloat))
-}
-
 public func - (lhs: CenterPair, rhs: CGPoint) -> PairAttribute<CenterPair> {
     PairAttribute(anchor: lhs, constant: PairConstant(point: rhs.inverted))
-}
-
-public func - (lhs: CenterPair, rhs: FloatRepresentable) -> PairAttribute<CenterPair> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: -rhs.cgFloat))
-}
-
-public func * (lhs: CenterPair, rhs: FloatRepresentable) -> PairAttribute<CenterPair> {
-    PairAttribute(anchor: lhs, multiplier: rhs.cgFloat)
-}
-
-public func * (lhs: FloatRepresentable, rhs: CenterPair) -> PairAttribute<CenterPair> {
-    PairAttribute(anchor: rhs, multiplier: lhs.cgFloat)
-}
-
-public func / (lhs: CenterPair, rhs: FloatRepresentable) -> PairAttribute<CenterPair> {
-    PairAttribute(anchor: lhs, multiplier: 1 / rhs.cgFloat)
 }
 
 public func + (lhs: PairAttribute<CenterPair>, rhs: CGPoint) -> PairAttribute<CenterPair> {
@@ -274,28 +166,8 @@ public func + (lhs: SizePair, rhs: CGSize) -> PairAttribute<SizePair> {
     PairAttribute(anchor: lhs, constant: PairConstant(size: rhs))
 }
 
-public func + (lhs: SizePair, rhs: FloatRepresentable) -> PairAttribute<SizePair> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: rhs.cgFloat))
-}
-
 public func - (lhs: SizePair, rhs: CGSize) -> PairAttribute<SizePair> {
     PairAttribute(anchor: lhs, constant: PairConstant(size: rhs.inverted))
-}
-
-public func - (lhs: SizePair, rhs: FloatRepresentable) -> PairAttribute<SizePair> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: -rhs.cgFloat))
-}
-
-public func * (lhs: SizePair, rhs: FloatRepresentable) -> PairAttribute<SizePair> {
-    PairAttribute(anchor: lhs, multiplier: rhs.cgFloat)
-}
-
-public func * (lhs: FloatRepresentable, rhs: SizePair) -> PairAttribute<SizePair> {
-    PairAttribute(anchor: rhs, multiplier: lhs.cgFloat)
-}
-
-public func / (lhs: SizePair, rhs: FloatRepresentable) -> PairAttribute<SizePair> {
-    PairAttribute(anchor: lhs, multiplier: 1 / rhs.cgFloat)
 }
 
 public func + (lhs: PairAttribute<SizePair>, rhs: CGSize) -> PairAttribute<SizePair> {
@@ -313,6 +185,41 @@ public func - (lhs: PairAttribute<SizePair>, rhs: CGSize) -> PairAttribute<SizeP
 }
 
 // MARK: - Generics
+
+public func + <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, constant: PairConstant(value: rhs.cgFloat))
+}
+
+public func - <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, constant: PairConstant(value: -rhs.cgFloat))
+}
+
+public func * <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, multiplier: rhs.cgFloat)
+}
+
+public func * <FirstAnchor, SecondAnchor>(
+    lhs: FloatRepresentable,
+    rhs: Pair<FirstAnchor, SecondAnchor>
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: rhs, multiplier: lhs.cgFloat)
+}
+
+public func / <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, multiplier: 1 / rhs.cgFloat)
+}
 
 public func + <Anchor>(
     lhs: PairAttribute<Anchor>,

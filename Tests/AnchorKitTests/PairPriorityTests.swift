@@ -67,7 +67,7 @@ extension PairPriorityTests {
     }
 
     func testHorizontalAbsoluteAnchorsWithLayoutPriority() {
-        let attribute = view.horizontalAnchors.absolute ~ .defaultHigh
+        let attribute = view.horizontalAnchors(.absolute) ~ .defaultHigh
         XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
         XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, 0)
@@ -77,7 +77,7 @@ extension PairPriorityTests {
     }
 
     func testHorizontalAbsoluteAnchorsWithFloatPriority() {
-        let attribute = view.horizontalAnchors.absolute ~ 749
+        let attribute = view.horizontalAnchors(.absolute) ~ 749
         XCTAssertIdentical(attribute.anchor.first, view.leftAnchor)
         XCTAssertIdentical(attribute.anchor.second, view.rightAnchor)
         XCTAssertEqual(attribute.constant.first, 0)

@@ -36,9 +36,8 @@ public struct Pair<FirstAnchor: LayoutAnchor, SecondAnchor: LayoutAnchor>: Layou
     let second: SecondAnchor
 }
 
-public struct HorizontalPairs {
-    public let absolute: HorizontalPair
-    let directional: HorizontalPair
+public enum HorizontalAnchorsPair {
+    case absolute, directional
 }
 
 public struct PairConstant: Constant {

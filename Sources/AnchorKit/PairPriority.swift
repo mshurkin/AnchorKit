@@ -26,16 +26,6 @@
 
 import UIKit
 
-// MARK: Horizontal
-
-public func ~ (lhs: HorizontalPairs, rhs: UILayoutPriority) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs.directional, priority: rhs)
-}
-
-public func ~ (lhs: HorizontalPairs, rhs: Float) -> PairAttribute<HorizontalPair> {
-    PairAttribute(anchor: lhs.directional, priority: UILayoutPriority(rhs))
-}
-
 // MARK: - Size
 
 public func ~ (lhs: CGSize, rhs: UILayoutPriority) -> PairAttribute<SizePair> {

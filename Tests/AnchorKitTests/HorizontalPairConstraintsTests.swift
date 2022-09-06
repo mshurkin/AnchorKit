@@ -124,7 +124,8 @@ extension HorizontalPairConstraintsTests {
     }
 
     func testEqualityForHorizontalAbsoluteAnchors() {
-        let constraints = view.horizontalAnchors.absolute == superview.horizontalAnchors.absolute
+        // swiftlint:disable:next line_length
+        let constraints = view.horizontalAnchors(.absolute) == superview.horizontalAnchors(.absolute)
         XCTAssertEqual(constraints.count, 2)
         XCTAssertIdentical(constraints[0].firstItem, view)
         XCTAssertEqual(constraints[0].firstAttribute, .left)
@@ -149,7 +150,8 @@ extension HorizontalPairConstraintsTests {
     }
 
     func testGreaterThanForHorizontalAbsoluteAnchors() {
-        let constraints = view.horizontalAnchors.absolute >= superview.horizontalAnchors.absolute
+        // swiftlint:disable:next line_length
+        let constraints = view.horizontalAnchors(.absolute) >= superview.horizontalAnchors(.absolute)
         XCTAssertEqual(constraints.count, 2)
         XCTAssertIdentical(constraints[0].firstItem, superview)
         XCTAssertEqual(constraints[0].firstAttribute, .left)
@@ -174,7 +176,8 @@ extension HorizontalPairConstraintsTests {
     }
 
     func testLessThanForHorizontalAbsoluteAnchors() {
-        let constraints = view.horizontalAnchors.absolute <= superview.horizontalAnchors.absolute
+        // swiftlint:disable:next line_length
+        let constraints = view.horizontalAnchors(.absolute) <= superview.horizontalAnchors(.absolute)
         XCTAssertEqual(constraints.count, 2)
         XCTAssertIdentical(constraints[0].firstItem, view)
         XCTAssertEqual(constraints[0].firstAttribute, .left)
@@ -226,7 +229,7 @@ extension HorizontalPairConstraintsTests {
 
     func testGreaterThanForHorizontalAttribute() {
         // swiftlint:disable:next line_length
-        let constraints = view.horizontalAnchors.absolute >= superview.horizontalAnchors.absolute + 8 + UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8) ~ 250
+        let constraints = view.horizontalAnchors(.absolute) >= superview.horizontalAnchors(.absolute) + 8 + UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8) ~ 250
         XCTAssertEqual(constraints.count, 2)
         XCTAssertIdentical(constraints[0].firstItem, superview)
         XCTAssertEqual(constraints[0].firstAttribute, .left)
@@ -278,7 +281,7 @@ extension HorizontalPairConstraintsTests {
 
     func testEqualityForHorizontalAbsoluteAndAttribute() {
         // swiftlint:disable:next line_length
-        let constraints = view.horizontalAnchors.absolute == superview.horizontalAnchors.absolute + UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 8)
+        let constraints = view.horizontalAnchors(.absolute) == superview.horizontalAnchors(.absolute) + UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 8)
         XCTAssertEqual(constraints.count, 2)
         XCTAssertIdentical(constraints[0].firstItem, view)
         XCTAssertEqual(constraints[0].firstAttribute, .left)
@@ -330,7 +333,7 @@ extension HorizontalPairConstraintsTests {
 
     func testLessThanForHorizontalAbsoluteAndAttribute() {
         // swiftlint:disable:next line_length
-        let constraints = view.horizontalAnchors.absolute <= superview.horizontalAnchors.absolute / 2 + NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24) ~ .defaultHigh + 1
+        let constraints = view.horizontalAnchors(.absolute) <= superview.horizontalAnchors(.absolute) / 2 + NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24) ~ .defaultHigh + 1
         XCTAssertEqual(constraints.count, 2)
         XCTAssertIdentical(constraints[0].firstItem, view)
         XCTAssertEqual(constraints[0].firstAttribute, .left)

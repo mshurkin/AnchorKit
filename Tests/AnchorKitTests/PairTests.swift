@@ -45,13 +45,13 @@ class PairTests: XCTestCase {
 
 extension PairTests {
     func testViewHorizontalPair() {
-        let pair = view.horizontalAnchors.directional
+        let pair = view.horizontalAnchors
         XCTAssertIdentical(pair.first, view.leadingAnchor)
         XCTAssertIdentical(pair.second, view.trailingAnchor)
     }
 
     func testViewHorizontalAbsolutePair() {
-        let pair = view.horizontalAnchors.absolute
+        let pair = view.horizontalAnchors(.absolute)
         XCTAssertIdentical(pair.first, view.leftAnchor)
         XCTAssertIdentical(pair.second, view.rightAnchor)
     }
@@ -75,13 +75,13 @@ extension PairTests {
     }
 
     func testLayoutGuideHorizontalPair() {
-        let pair = view.safeAreaLayoutGuide.horizontalAnchors.directional
+        let pair = view.safeAreaLayoutGuide.horizontalAnchors
         XCTAssertIdentical(pair.first, view.safeAreaLayoutGuide.leadingAnchor)
         XCTAssertIdentical(pair.second, view.safeAreaLayoutGuide.trailingAnchor)
     }
 
     func testLayoutGuideHorizontalAbsolutePair() {
-        let pair = view.safeAreaLayoutGuide.horizontalAnchors.absolute
+        let pair = view.safeAreaLayoutGuide.horizontalAnchors(.absolute)
         XCTAssertIdentical(pair.first, view.safeAreaLayoutGuide.leftAnchor)
         XCTAssertIdentical(pair.second, view.safeAreaLayoutGuide.rightAnchor)
     }

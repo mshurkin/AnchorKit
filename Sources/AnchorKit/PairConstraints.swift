@@ -26,115 +26,57 @@
 
 import UIKit
 
-// MARK: Horizontal
+// MARK: Axis
 
 @discardableResult
-public func == (lhs: HorizontalPairs, rhs: HorizontalPairs) -> [NSLayoutConstraint] {
-    axisConstraints(lhs: lhs.directional, rhs: rhs.directional, relation: .equal).activate()
-}
-
-@discardableResult
-public func >= (lhs: HorizontalPairs, rhs: HorizontalPairs) -> [NSLayoutConstraint] {
-    axisConstraints(lhs: lhs.directional, rhs: rhs.directional, relation: .greaterThanOrEqual)
-        .activate()
-}
-
-@discardableResult
-public func <= (lhs: HorizontalPairs, rhs: HorizontalPairs) -> [NSLayoutConstraint] {
-    axisConstraints(lhs: lhs.directional, rhs: rhs.directional, relation: .lessThanOrEqual)
-        .activate()
-}
-
-@discardableResult
-public func == (lhs: HorizontalPair, rhs: HorizontalPair) -> [NSLayoutConstraint] {
+public func == <Axis, Anchor: NSLayoutAnchor<Axis>>(
+    lhs: Pair<Anchor, Anchor>,
+    rhs: Pair<Anchor, Anchor>
+) -> [NSLayoutConstraint] {
     axisConstraints(lhs: lhs, rhs: rhs, relation: .equal).activate()
 }
 
 @discardableResult
-public func >= (lhs: HorizontalPair, rhs: HorizontalPair) -> [NSLayoutConstraint] {
+public func >= <Axis, Anchor: NSLayoutAnchor<Axis>>(
+    lhs: Pair<Anchor, Anchor>,
+    rhs: Pair<Anchor, Anchor>
+) -> [NSLayoutConstraint] {
     axisConstraints(lhs: lhs, rhs: rhs, relation: .greaterThanOrEqual).activate()
 }
 
 @discardableResult
-public func <= (lhs: HorizontalPair, rhs: HorizontalPair) -> [NSLayoutConstraint] {
+public func <= <Axis, Anchor: NSLayoutAnchor<Axis>>(
+    lhs: Pair<Anchor, Anchor>,
+    rhs: Pair<Anchor, Anchor>
+) -> [NSLayoutConstraint] {
     axisConstraints(lhs: lhs, rhs: rhs, relation: .lessThanOrEqual).activate()
 }
 
 @discardableResult
-public func == (lhs: HorizontalPairs, rhs: PairAttribute<HorizontalPair>) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        axisConstraints(lhs: lhs.directional, rhs: $0, relation: .equal, constant: $1)
-    }
-}
-
-@discardableResult
-public func >= (lhs: HorizontalPairs, rhs: PairAttribute<HorizontalPair>) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        axisConstraints(lhs: lhs.directional, rhs: $0, relation: .greaterThanOrEqual, constant: $1)
-    }
-}
-
-@discardableResult
-public func <= (lhs: HorizontalPairs, rhs: PairAttribute<HorizontalPair>) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        axisConstraints(lhs: lhs.directional, rhs: $0, relation: .lessThanOrEqual, constant: $1)
-    }
-}
-
-@discardableResult
-public func == (lhs: HorizontalPair, rhs: PairAttribute<HorizontalPair>) -> [NSLayoutConstraint] {
+public func == <Axis, Anchor: NSLayoutAnchor<Axis>>(
+    lhs: Pair<Anchor, Anchor>,
+    rhs: PairAttribute<Pair<Anchor, Anchor>>
+) -> [NSLayoutConstraint] {
     makeConstraints(attribute: rhs) {
         axisConstraints(lhs: lhs, rhs: $0, relation: .equal, constant: $1)
     }
 }
 
 @discardableResult
-public func >= (lhs: HorizontalPair, rhs: PairAttribute<HorizontalPair>) -> [NSLayoutConstraint] {
+public func >= <Axis, Anchor: NSLayoutAnchor<Axis>>(
+    lhs: Pair<Anchor, Anchor>,
+    rhs: PairAttribute<Pair<Anchor, Anchor>>
+) -> [NSLayoutConstraint] {
     makeConstraints(attribute: rhs) {
         axisConstraints(lhs: lhs, rhs: $0, relation: .greaterThanOrEqual, constant: $1)
     }
 }
 
 @discardableResult
-public func <= (lhs: HorizontalPair, rhs: PairAttribute<HorizontalPair>) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        axisConstraints(lhs: lhs, rhs: $0, relation: .lessThanOrEqual, constant: $1)
-    }
-}
-
-// MARK: - Vertical
-
-@discardableResult
-public func == (lhs: VerticalPair, rhs: VerticalPair) -> [NSLayoutConstraint] {
-    axisConstraints(lhs: lhs, rhs: rhs, relation: .equal).activate()
-}
-
-@discardableResult
-public func >= (lhs: VerticalPair, rhs: VerticalPair) -> [NSLayoutConstraint] {
-    axisConstraints(lhs: lhs, rhs: rhs, relation: .greaterThanOrEqual).activate()
-}
-
-@discardableResult
-public func <= (lhs: VerticalPair, rhs: VerticalPair) -> [NSLayoutConstraint] {
-    axisConstraints(lhs: lhs, rhs: rhs, relation: .lessThanOrEqual).activate()
-}
-
-@discardableResult
-public func == (lhs: VerticalPair, rhs: PairAttribute<VerticalPair>) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        axisConstraints(lhs: lhs, rhs: $0, relation: .equal, constant: $1)
-    }
-}
-
-@discardableResult
-public func >= (lhs: VerticalPair, rhs: PairAttribute<VerticalPair>) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        axisConstraints(lhs: lhs, rhs: $0, relation: .greaterThanOrEqual, constant: $1)
-    }
-}
-
-@discardableResult
-public func <= (lhs: VerticalPair, rhs: PairAttribute<VerticalPair>) -> [NSLayoutConstraint] {
+public func <= <Axis, Anchor: NSLayoutAnchor<Axis>>(
+    lhs: Pair<Anchor, Anchor>,
+    rhs: PairAttribute<Pair<Anchor, Anchor>>
+) -> [NSLayoutConstraint] {
     makeConstraints(attribute: rhs) {
         axisConstraints(lhs: lhs, rhs: $0, relation: .lessThanOrEqual, constant: $1)
     }

@@ -27,11 +27,17 @@
 import UIKit
 
 public extension UIView {
-    var horizontalAnchors: HorizontalPairs {
-        HorizontalPairs(
-            absolute: Pair(first: leftAnchor, second: rightAnchor),
-            directional: Pair(first: leadingAnchor, second: trailingAnchor)
-        )
+    var horizontalAnchors: HorizontalPair {
+        horizontalAnchors(.directional)
+    }
+
+    func horizontalAnchors(_ type: HorizontalAnchorsPair) -> HorizontalPair {
+        switch type {
+        case .absolute:
+            return HorizontalPair(first: leftAnchor, second: rightAnchor)
+        case .directional:
+            return HorizontalPair(first: leadingAnchor, second: trailingAnchor)
+        }
     }
 
     var verticalAnchors: VerticalPair {
@@ -48,11 +54,17 @@ public extension UIView {
 }
 
 public extension UILayoutGuide {
-    var horizontalAnchors: HorizontalPairs {
-        HorizontalPairs(
-            absolute: Pair(first: leftAnchor, second: rightAnchor),
-            directional: Pair(first: leadingAnchor, second: trailingAnchor)
-        )
+    var horizontalAnchors: HorizontalPair {
+        horizontalAnchors(.directional)
+    }
+
+    func horizontalAnchors(_ type: HorizontalAnchorsPair) -> HorizontalPair {
+        switch type {
+        case .absolute:
+            return HorizontalPair(first: leftAnchor, second: rightAnchor)
+        case .directional:
+            return HorizontalPair(first: leadingAnchor, second: trailingAnchor)
+        }
     }
 
     var verticalAnchors: VerticalPair {
