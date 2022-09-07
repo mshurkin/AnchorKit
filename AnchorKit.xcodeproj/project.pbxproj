@@ -35,7 +35,7 @@
 		2D9D6BBD28A671F5003E9BE1 /* PairPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D6BBC28A671F5003E9BE1 /* PairPriority.swift */; };
 		2D9D6BBF28A675A6003E9BE1 /* PairConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D6BBE28A675A6003E9BE1 /* PairConstraints.swift */; };
 		2D9D6BC128A6760E003E9BE1 /* SpacingConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D6BC028A6760E003E9BE1 /* SpacingConstraints.swift */; };
-		2D9D6BC328A6EE5F003E9BE1 /* SpacingConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D6BC228A6EE5F003E9BE1 /* SpacingConstraints.swift */; };
+		2D9D6BC328A6EE5F003E9BE1 /* SpacingConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D6BC228A6EE5F003E9BE1 /* SpacingConstraintsTests.swift */; };
 		2D9D6BC728A6EE98003E9BE1 /* PairPriorityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D6BC628A6EE98003E9BE1 /* PairPriorityTests.swift */; };
 		2D9D6BC928A6EEA7003E9BE1 /* HorizontalPairConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D6BC828A6EEA7003E9BE1 /* HorizontalPairConstraintsTests.swift */; };
 		2D9D6BCB28A6F103003E9BE1 /* VerticalPairConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D6BCA28A6F103003E9BE1 /* VerticalPairConstraintsTests.swift */; };
@@ -92,7 +92,7 @@
 		2D9D6BBC28A671F5003E9BE1 /* PairPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairPriority.swift; sourceTree = "<group>"; };
 		2D9D6BBE28A675A6003E9BE1 /* PairConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairConstraints.swift; sourceTree = "<group>"; };
 		2D9D6BC028A6760E003E9BE1 /* SpacingConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingConstraints.swift; sourceTree = "<group>"; };
-		2D9D6BC228A6EE5F003E9BE1 /* SpacingConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingConstraints.swift; sourceTree = "<group>"; };
+		2D9D6BC228A6EE5F003E9BE1 /* SpacingConstraintsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingConstraintsTests.swift; sourceTree = "<group>"; };
 		2D9D6BC628A6EE98003E9BE1 /* PairPriorityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairPriorityTests.swift; sourceTree = "<group>"; };
 		2D9D6BC828A6EEA7003E9BE1 /* HorizontalPairConstraintsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPairConstraintsTests.swift; sourceTree = "<group>"; };
 		2D9D6BCA28A6F103003E9BE1 /* VerticalPairConstraintsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalPairConstraintsTests.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 				2D29F7EE2160E08A00811FEC /* AnchorPriorityTests.swift */,
 				2DF19D1D2160318C003031AA /* AnchorConstraintsTests.swift */,
 				2D29F7F02160F2F200811FEC /* SpacingTests.swift */,
-				2D9D6BC228A6EE5F003E9BE1 /* SpacingConstraints.swift */,
+				2D9D6BC228A6EE5F003E9BE1 /* SpacingConstraintsTests.swift */,
 				2D29949E216808190000B372 /* PairTests.swift */,
 				2D9D6BD028A6F34B003E9BE1 /* HorizontalPairAttributeTests.swift */,
 				2D9D6BD228A6F34E003E9BE1 /* VerticalPairAttributeTests.swift */,
@@ -436,7 +436,7 @@
 				2D9D6BCB28A6F103003E9BE1 /* VerticalPairConstraintsTests.swift in Sources */,
 				2D29F7F12160F2F200811FEC /* SpacingTests.swift in Sources */,
 				2D9D6BC728A6EE98003E9BE1 /* PairPriorityTests.swift in Sources */,
-				2D9D6BC328A6EE5F003E9BE1 /* SpacingConstraints.swift in Sources */,
+				2D9D6BC328A6EE5F003E9BE1 /* SpacingConstraintsTests.swift in Sources */,
 				2D29F7F52161076300811FEC /* FloatRepresentableTests.swift in Sources */,
 				2D9D6BD128A6F34B003E9BE1 /* HorizontalPairAttributeTests.swift in Sources */,
 				2D9D6BCD28A6F145003E9BE1 /* CenterPairConstraintsTests.swift in Sources */,

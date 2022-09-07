@@ -27,8 +27,9 @@
 @testable import AnchorKit
 import XCTest
 
-class AnchorKitTests: XCTestCase {
+class AnchorAttributeTests: XCTestCase {
     private var view: UIView!
+    private var secondView: UIView!
 
     private var xAxisAttribute: AnchorAttribute<NSLayoutXAxisAnchor>!
     private var yAxisAttribute: AnchorAttribute<NSLayoutYAxisAnchor>!
@@ -38,6 +39,7 @@ class AnchorKitTests: XCTestCase {
         super.setUp()
 
         view = UIView()
+        secondView = UIView()
         xAxisAttribute = Attribute(
             anchor: view.leadingAnchor,
             constant: 8,
@@ -60,6 +62,7 @@ class AnchorKitTests: XCTestCase {
 
     override func tearDown() {
         view = nil
+        secondView = nil
         xAxisAttribute = nil
         yAxisAttribute = nil
         dimensionAttribute = nil
@@ -70,7 +73,7 @@ class AnchorKitTests: XCTestCase {
 
 // MARK: - X Axis
 
-extension AnchorKitTests {
+extension AnchorAttributeTests {
     func testXAxisAnchorPlusNumber() {
         let attribute = view.leadingAnchor + 8.5
         XCTAssertIdentical(attribute.anchor, view.leadingAnchor)
@@ -146,7 +149,7 @@ extension AnchorKitTests {
 
 // MARK: - Y Axis
 
-extension AnchorKitTests {
+extension AnchorAttributeTests {
     func testYAxisAnchorPlusNumber() {
         let attribute = view.topAnchor + 16
         XCTAssertIdentical(attribute.anchor, view.topAnchor)
@@ -222,7 +225,7 @@ extension AnchorKitTests {
 
 // MARK: - Dimension
 
-extension AnchorKitTests {
+extension AnchorAttributeTests {
     func testDimesionAnchorPlusNumber() {
         let attribute = view.widthAnchor + 24
         XCTAssertIdentical(attribute.anchor, view.widthAnchor)
@@ -293,5 +296,78 @@ extension AnchorKitTests {
         XCTAssertEqual(attribute.constant, 64)
         XCTAssertEqual(attribute.multiplier, 1)
         XCTAssertEqual(attribute.priority, UILayoutPriority(251))
+    }
+}
+
+// MARK: - Dimension between anchors
+
+extension AnchorAttributeTests {
+    func testDimensionBetweenXAnchors() {
+        let attribute = view.leadingAnchor - secondView.trailingAnchor
+        let (minuend, subtrahend) = anchors(NSLayoutXAxisAnchor.self, from: attribute.anchor)
+        XCTAssertIdentical(minuend, view.leadingAnchor)
+        XCTAssertIdentical(subtrahend, secondView.trailingAnchor)
+        XCTAssertEqual(attribute.constant, 0)
+        XCTAssertEqual(attribute.multiplier, 1)
+        XCTAssertEqual(attribute.priority, .required)
+    }
+
+    func testDimensionBetweenXAnchorsPlusNumber() {
+        let attribute = secondView.centerXAnchor - view.leftAnchor + 32
+        let (minuend, subtrahend) = anchors(NSLayoutXAxisAnchor.self, from: attribute.anchor)
+        XCTAssertIdentical(minuend, secondView.centerXAnchor)
+        XCTAssertIdentical(subtrahend, view.leftAnchor)
+        XCTAssertEqual(attribute.constant, 32)
+        XCTAssertEqual(attribute.multiplier, 1)
+        XCTAssertEqual(attribute.priority, .required)
+    }
+
+    func testDimensionBetweenXAnchorsMultipleByNumber() {
+        let attribute = (view.trailingAnchor - view.centerXAnchor) * 1.25
+        let (minuend, subtrahend) = anchors(NSLayoutXAxisAnchor.self, from: attribute.anchor)
+        XCTAssertIdentical(minuend, view.trailingAnchor)
+        XCTAssertIdentical(subtrahend, view.centerXAnchor)
+        XCTAssertEqual(attribute.constant, 0)
+        XCTAssertEqual(attribute.multiplier, 1.25)
+        XCTAssertEqual(attribute.priority, .required)
+    }
+
+    func testDimensionBetweenYAnchors() {
+        let attribute = view.bottomAnchor - secondView.firstBaselineAnchor
+        let (minuend, subtrahend) = anchors(NSLayoutYAxisAnchor.self, from: attribute.anchor)
+        XCTAssertIdentical(minuend, view.bottomAnchor)
+        XCTAssertIdentical(subtrahend, secondView.firstBaselineAnchor)
+        XCTAssertEqual(attribute.constant, 0)
+        XCTAssertEqual(attribute.multiplier, 1)
+        XCTAssertEqual(attribute.priority, .required)
+    }
+
+    func testDimensionBetweenYAnchorsMinusNumber() {
+        let attribute = view.topAnchor - secondView.topAnchor - 16
+        let (minuend, subtrahend) = anchors(NSLayoutYAxisAnchor.self, from: attribute.anchor)
+        XCTAssertIdentical(minuend, view.topAnchor)
+        XCTAssertIdentical(subtrahend, secondView.topAnchor)
+        XCTAssertEqual(attribute.constant, -16)
+        XCTAssertEqual(attribute.multiplier, 1)
+        XCTAssertEqual(attribute.priority, .required)
+    }
+
+    func testDimensionBetweenXAnchorsDivideByNumber() {
+        let attribute = (secondView.centerYAnchor - view.centerYAnchor) / 3
+        let (minuend, subtrahend) = anchors(NSLayoutYAxisAnchor.self, from: attribute.anchor)
+        XCTAssertIdentical(minuend, secondView.centerYAnchor)
+        XCTAssertIdentical(subtrahend, view.centerYAnchor)
+        XCTAssertEqual(attribute.constant, 0)
+        XCTAssertEqual(attribute.multiplier, 0.3333, accuracy: 0.0001)
+        XCTAssertEqual(attribute.priority, .required)
+    }
+
+    private func anchors<Anchor>(
+        _: Anchor.Type,
+        from dimension: NSLayoutDimension
+    ) -> (minuend: Anchor?, subtrahend: Anchor?) {
+        let minuend = dimension.value(forKey: "_minuend") as? Anchor
+        let subtrahend = dimension.value(forKey: "_subtrahend") as? Anchor
+        return (minuend, subtrahend)
     }
 }

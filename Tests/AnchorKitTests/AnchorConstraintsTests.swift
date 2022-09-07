@@ -27,7 +27,7 @@
 @testable import AnchorKit
 import XCTest
 
-class ConstraintsTests: XCTestCase {
+class AnchorConstraintsTests: XCTestCase {
     private var superview: UIView!
     private var view: UIView!
 
@@ -49,7 +49,7 @@ class ConstraintsTests: XCTestCase {
 
 // MARK: - X Axis
 
-extension ConstraintsTests {
+extension AnchorConstraintsTests {
     func testEqualityForXAxisAnchor() {
         let constraint = view.leadingAnchor == superview.leadingAnchor
         XCTAssertIdentical(constraint.firstItem, view)
@@ -143,7 +143,7 @@ extension ConstraintsTests {
 
 // MARK: - Y Axis
 
-extension ConstraintsTests {
+extension AnchorConstraintsTests {
     func testEqualityForYAxisAnchor() {
         let constraint = view.topAnchor == superview.topAnchor
         XCTAssertIdentical(constraint.firstItem, view)
@@ -237,7 +237,7 @@ extension ConstraintsTests {
 
 // MARK: - Dimension
 
-extension ConstraintsTests {
+extension AnchorConstraintsTests {
     func testEqualityForDimensionAnchor() {
         let constraint = view.widthAnchor == superview.heightAnchor
         XCTAssertIdentical(constraint.firstItem, view)

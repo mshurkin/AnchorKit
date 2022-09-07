@@ -24,6 +24,24 @@
 //  SOFTWARE.
 //
 
+// MARK: - Size
+
+public func - (
+    lhs: NSLayoutXAxisAnchor,
+    rhs: NSLayoutXAxisAnchor
+) -> AnchorAttribute<NSLayoutDimension> {
+    AnchorAttribute(anchor: rhs.anchorWithOffset(to: lhs))
+}
+
+public func - (
+    lhs: NSLayoutYAxisAnchor,
+    rhs: NSLayoutYAxisAnchor
+) -> AnchorAttribute<NSLayoutDimension> {
+    AnchorAttribute(anchor: rhs.anchorWithOffset(to: lhs))
+}
+
+// MARK: - Generics
+
 public func + <Anchor>(lhs: Anchor, rhs: FloatRepresentable) -> AnchorAttribute<Anchor> {
     AnchorAttribute(anchor: lhs, constant: rhs.cgFloat)
 }

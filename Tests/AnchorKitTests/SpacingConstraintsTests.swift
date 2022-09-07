@@ -1,5 +1,5 @@
 //
-//  SpacingConstraints.swift
+//  SpacingConstraintsTests.swift
 //  AnchorKitTests
 //
 //  Created by Максим Шуркин on 12.08.2022.
@@ -27,7 +27,7 @@
 @testable import AnchorKit
 import XCTest
 
-class SpacingConstraints: XCTestCase {
+class SpacingConstraintsTests: XCTestCase {
     private var superview: UIView!
     private var view: UIView!
     private var label: UILabel!
@@ -51,7 +51,7 @@ class SpacingConstraints: XCTestCase {
     }
 }
 
-extension SpacingConstraints {
+extension SpacingConstraintsTests {
     func testEqualityForXAxisAnchorWithSystemSpacing() {
         let constraint = label.trailingAnchor == view.trailingAnchor + .systemSpacing
         XCTAssertIdentical(constraint.firstItem, label)

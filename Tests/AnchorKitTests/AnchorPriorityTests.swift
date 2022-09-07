@@ -27,7 +27,7 @@
 @testable import AnchorKit
 import XCTest
 
-class PriorityTests: XCTestCase {
+class AnchorPriorityTests: XCTestCase {
     private var view: UIView!
 
     override func setUp() {
@@ -45,7 +45,7 @@ class PriorityTests: XCTestCase {
 
 // MARK: - X Axis Anchor
 
-extension PriorityTests {
+extension AnchorPriorityTests {
     func testXAxisAnchorWithLayoutPriority() {
         let attribute = view.trailingAnchor ~ .defaultHigh
         XCTAssertIdentical(attribute.anchor, view.trailingAnchor)
@@ -81,7 +81,7 @@ extension PriorityTests {
 
 // MARK: - Y Axis Anchor
 
-extension PriorityTests {
+extension AnchorPriorityTests {
     func testYAxisAnchorWithLayoutPriority() {
         let attribute = view.bottomAnchor ~ .defaultLow
         XCTAssertIdentical(attribute.anchor, view.bottomAnchor)
@@ -117,7 +117,7 @@ extension PriorityTests {
 
 // MARK: - Dimension Anchor
 
-extension PriorityTests {
+extension AnchorPriorityTests {
     func testDimensionAnchorWithLayoutPriority() {
         let attribute = view.heightAnchor ~ .fittingSizeLevel
         XCTAssertIdentical(attribute.anchor, view.heightAnchor)
@@ -169,7 +169,7 @@ extension PriorityTests {
 
 // MARK: - System Spacing
 
-extension PriorityTests {
+extension AnchorPriorityTests {
     func testXAxisAnchorWithSystemSpacingAndLayoutPriority() {
         let attribute = view.leadingAnchor + .systemSpacing ~ .required
         XCTAssertIdentical(attribute.anchor, view.leadingAnchor)
