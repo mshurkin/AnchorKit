@@ -72,6 +72,7 @@ public func == (
             multiplier: rhs.multiplier,
             constant: rhs.constant
         )
+        .reverseIfNeeded()
     }
     constraint.priority = rhs.priority
     return constraint.activate()
@@ -91,6 +92,7 @@ public func >= (
             multiplier: rhs.multiplier,
             constant: rhs.constant
         )
+        .reverseIfNeeded()
     }
     constraint.priority = rhs.priority
     return constraint.activate()
@@ -110,6 +112,7 @@ public func <= (
             multiplier: rhs.multiplier,
             constant: rhs.constant
         )
+        .reverseIfNeeded()
     }
     constraint.priority = rhs.priority
     return constraint.activate()
@@ -140,6 +143,7 @@ public func == <AnchorType>(
 ) -> NSLayoutConstraint {
     let constraint = lhs.constraint(equalTo: rhs.anchor, constant: rhs.constant)
         .with(multiplier: rhs.multiplier)
+        .reverseIfNeeded()
     constraint.priority = rhs.priority
     return constraint.activate()
 }
@@ -151,6 +155,7 @@ public func >= <AnchorType>(
 ) -> NSLayoutConstraint {
     let constraint = lhs.constraint(greaterThanOrEqualTo: rhs.anchor, constant: rhs.constant)
         .with(multiplier: rhs.multiplier)
+        .reverseIfNeeded()
     constraint.priority = rhs.priority
     return constraint.activate()
 }
@@ -162,6 +167,7 @@ public func <= <AnchorType>(
 ) -> NSLayoutConstraint {
     let constraint = lhs.constraint(lessThanOrEqualTo: rhs.anchor, constant: rhs.constant)
         .with(multiplier: rhs.multiplier)
+        .reverseIfNeeded()
     constraint.priority = rhs.priority
     return constraint.activate()
 }

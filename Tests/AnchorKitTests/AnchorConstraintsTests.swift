@@ -127,13 +127,13 @@ extension AnchorConstraintsTests {
 
     func testLessThanForXAxisAttribute() {
         let constraint = view.trailingAnchor <= 3 * superview.centerXAnchor / 2 - 16 ~ 251
-        XCTAssertIdentical(constraint.firstItem, view)
-        XCTAssertEqual(constraint.firstAttribute, .trailing)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertIdentical(constraint.secondItem, superview)
-        XCTAssertEqual(constraint.secondAttribute, .centerX)
-        XCTAssertEqual(constraint.multiplier, 1.5)
-        XCTAssertEqual(constraint.constant, -16)
+        XCTAssertIdentical(constraint.firstItem, superview)
+        XCTAssertEqual(constraint.firstAttribute, .centerX)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertIdentical(constraint.secondItem, view)
+        XCTAssertEqual(constraint.secondAttribute, .trailing)
+        XCTAssertEqual(constraint.multiplier, 0.666_667, accuracy: 0.000_001)
+        XCTAssertEqual(constraint.constant, 10.666_667, accuracy: 0.000_001)
         XCTAssertEqual(constraint.priority, UILayoutPriority(251))
         XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
         XCTAssertTrue(superview.translatesAutoresizingMaskIntoConstraints)
@@ -221,13 +221,13 @@ extension AnchorConstraintsTests {
 
     func testLessThanForYAxisAttribute() {
         let constraint = view.centerYAnchor <= superview.bottomAnchor - 16 ~ .defaultHigh - 1
-        XCTAssertIdentical(constraint.firstItem, view)
-        XCTAssertEqual(constraint.firstAttribute, .centerY)
-        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
-        XCTAssertIdentical(constraint.secondItem, superview)
-        XCTAssertEqual(constraint.secondAttribute, .bottom)
+        XCTAssertIdentical(constraint.firstItem, superview)
+        XCTAssertEqual(constraint.firstAttribute, .bottom)
+        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
+        XCTAssertIdentical(constraint.secondItem, view)
+        XCTAssertEqual(constraint.secondAttribute, .centerY)
         XCTAssertEqual(constraint.multiplier, 1)
-        XCTAssertEqual(constraint.constant, -16)
+        XCTAssertEqual(constraint.constant, 16)
         XCTAssertEqual(constraint.priority, UILayoutPriority(749))
         XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
         XCTAssertTrue(superview.translatesAutoresizingMaskIntoConstraints)
@@ -375,13 +375,13 @@ extension AnchorConstraintsTests {
 
     func testEqualityForDimensionAttribute() {
         let constraint = view.heightAnchor == 2 * superview.heightAnchor - 8 ~ 400
-        XCTAssertIdentical(constraint.firstItem, view)
+        XCTAssertIdentical(constraint.firstItem, superview)
         XCTAssertEqual(constraint.firstAttribute, .height)
         XCTAssertEqual(constraint.relation, .equal)
-        XCTAssertIdentical(constraint.secondItem, superview)
+        XCTAssertIdentical(constraint.secondItem, view)
         XCTAssertEqual(constraint.secondAttribute, .height)
-        XCTAssertEqual(constraint.multiplier, 2)
-        XCTAssertEqual(constraint.constant, -8)
+        XCTAssertEqual(constraint.multiplier, 0.5)
+        XCTAssertEqual(constraint.constant, 4)
         XCTAssertEqual(constraint.priority, UILayoutPriority(400))
         XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
         XCTAssertTrue(superview.translatesAutoresizingMaskIntoConstraints)
@@ -389,14 +389,14 @@ extension AnchorConstraintsTests {
     }
 
     func testGreaterThanForDimensionAttribute() {
-        let constraint = view.heightAnchor >= superview.heightAnchor * 2 - 8 ~ 400
-        XCTAssertIdentical(constraint.firstItem, view)
+        let constraint = view.heightAnchor >= superview.heightAnchor * 1.25 - 8 ~ 400
+        XCTAssertIdentical(constraint.firstItem, superview)
         XCTAssertEqual(constraint.firstAttribute, .height)
-        XCTAssertEqual(constraint.relation, .greaterThanOrEqual)
-        XCTAssertIdentical(constraint.secondItem, superview)
+        XCTAssertEqual(constraint.relation, .lessThanOrEqual)
+        XCTAssertIdentical(constraint.secondItem, view)
         XCTAssertEqual(constraint.secondAttribute, .height)
-        XCTAssertEqual(constraint.multiplier, 2)
-        XCTAssertEqual(constraint.constant, -8)
+        XCTAssertEqual(constraint.multiplier, 0.8, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, 6.4)
         XCTAssertEqual(constraint.priority, UILayoutPriority(400))
         XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
         XCTAssertTrue(superview.translatesAutoresizingMaskIntoConstraints)

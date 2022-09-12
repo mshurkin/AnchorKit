@@ -336,7 +336,7 @@ private func makeConstraints<Anchor>(
     constraints: (Anchor, PairConstant) -> [NSLayoutConstraint]
 ) -> [NSLayoutConstraint] {
     constraints(attribute.anchor, attribute.constant).map {
-        let constraint = $0.with(multiplier: attribute.multiplier)
+        let constraint = $0.with(multiplier: attribute.multiplier).reverseIfNeeded()
         constraint.priority = attribute.priority
         return constraint.activate()
     }
@@ -358,7 +358,8 @@ private func makeConstraints(
         constraints = sizeConstraints(anchors: anchors, attribute: attribute, relation: relation)
     }
     return constraints.map {
-        $0.priority = attribute.priority
-        return $0.activate()
+        let constraint = $0.reverseIfNeeded()
+        constraint.priority = attribute.priority
+        return constraint.activate()
     }
 }

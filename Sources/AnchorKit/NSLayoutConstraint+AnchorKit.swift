@@ -28,18 +28,34 @@ import UIKit
 
 extension NSLayoutConstraint {
     func with(multiplier: CGFloat) -> NSLayoutConstraint {
-        guard multiplier != self.multiplier, let firstItem = firstItem else {
+        guard multiplier != self.multiplier else {
             return self
         }
 
         return NSLayoutConstraint(
-            item: firstItem,
+            item: firstItem as Any,
             attribute: firstAttribute,
             relatedBy: relation,
             toItem: secondItem,
             attribute: secondAttribute,
             multiplier: multiplier,
             constant: constant
+        )
+    }
+
+    func reverseIfNeeded() -> NSLayoutConstraint {
+        guard constant < 0, let relation = Relation(rawValue: relation.rawValue * -1) else {
+            return self
+        }
+
+        return NSLayoutConstraint(
+            item: secondItem as Any,
+            attribute: secondAttribute,
+            relatedBy: relation,
+            toItem: firstItem,
+            attribute: firstAttribute,
+            multiplier: 1 / multiplier,
+            constant: -constant / multiplier
         )
     }
 
@@ -62,5 +78,9 @@ extension Array where Element == NSLayoutConstraint {
     func activate() -> Self {
         forEach { $0.activate() }
         return self
+    }
+
+    func reverseIfNeeded() -> Self {
+        map { $0.reverseIfNeeded() }
     }
 }
