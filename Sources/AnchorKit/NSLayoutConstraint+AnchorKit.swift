@@ -27,36 +27,44 @@
 import UIKit
 
 extension NSLayoutConstraint {
-    func with(multiplier: CGFloat) -> NSLayoutConstraint {
-        guard multiplier != self.multiplier else {
+    func apply(attribute: LayoutAttribute?) -> NSLayoutConstraint {
+        guard let attribute = attribute else {
             return self
         }
 
-        return NSLayoutConstraint(
-            item: firstItem as Any,
-            attribute: firstAttribute,
-            relatedBy: relation,
-            toItem: secondItem,
-            attribute: secondAttribute,
-            multiplier: multiplier,
-            constant: constant
-        )
-    }
+        let hasChanges = attribute.multiplier != multiplier
+        let multiplier = hasChanges ? attribute.multiplier : multiplier
 
-    func reverseIfNeeded() -> NSLayoutConstraint {
-        guard constant < 0, let relation = Relation(rawValue: relation.rawValue * -1) else {
-            return self
+        let constraint: NSLayoutConstraint
+        if secondItem != nil, constant < 0, let relation = relation.inverted {
+            constraint = NSLayoutConstraint(
+                item: secondItem as Any,
+                attribute: secondAttribute,
+                relatedBy: relation,
+                toItem: firstItem,
+                attribute: firstAttribute,
+                multiplier: 1 / multiplier,
+                constant: -constant / multiplier
+            )
+        } else if hasChanges {
+            constraint = NSLayoutConstraint(
+                item: firstItem as Any,
+                attribute: firstAttribute,
+                relatedBy: relation,
+                toItem: secondItem,
+                attribute: secondAttribute,
+                multiplier: multiplier,
+                constant: constant
+            )
+        } else {
+            constraint = self
         }
 
-        return NSLayoutConstraint(
-            item: secondItem as Any,
-            attribute: secondAttribute,
-            relatedBy: relation,
-            toItem: firstItem,
-            attribute: firstAttribute,
-            multiplier: 1 / multiplier,
-            constant: -constant / multiplier
-        )
+        if constraint.priority != attribute.priority {
+            constraint.priority = attribute.priority
+        }
+
+        return constraint
     }
 
     @discardableResult
@@ -71,16 +79,5 @@ extension NSLayoutConstraint {
         }
         isActive = true
         return self
-    }
-}
-
-extension Array where Element == NSLayoutConstraint {
-    func activate() -> Self {
-        forEach { $0.activate() }
-        return self
-    }
-
-    func reverseIfNeeded() -> Self {
-        map { $0.reverseIfNeeded() }
     }
 }

@@ -33,7 +33,7 @@ public func == <Axis, Anchor: NSLayoutAnchor<Axis>>(
     lhs: Pair<Anchor, Anchor>,
     rhs: Pair<Anchor, Anchor>
 ) -> [NSLayoutConstraint] {
-    axisConstraints(lhs: lhs, rhs: rhs, relation: .equal).activate()
+    constraints(.axis, relation: .equal, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
@@ -41,7 +41,7 @@ public func >= <Axis, Anchor: NSLayoutAnchor<Axis>>(
     lhs: Pair<Anchor, Anchor>,
     rhs: Pair<Anchor, Anchor>
 ) -> [NSLayoutConstraint] {
-    axisConstraints(lhs: lhs, rhs: rhs, relation: .greaterThanOrEqual).activate()
+    constraints(.axis, relation: .greater, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
@@ -49,7 +49,7 @@ public func <= <Axis, Anchor: NSLayoutAnchor<Axis>>(
     lhs: Pair<Anchor, Anchor>,
     rhs: Pair<Anchor, Anchor>
 ) -> [NSLayoutConstraint] {
-    axisConstraints(lhs: lhs, rhs: rhs, relation: .lessThanOrEqual).activate()
+    constraints(.axis, relation: .less, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
@@ -57,9 +57,7 @@ public func == <Axis, Anchor: NSLayoutAnchor<Axis>>(
     lhs: Pair<Anchor, Anchor>,
     rhs: PairAttribute<Pair<Anchor, Anchor>>
 ) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        axisConstraints(lhs: lhs, rhs: $0, relation: .equal, constant: $1)
-    }
+    constraints(.axis, relation: .equal, lhs: lhs, attribute: rhs)
 }
 
 @discardableResult
@@ -67,9 +65,7 @@ public func >= <Axis, Anchor: NSLayoutAnchor<Axis>>(
     lhs: Pair<Anchor, Anchor>,
     rhs: PairAttribute<Pair<Anchor, Anchor>>
 ) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        axisConstraints(lhs: lhs, rhs: $0, relation: .greaterThanOrEqual, constant: $1)
-    }
+    constraints(.axis, relation: .greater, lhs: lhs, attribute: rhs)
 }
 
 @discardableResult
@@ -77,289 +73,199 @@ public func <= <Axis, Anchor: NSLayoutAnchor<Axis>>(
     lhs: Pair<Anchor, Anchor>,
     rhs: PairAttribute<Pair<Anchor, Anchor>>
 ) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        axisConstraints(lhs: lhs, rhs: $0, relation: .lessThanOrEqual, constant: $1)
-    }
+    constraints(.axis, relation: .less, lhs: lhs, attribute: rhs)
 }
 
 // MARK: - Center
 
 @discardableResult
 public func == (lhs: CenterPair, rhs: CenterPair) -> [NSLayoutConstraint] {
-    centerConstraints(lhs: lhs, rhs: rhs, relation: .equal).activate()
+    constraints(.center, relation: .equal, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
 public func >= (lhs: CenterPair, rhs: CenterPair) -> [NSLayoutConstraint] {
-    centerConstraints(lhs: lhs, rhs: rhs, relation: .greaterThanOrEqual).activate()
+    constraints(.center, relation: .greater, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
 public func <= (lhs: CenterPair, rhs: CenterPair) -> [NSLayoutConstraint] {
-    centerConstraints(lhs: lhs, rhs: rhs, relation: .lessThanOrEqual).activate()
+    constraints(.center, relation: .less, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
 public func == (lhs: CenterPair, rhs: PairAttribute<CenterPair>) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        centerConstraints(lhs: lhs, rhs: $0, relation: .equal, constant: $1)
-    }
+    constraints(.center, relation: .equal, lhs: lhs, attribute: rhs)
 }
 
 @discardableResult
 public func >= (lhs: CenterPair, rhs: PairAttribute<CenterPair>) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        centerConstraints(lhs: lhs, rhs: $0, relation: .greaterThanOrEqual, constant: $1)
-    }
+    constraints(.center, relation: .greater, lhs: lhs, attribute: rhs)
 }
 
 @discardableResult
 public func <= (lhs: CenterPair, rhs: PairAttribute<CenterPair>) -> [NSLayoutConstraint] {
-    makeConstraints(attribute: rhs) {
-        centerConstraints(lhs: lhs, rhs: $0, relation: .lessThanOrEqual, constant: $1)
-    }
+    constraints(.center, relation: .less, lhs: lhs, attribute: rhs)
 }
 
 // MARK: - Size
 
 @discardableResult
 public func == (lhs: SizePair, rhs: SizePair) -> [NSLayoutConstraint] {
-    sizeConstraints(anchors: lhs, attribute: PairAttribute(anchor: rhs), relation: .equal)
-        .activate()
+    constraints(.size, relation: .equal, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
 public func >= (lhs: SizePair, rhs: SizePair) -> [NSLayoutConstraint] {
-    sizeConstraints(
-        anchors: lhs,
-        attribute: PairAttribute(anchor: rhs),
-        relation: .greaterThanOrEqual
-    ).activate()
+    constraints(.size, relation: .greater, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
 public func <= (lhs: SizePair, rhs: SizePair) -> [NSLayoutConstraint] {
-    sizeConstraints(anchors: lhs, attribute: PairAttribute(anchor: rhs), relation: .lessThanOrEqual)
-        .activate()
+    constraints(.size, relation: .less, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
 public func == (lhs: SizePair, rhs: CGSize) -> [NSLayoutConstraint] {
-    sizeConstraints(anchors: lhs, constant: PairConstant(size: rhs), relation: .equal).activate()
+    constraints(.equal, lhs: lhs, constant: PairConstant(size: rhs))
 }
 
 @discardableResult
 public func >= (lhs: SizePair, rhs: CGSize) -> [NSLayoutConstraint] {
-    sizeConstraints(anchors: lhs, constant: PairConstant(size: rhs), relation: .greaterThanOrEqual)
-        .activate()
+    constraints(.greater, lhs: lhs, constant: PairConstant(size: rhs))
 }
 
 @discardableResult
 public func <= (lhs: SizePair, rhs: CGSize) -> [NSLayoutConstraint] {
-    sizeConstraints(anchors: lhs, constant: PairConstant(size: rhs), relation: .lessThanOrEqual)
-        .activate()
+    constraints(.less, lhs: lhs, constant: PairConstant(size: rhs))
 }
 
 @discardableResult
 public func == (lhs: SizePair, rhs: FloatRepresentable) -> [NSLayoutConstraint] {
-    sizeConstraints(anchors: lhs, constant: PairConstant(value: rhs.cgFloat), relation: .equal)
-        .activate()
+    constraints(.equal, lhs: lhs, constant: PairConstant(value: rhs.cgFloat))
 }
 
 @discardableResult
 public func >= (lhs: SizePair, rhs: FloatRepresentable) -> [NSLayoutConstraint] {
-    sizeConstraints(
-        anchors: lhs,
-        constant: PairConstant(value: rhs.cgFloat),
-        relation: .greaterThanOrEqual
-    ).activate()
+    constraints(.greater, lhs: lhs, constant: PairConstant(value: rhs.cgFloat))
 }
 
 @discardableResult
 public func <= (lhs: SizePair, rhs: FloatRepresentable) -> [NSLayoutConstraint] {
-    sizeConstraints(
-        anchors: lhs,
-        constant: PairConstant(value: rhs.cgFloat),
-        relation: .lessThanOrEqual
-    ).activate()
+    constraints(.less, lhs: lhs, constant: PairConstant(value: rhs.cgFloat))
 }
 
 @discardableResult
 public func == (lhs: SizePair, rhs: PairAttribute<SizePair>) -> [NSLayoutConstraint] {
-    makeConstraints(anchors: lhs, attribute: rhs, relation: .equal)
+    constraints(.size, relation: .equal, lhs: lhs, attribute: rhs)
 }
 
 @discardableResult
 public func >= (lhs: SizePair, rhs: PairAttribute<SizePair>) -> [NSLayoutConstraint] {
-    makeConstraints(anchors: lhs, attribute: rhs, relation: .greaterThanOrEqual)
+    constraints(.size, relation: .greater, lhs: lhs, attribute: rhs)
 }
 
 @discardableResult
 public func <= (lhs: SizePair, rhs: PairAttribute<SizePair>) -> [NSLayoutConstraint] {
-    makeConstraints(anchors: lhs, attribute: rhs, relation: .lessThanOrEqual)
+    constraints(.size, relation: .less, lhs: lhs, attribute: rhs)
 }
 
 // MARK: - Constraints
 
-private func axisConstraints<Axis, Anchor: NSLayoutAnchor<Axis>>(
-    lhs: Pair<Anchor, Anchor>,
-    rhs: Pair<Anchor, Anchor>,
-    relation: NSLayoutConstraint.Relation,
-    constant: PairConstant = PairConstant(value: 0)
+private func constraints<T, U, First: NSLayoutAnchor<T>, Second: NSLayoutAnchor<U>>(
+    _ type: AnchorType,
+    relation: Relation,
+    lhs: Pair<First, Second>,
+    attribute: PairAttribute<Pair<First, Second>>
 ) -> [NSLayoutConstraint] {
-    switch relation {
-    case .lessThanOrEqual:
-        return [
-            lhs.first.constraint(greaterThanOrEqualTo: rhs.first, constant: constant.first),
-            rhs.second.constraint(greaterThanOrEqualTo: lhs.second, constant: constant.second)
-        ]
-    case .equal:
-        return [
-            lhs.first.constraint(equalTo: rhs.first, constant: constant.first),
-            rhs.second.constraint(equalTo: lhs.second, constant: constant.second)
-        ]
-    case .greaterThanOrEqual:
-        return [
-            rhs.first.constraint(greaterThanOrEqualTo: lhs.first, constant: constant.first),
-            lhs.second.constraint(greaterThanOrEqualTo: rhs.second, constant: constant.second)
-        ]
-    @unknown default:
-        return []
-    }
+    constraints(
+        type,
+        relation: relation,
+        lhs: lhs,
+        rhs: attribute.anchor,
+        constant: attribute.constant,
+        attribute: attribute
+    )
 }
 
-private func centerConstraints(
-    lhs: CenterPair,
-    rhs: CenterPair,
-    relation: NSLayoutConstraint.Relation,
-    constant: PairConstant = PairConstant(value: 0)
+private func constraints(
+    _ relation: Relation,
+    lhs: SizePair,
+    constant: PairConstant
 ) -> [NSLayoutConstraint] {
-    switch relation {
-    case .lessThanOrEqual:
-        return [
-            rhs.first.constraint(greaterThanOrEqualTo: lhs.first, constant: constant.first),
-            rhs.second.constraint(greaterThanOrEqualTo: lhs.second, constant: constant.second)
-        ]
-    case .equal:
-        return [
-            lhs.first.constraint(equalTo: rhs.first, constant: constant.first),
-            lhs.second.constraint(equalTo: rhs.second, constant: constant.second)
-        ]
-    case .greaterThanOrEqual:
-        return [
-            lhs.first.constraint(greaterThanOrEqualTo: rhs.first, constant: constant.first),
-            lhs.second.constraint(greaterThanOrEqualTo: rhs.second, constant: constant.second)
-        ]
-    @unknown default:
-        return []
-    }
+    constraints(.size, relation: relation, lhs: lhs, rhs: .dimension, constant: constant)
 }
 
-private func sizeConstraints(
-    anchors: SizePair,
-    constant: PairConstant,
-    relation: NSLayoutConstraint.Relation
+func constraints<T, U, First: NSLayoutAnchor<T>, Second: NSLayoutAnchor<U>>(
+    _ type: AnchorType,
+    relation: Relation,
+    lhs: Pair<First, Second>,
+    rhs: Pair<First, Second>,
+    constant: PairConstant = PairConstant(value: 0),
+    attribute: LayoutAttribute? = nil
 ) -> [NSLayoutConstraint] {
-    switch relation {
-    case .lessThanOrEqual:
+    // swiftlint:disable line_length
+    switch (type, relation) {
+    case (.axis, .less):
         return [
-            anchors.first.constraint(lessThanOrEqualToConstant: constant.first),
-            anchors.second.constraint(lessThanOrEqualToConstant: constant.second)
+            constraint(.greater, lhs: lhs.first, rhs: rhs.first, constant: constant.first, attribute: attribute),
+            constraint(.greater, lhs: rhs.second, rhs: lhs.second, constant: constant.second, attribute: attribute)
         ]
-    case .equal:
+    case (.axis, .equal):
         return [
-            anchors.first.constraint(equalToConstant: constant.first),
-            anchors.second.constraint(equalToConstant: constant.second)
+            constraint(.equal, lhs: lhs.first, rhs: rhs.first, constant: constant.first, attribute: attribute),
+            constraint(.equal, lhs: rhs.second, rhs: lhs.second, constant: constant.second, attribute: attribute)
         ]
-    case .greaterThanOrEqual:
+    case (.axis, .greater):
         return [
-            anchors.first.constraint(greaterThanOrEqualToConstant: constant.first),
-            anchors.second.constraint(greaterThanOrEqualToConstant: constant.second)
+            constraint(.greater, lhs: rhs.first, rhs: lhs.first, constant: constant.first, attribute: attribute),
+            constraint(.greater, lhs: lhs.second, rhs: rhs.second, constant: constant.second, attribute: attribute)
         ]
-    @unknown default:
-        return []
+    case (.center, .less):
+        return [
+            constraint(.greater, lhs: rhs.first, rhs: lhs.first, constant: constant.first, attribute: attribute),
+            constraint(.greater, lhs: rhs.second, rhs: lhs.second, constant: constant.second, attribute: attribute)
+        ]
+    case (.center, .equal):
+        return [
+            constraint(.equal, lhs: lhs.first, rhs: rhs.first, constant: constant.first, attribute: attribute),
+            constraint(.equal, lhs: lhs.second, rhs: rhs.second, constant: constant.second, attribute: attribute)
+        ]
+    case (.center, .greater):
+        return [
+            constraint(.greater, lhs: lhs.first, rhs: rhs.first, constant: constant.first, attribute: attribute),
+            constraint(.greater, lhs: lhs.second, rhs: rhs.second, constant: constant.second, attribute: attribute)
+        ]
+    case (.size, .less) where rhs.first is LayoutDimension:
+        return [
+            constraint(.less, lhs: lhs.first, rhs: rhs.first, constant: constant.first, attribute: attribute),
+            constraint(.less, lhs: lhs.second, rhs: rhs.second, constant: constant.second, attribute: attribute)
+        ]
+    case (.size, .equal) where rhs.first is LayoutDimension:
+        return [
+            constraint(.equal, lhs: lhs.first, rhs: rhs.first, constant: constant.first, attribute: attribute),
+            constraint(.equal, lhs: lhs.second, rhs: rhs.second, constant: constant.second, attribute: attribute)
+        ]
+    case (.size, .greater) where rhs.first is LayoutDimension:
+        return [
+            constraint(.greater, lhs: lhs.first, rhs: rhs.first, constant: constant.first, attribute: attribute),
+            constraint(.greater, lhs: lhs.second, rhs: rhs.second, constant: constant.second, attribute: attribute)
+        ]
+    case (.size, .less):
+        return [
+            constraint(.greater, lhs: rhs.first, rhs: lhs.first, constant: constant.first, attribute: attribute),
+            constraint(.greater, lhs: rhs.second, rhs: lhs.second, constant: constant.second, attribute: attribute)
+        ]
+    case (.size, .equal):
+        return [
+            constraint(.equal, lhs: lhs.first, rhs: rhs.first, constant: constant.first, attribute: attribute),
+            constraint(.equal, lhs: lhs.second, rhs: rhs.second, constant: constant.second, attribute: attribute)
+        ]
+    case (.size, .greater):
+        return [
+            constraint(.greater, lhs: lhs.first, rhs: rhs.first, constant: constant.first, attribute: attribute),
+            constraint(.greater, lhs: lhs.second, rhs: rhs.second, constant: constant.second, attribute: attribute)
+        ]
     }
-}
-
-private func sizeConstraints(
-    anchors: SizePair,
-    attribute: PairAttribute<SizePair>,
-    relation: NSLayoutConstraint.Relation
-) -> [NSLayoutConstraint] {
-    switch relation {
-    case .lessThanOrEqual:
-        return [
-            attribute.anchor.first.constraint(
-                greaterThanOrEqualTo: anchors.first,
-                multiplier: attribute.multiplier,
-                constant: attribute.constant.first
-            ),
-            attribute.anchor.second.constraint(
-                greaterThanOrEqualTo: anchors.second,
-                multiplier: attribute.multiplier,
-                constant: attribute.constant.second
-            )
-        ]
-    case .equal:
-        return [
-            anchors.first.constraint(
-                equalTo: attribute.anchor.first,
-                multiplier: attribute.multiplier,
-                constant: attribute.constant.first
-            ),
-            anchors.second.constraint(
-                equalTo: attribute.anchor.second,
-                multiplier: attribute.multiplier,
-                constant: attribute.constant.second
-            )
-        ]
-    case .greaterThanOrEqual:
-        return [
-            anchors.first.constraint(
-                greaterThanOrEqualTo: attribute.anchor.first,
-                multiplier: attribute.multiplier,
-                constant: attribute.constant.first
-            ),
-            anchors.second.constraint(
-                greaterThanOrEqualTo: attribute.anchor.second,
-                multiplier: attribute.multiplier,
-                constant: attribute.constant.second
-            )
-        ]
-    @unknown default:
-        return []
-    }
-}
-
-private func makeConstraints<Anchor>(
-    attribute: PairAttribute<Anchor>,
-    constraints: (Anchor, PairConstant) -> [NSLayoutConstraint]
-) -> [NSLayoutConstraint] {
-    constraints(attribute.anchor, attribute.constant).map {
-        let constraint = $0.with(multiplier: attribute.multiplier).reverseIfNeeded()
-        constraint.priority = attribute.priority
-        return constraint.activate()
-    }
-}
-
-private func makeConstraints(
-    anchors: SizePair,
-    attribute: PairAttribute<SizePair>,
-    relation: NSLayoutConstraint.Relation
-) -> [NSLayoutConstraint] {
-    let constraints: [NSLayoutConstraint]
-    if attribute.anchor.first is LayoutDimension {
-        constraints = sizeConstraints(
-            anchors: anchors,
-            constant: attribute.constant,
-            relation: relation
-        )
-    } else {
-        constraints = sizeConstraints(anchors: anchors, attribute: attribute, relation: relation)
-    }
-    return constraints.map {
-        let constraint = $0.reverseIfNeeded()
-        constraint.priority = attribute.priority
-        return constraint.activate()
-    }
+    // swiftlint:enable line_length
 }

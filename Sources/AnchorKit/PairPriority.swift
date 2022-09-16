@@ -26,6 +26,20 @@
 
 import UIKit
 
+public func ~ <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: UILayoutPriority
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, priority: rhs)
+}
+
+public func ~ <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: Float
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, priority: UILayoutPriority(rhs))
+}
+
 // MARK: - Size
 
 public func ~ (lhs: CGSize, rhs: UILayoutPriority) -> PairAttribute<SizePair> {
@@ -54,20 +68,4 @@ public func ~ (lhs: FloatRepresentable, rhs: Float) -> PairAttribute<SizePair> {
         constant: PairConstant(value: lhs.cgFloat),
         priority: UILayoutPriority(rhs)
     )
-}
-
-// MARK: - Generics
-
-public func ~ <FirstAnchor, SecondAnchor>(
-    lhs: Pair<FirstAnchor, SecondAnchor>,
-    rhs: UILayoutPriority
-) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
-    PairAttribute(anchor: lhs, priority: rhs)
-}
-
-public func ~ <FirstAnchor, SecondAnchor>(
-    lhs: Pair<FirstAnchor, SecondAnchor>,
-    rhs: Float
-) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
-    PairAttribute(anchor: lhs, priority: UILayoutPriority(rhs))
 }

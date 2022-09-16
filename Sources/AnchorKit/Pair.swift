@@ -31,6 +31,10 @@ public typealias VerticalPair = Pair<NSLayoutYAxisAnchor, NSLayoutYAxisAnchor>
 public typealias CenterPair = Pair<NSLayoutXAxisAnchor, NSLayoutYAxisAnchor>
 public typealias SizePair = Pair<NSLayoutDimension, NSLayoutDimension>
 
+enum AnchorType {
+    case axis, center, size
+}
+
 public struct Pair<FirstAnchor: LayoutAnchor, SecondAnchor: LayoutAnchor>: LayoutAnchor {
     let first: FirstAnchor
     let second: SecondAnchor

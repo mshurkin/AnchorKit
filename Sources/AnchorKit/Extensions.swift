@@ -49,3 +49,9 @@ extension CGSize {
         CGSize(width: -width, height: -height)
     }
 }
+
+extension NSLayoutConstraint.Relation {
+    var inverted: Self? {
+        Self(rawValue: rawValue * -1)
+    }
+}

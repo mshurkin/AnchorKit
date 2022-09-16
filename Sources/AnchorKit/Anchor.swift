@@ -28,6 +28,10 @@ import UIKit
 
 public typealias AnchorAttribute<Anchor: LayoutAnchor> = Attribute<Anchor, CGFloat>
 
+enum Relation {
+    case less, equal, greater
+}
+
 final class LayoutDimension: NSLayoutDimension {}
 
 extension NSLayoutAnchor: LayoutAnchor {}

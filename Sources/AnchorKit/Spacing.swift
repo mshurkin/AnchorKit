@@ -33,6 +33,8 @@ public struct LayoutSpacing {
 }
 extension LayoutSpacing: Constant {}
 
+// MARK: -
+
 public func * (lhs: LayoutSpacing, rhs: FloatRepresentable) -> LayoutSpacing {
     LayoutSpacing(multiplier: lhs.multiplier * rhs.cgFloat)
 }

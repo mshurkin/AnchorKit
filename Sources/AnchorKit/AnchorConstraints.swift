@@ -27,147 +27,104 @@
 import UIKit
 
 @discardableResult
+public func >= <AnchorType>(
+    lhs: NSLayoutAnchor<AnchorType>,
+    rhs: NSLayoutAnchor<AnchorType>
+) -> NSLayoutConstraint {
+    constraint(.greater, lhs: lhs, rhs: rhs)
+}
+
+@discardableResult
+public func <= <AnchorType>(
+    lhs: NSLayoutAnchor<AnchorType>,
+    rhs: NSLayoutAnchor<AnchorType>
+) -> NSLayoutConstraint {
+    constraint(.less, lhs: lhs, rhs: rhs)
+}
+
+@discardableResult
+public func == <AnchorType, Anchor: NSLayoutAnchor<AnchorType>>(
+    lhs: Anchor,
+    rhs: AnchorAttribute<Anchor>
+) -> NSLayoutConstraint {
+    constraint(.equal, lhs: lhs, rhs: rhs.anchor, constant: rhs.constant, attribute: rhs)
+}
+
+@discardableResult
+public func >= <AnchorType, Anchor: NSLayoutAnchor<AnchorType>>(
+    lhs: Anchor,
+    rhs: AnchorAttribute<Anchor>
+) -> NSLayoutConstraint {
+    constraint(.greater, lhs: lhs, rhs: rhs.anchor, constant: rhs.constant, attribute: rhs)
+}
+
+@discardableResult
+public func <= <AnchorType, Anchor: NSLayoutAnchor<AnchorType>>(
+    lhs: Anchor,
+    rhs: AnchorAttribute<Anchor>
+) -> NSLayoutConstraint {
+    constraint(.less, lhs: lhs, rhs: rhs.anchor, constant: rhs.constant, attribute: rhs)
+}
+
+// MARK: - Axis
+
+@discardableResult
 public func == (lhs: NSLayoutXAxisAnchor, rhs: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
-    lhs.constraint(equalTo: rhs).activate()
+    constraint(.equal, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
 public func == (lhs: NSLayoutYAxisAnchor, rhs: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
-    lhs.constraint(equalTo: rhs).activate()
+    constraint(.equal, lhs: lhs, rhs: rhs)
 }
 
 // MARK: - Dimension
 
 @discardableResult
 public func == (lhs: NSLayoutDimension, rhs: NSLayoutDimension) -> NSLayoutConstraint {
-    lhs.constraint(equalTo: rhs).activate()
+    constraint(.equal, lhs: lhs, rhs: rhs)
 }
 
 @discardableResult
 public func == (lhs: NSLayoutDimension, rhs: FloatRepresentable) -> NSLayoutConstraint {
-    lhs.constraint(equalToConstant: rhs.cgFloat).activate()
+    constraint(.equal, lhs: lhs, rhs: LayoutDimension(), constant: rhs.cgFloat)
 }
 
 @discardableResult
 public func >= (lhs: NSLayoutDimension, rhs: FloatRepresentable) -> NSLayoutConstraint {
-    lhs.constraint(greaterThanOrEqualToConstant: rhs.cgFloat).activate()
+    constraint(.greater, lhs: lhs, rhs: LayoutDimension(), constant: rhs.cgFloat)
 }
 
 @discardableResult
 public func <= (lhs: NSLayoutDimension, rhs: FloatRepresentable) -> NSLayoutConstraint {
-    lhs.constraint(lessThanOrEqualToConstant: rhs.cgFloat).activate()
+    constraint(.less, lhs: lhs, rhs: LayoutDimension(), constant: rhs.cgFloat)
 }
 
-@discardableResult
-public func == (
-    lhs: NSLayoutDimension,
-    rhs: AnchorAttribute<NSLayoutDimension>
-) -> NSLayoutConstraint {
-    let constraint: NSLayoutConstraint
-    if rhs.anchor is LayoutDimension {
-        constraint = lhs.constraint(equalToConstant: rhs.constant)
-    } else {
-        constraint = lhs.constraint(
-            equalTo: rhs.anchor,
-            multiplier: rhs.multiplier,
-            constant: rhs.constant
-        )
-        .reverseIfNeeded()
-    }
-    constraint.priority = rhs.priority
-    return constraint.activate()
-}
+// MARK: - Constraints
 
-@discardableResult
-public func >= (
-    lhs: NSLayoutDimension,
-    rhs: AnchorAttribute<NSLayoutDimension>
+func constraint<Anchor>(
+    _ relation: Relation,
+    lhs: NSLayoutAnchor<Anchor>,
+    rhs: NSLayoutAnchor<Anchor>,
+    constant: CGFloat = 0,
+    attribute: LayoutAttribute? = nil
 ) -> NSLayoutConstraint {
-    let constraint: NSLayoutConstraint
-    if rhs.anchor is LayoutDimension {
-        constraint = lhs.constraint(greaterThanOrEqualToConstant: rhs.constant)
-    } else {
-        constraint = lhs.constraint(
-            greaterThanOrEqualTo: rhs.anchor,
-            multiplier: rhs.multiplier,
-            constant: rhs.constant
-        )
-        .reverseIfNeeded()
-    }
-    constraint.priority = rhs.priority
-    return constraint.activate()
-}
-
-@discardableResult
-public func <= (
-    lhs: NSLayoutDimension,
-    rhs: AnchorAttribute<NSLayoutDimension>
-) -> NSLayoutConstraint {
-    let constraint: NSLayoutConstraint
-    if rhs.anchor is LayoutDimension {
-        constraint = lhs.constraint(lessThanOrEqualToConstant: rhs.constant)
-    } else {
-        constraint = lhs.constraint(
-            lessThanOrEqualTo: rhs.anchor,
-            multiplier: rhs.multiplier,
-            constant: rhs.constant
-        )
-        .reverseIfNeeded()
-    }
-    constraint.priority = rhs.priority
-    return constraint.activate()
-}
-
-// MARK: - Generics
-
-@discardableResult
-public func >= <AnchorType>(
-    lhs: NSLayoutAnchor<AnchorType>,
-    rhs: NSLayoutAnchor<AnchorType>
-) -> NSLayoutConstraint {
-    lhs.constraint(greaterThanOrEqualTo: rhs).activate()
-}
-
-@discardableResult
-public func <= <AnchorType>(
-    lhs: NSLayoutAnchor<AnchorType>,
-    rhs: NSLayoutAnchor<AnchorType>
-) -> NSLayoutConstraint {
-    lhs.constraint(lessThanOrEqualTo: rhs).activate()
-}
-
-@discardableResult
-public func == <AnchorType>(
-    lhs: NSLayoutAnchor<AnchorType>,
-    rhs: AnchorAttribute<NSLayoutAnchor<AnchorType>>
-) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(equalTo: rhs.anchor, constant: rhs.constant)
-        .with(multiplier: rhs.multiplier)
-        .reverseIfNeeded()
-    constraint.priority = rhs.priority
-    return constraint.activate()
-}
-
-@discardableResult
-public func >= <AnchorType>(
-    lhs: NSLayoutAnchor<AnchorType>,
-    rhs: AnchorAttribute<NSLayoutAnchor<AnchorType>>
-) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(greaterThanOrEqualTo: rhs.anchor, constant: rhs.constant)
-        .with(multiplier: rhs.multiplier)
-        .reverseIfNeeded()
-    constraint.priority = rhs.priority
-    return constraint.activate()
-}
-
-@discardableResult
-public func <= <AnchorType>(
-    lhs: NSLayoutAnchor<AnchorType>,
-    rhs: AnchorAttribute<NSLayoutAnchor<AnchorType>>
-) -> NSLayoutConstraint {
-    let constraint = lhs.constraint(lessThanOrEqualTo: rhs.anchor, constant: rhs.constant)
-        .with(multiplier: rhs.multiplier)
-        .reverseIfNeeded()
-    constraint.priority = rhs.priority
-    return constraint.activate()
+    {
+        switch (lhs, rhs, relation) {
+        case (let lhs as NSLayoutDimension, is LayoutDimension, .less):
+            return lhs.constraint(lessThanOrEqualToConstant: constant)
+        case (let lhs as NSLayoutDimension, is LayoutDimension, .equal):
+            return lhs.constraint(equalToConstant: constant)
+        case (let lhs as NSLayoutDimension, is LayoutDimension, .greater):
+            return lhs.constraint(greaterThanOrEqualToConstant: constant)
+        case (_, _, .less):
+            return lhs.constraint(lessThanOrEqualTo: rhs, constant: constant)
+        case (_, _, .equal):
+            return lhs.constraint(equalTo: rhs, constant: constant)
+        case (_, _, .greater):
+            return lhs.constraint(greaterThanOrEqualTo: rhs, constant: constant)
+        }
+    }()
+        .apply(attribute: attribute)
+        .activate()
 }

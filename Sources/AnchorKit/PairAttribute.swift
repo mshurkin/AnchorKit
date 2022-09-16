@@ -26,6 +26,79 @@
 
 import UIKit
 
+public func + <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, constant: PairConstant(value: rhs.cgFloat))
+}
+
+public func - <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, constant: PairConstant(value: -rhs.cgFloat))
+}
+
+public func * <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, multiplier: rhs.cgFloat)
+}
+
+public func * <FirstAnchor, SecondAnchor>(
+    lhs: FloatRepresentable,
+    rhs: Pair<FirstAnchor, SecondAnchor>
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: rhs, multiplier: lhs.cgFloat)
+}
+
+public func / <FirstAnchor, SecondAnchor>(
+    lhs: Pair<FirstAnchor, SecondAnchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
+    PairAttribute(anchor: lhs, multiplier: 1 / rhs.cgFloat)
+}
+
+public func + <Anchor>(
+    lhs: PairAttribute<Anchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Anchor> {
+    var attribute = lhs
+    attribute.constant.first += rhs.cgFloat
+    attribute.constant.second += rhs.cgFloat
+    return attribute
+}
+
+public func - <Anchor>(
+    lhs: PairAttribute<Anchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Anchor> {
+    var attribute = lhs
+    attribute.constant.first -= rhs.cgFloat
+    attribute.constant.second -= rhs.cgFloat
+    return attribute
+}
+
+public func * <Anchor>(
+    lhs: PairAttribute<Anchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Anchor> {
+    var attribute = lhs
+    attribute.multiplier *= rhs.cgFloat
+    return attribute
+}
+
+public func / <Anchor>(
+    lhs: PairAttribute<Anchor>,
+    rhs: FloatRepresentable
+) -> PairAttribute<Anchor> {
+    var attribute = lhs
+    attribute.multiplier /= rhs.cgFloat
+    return attribute
+}
+
 // MARK: Horizontal
 
 public func + (lhs: HorizontalPair, rhs: UIEdgeInsets) -> PairAttribute<HorizontalPair> {
@@ -160,7 +233,7 @@ public func - (lhs: PairAttribute<CenterPair>, rhs: CGPoint) -> PairAttribute<Ce
     return attribute
 }
 
-// MARK: - Dimension
+// MARK: - Size
 
 public func + (lhs: SizePair, rhs: CGSize) -> PairAttribute<SizePair> {
     PairAttribute(anchor: lhs, constant: PairConstant(size: rhs))
@@ -181,80 +254,5 @@ public func - (lhs: PairAttribute<SizePair>, rhs: CGSize) -> PairAttribute<SizeP
     var attribute = lhs
     attribute.constant.first -= rhs.width
     attribute.constant.second -= rhs.height
-    return attribute
-}
-
-// MARK: - Generics
-
-public func + <FirstAnchor, SecondAnchor>(
-    lhs: Pair<FirstAnchor, SecondAnchor>,
-    rhs: FloatRepresentable
-) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: rhs.cgFloat))
-}
-
-public func - <FirstAnchor, SecondAnchor>(
-    lhs: Pair<FirstAnchor, SecondAnchor>,
-    rhs: FloatRepresentable
-) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
-    PairAttribute(anchor: lhs, constant: PairConstant(value: -rhs.cgFloat))
-}
-
-public func * <FirstAnchor, SecondAnchor>(
-    lhs: Pair<FirstAnchor, SecondAnchor>,
-    rhs: FloatRepresentable
-) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
-    PairAttribute(anchor: lhs, multiplier: rhs.cgFloat)
-}
-
-public func * <FirstAnchor, SecondAnchor>(
-    lhs: FloatRepresentable,
-    rhs: Pair<FirstAnchor, SecondAnchor>
-) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
-    PairAttribute(anchor: rhs, multiplier: lhs.cgFloat)
-}
-
-public func / <FirstAnchor, SecondAnchor>(
-    lhs: Pair<FirstAnchor, SecondAnchor>,
-    rhs: FloatRepresentable
-) -> PairAttribute<Pair<FirstAnchor, SecondAnchor>> {
-    PairAttribute(anchor: lhs, multiplier: 1 / rhs.cgFloat)
-}
-
-public func + <Anchor>(
-    lhs: PairAttribute<Anchor>,
-    rhs: FloatRepresentable
-) -> PairAttribute<Anchor> {
-    var attribute = lhs
-    attribute.constant.first += rhs.cgFloat
-    attribute.constant.second += rhs.cgFloat
-    return attribute
-}
-
-public func - <Anchor>(
-    lhs: PairAttribute<Anchor>,
-    rhs: FloatRepresentable
-) -> PairAttribute<Anchor> {
-    var attribute = lhs
-    attribute.constant.first -= rhs.cgFloat
-    attribute.constant.second -= rhs.cgFloat
-    return attribute
-}
-
-public func * <Anchor>(
-    lhs: PairAttribute<Anchor>,
-    rhs: FloatRepresentable
-) -> PairAttribute<Anchor> {
-    var attribute = lhs
-    attribute.multiplier *= rhs.cgFloat
-    return attribute
-}
-
-public func / <Anchor>(
-    lhs: PairAttribute<Anchor>,
-    rhs: FloatRepresentable
-) -> PairAttribute<Anchor> {
-    var attribute = lhs
-    attribute.multiplier /= rhs.cgFloat
     return attribute
 }

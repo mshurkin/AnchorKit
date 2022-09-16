@@ -26,28 +26,6 @@
 
 import UIKit
 
-// MARK: Size
-
-public func ~ (
-    lhs: FloatRepresentable,
-    rhs: UILayoutPriority
-) -> AnchorAttribute<NSLayoutDimension> {
-    AnchorAttribute(anchor: LayoutDimension(), constant: lhs.cgFloat, priority: rhs)
-}
-
-public func ~ (
-    lhs: FloatRepresentable,
-    rhs: Float
-) -> AnchorAttribute<NSLayoutDimension> {
-    AnchorAttribute(
-        anchor: LayoutDimension(),
-        constant: lhs.cgFloat,
-        priority: UILayoutPriority(rhs)
-    )
-}
-
-// MARK: - Generics
-
 public func ~ <Anchor>(lhs: Anchor, rhs: UILayoutPriority) -> AnchorAttribute<Anchor> {
     AnchorAttribute(anchor: lhs, priority: rhs)
 }
@@ -72,4 +50,24 @@ public func ~ <Anchor, Constant>(
     var attribute = lhs
     attribute.priority = UILayoutPriority(rhs)
     return attribute
+}
+
+// MARK: Dimension
+
+public func ~ (
+    lhs: FloatRepresentable,
+    rhs: UILayoutPriority
+) -> AnchorAttribute<NSLayoutDimension> {
+    AnchorAttribute(anchor: LayoutDimension(), constant: lhs.cgFloat, priority: rhs)
+}
+
+public func ~ (
+    lhs: FloatRepresentable,
+    rhs: Float
+) -> AnchorAttribute<NSLayoutDimension> {
+    AnchorAttribute(
+        anchor: LayoutDimension(),
+        constant: lhs.cgFloat,
+        priority: UILayoutPriority(rhs)
+    )
 }

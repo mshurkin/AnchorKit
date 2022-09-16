@@ -29,7 +29,12 @@ import UIKit
 public protocol LayoutAnchor {}
 public protocol Constant {}
 
-public struct Attribute<AnchorType: LayoutAnchor, ConstantType: Constant> {
+protocol LayoutAttribute {
+    var multiplier: CGFloat { get }
+    var priority: UILayoutPriority { get }
+}
+
+public struct Attribute<AnchorType: LayoutAnchor, ConstantType: Constant>: LayoutAttribute {
     let anchor: AnchorType
     var constant: ConstantType
     var multiplier: CGFloat = 1
